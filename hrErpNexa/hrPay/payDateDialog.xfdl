@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="payDateDialog" classname="payDateDialog" left="0" top="0" width="700" height="500" titletext="New Form" onload="payDateDialog_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="급여 / 상여 지급일자" left="0%" top="1" right="0.14%" height="71" tooltiptext="default" style="background:#e1f3c7ff;border:0px solid #b1b5b9b3 ;color:yellowgreen;align:center middle;font:bold 14 휴먼엑스포;"/>
+        <Static id="Static01" taborder="4" text="귀속년월" left="2.57%" top="110" right="84%" height="26" enable="false" enableevent="false" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:white;align:center middle;font:bold 12 휴먼엑스포;"/>
+        <MaskEdit id="yearMonth" taborder="2" left="18.29%" top="110" right="62.57%" height="26" mask="####-##" type="string" style="selectcolor:#3e3e3eff;selectbackground:#ffffffb3;background:#ffffffb3;border:1px solid #a8a8a8b3 ;color:#3e3e3eff;bordertype:round 3 3 ;align:center middle;" oneditclick="yearMonth_oneditclick"/>
+        <Button id="cancelBtn" taborder="3" text="닫  기" left="78.43%" top="118" right="5.86%" height="30" style="background:#e1f3c7ff;border:1px solid #979797ff ;color:yellowgreen;bordertype:round 3 3 ;font:bold 9 Verdana;gradation:linear 0%,0% #f5f5f5ff 0%,100% #d5d5d5ff [50% #e3e3e3ff][51% #dbdbdbff];" onclick="cancelBtn_onclick"/>
+        <Grid id="Grid00" taborder="5" useinputpanel="false" left="1.57%" top="171" right="1.86%" height="309" binddataset="dsSalPaymentDate" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="96"/>
+                <Column size="90"/>
+                <Column size="120"/>
+                <Column size="96"/>
+                <Column size="96"/>
+                <Column size="84"/>
+                <Column size="93"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="지급일자" expandsize="50"/>
+                <Cell col="1" text="직종" expandsize="50"/>
+                <Cell col="2" text="대상자선정" expandsize="50"/>
+                <Cell col="3" text="동시발행" expandsize="50"/>
+                <Cell col="4" text="급여구분" expandsize="50"/>
+                <Cell col="5" text="급여형태" expandsize="50"/>
+                <Cell col="6" text="비고" expandsize="50"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:PAYMENT_DATE" mask="####-##-##"/>
+                <Cell col="1" displaytype="combo" text="bind:JIKJONG_CODE" combodataset="dsJikjong" combocodecol="DETAIL_CODE" combodatacol="DETAIL_CODE_NAME"/>
+                <Cell col="2" text="bind:TARGET_CHOICE"/>
+                <Cell col="3" displaytype="combo" text="bind:SAME_TIME_SELECTION" combodataset="dsSameTimeSelection" combocodecol="DETAIL_CODE" combodatacol="DETAIL_CODE_NAME"/>
+                <Cell col="4" displaytype="combo" style="color: ;" text="bind:PAY_TYPE" combodataset="dsPayType" combocodecol="DETAIL_CODE" combodatacol="DETAIL_CODE_NAME"/>
+                <Cell col="5" displaytype="combo" text="bind:SALARY_TYPE_CODE" combodataset="dsSalaryType" combocodecol="DETAIL_CODE" combodatacol="DETAIL_CODE_NAME"/>
+                <Cell col="6" text="bind:NOTE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsPayType" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="DETAIL_CODE" type="STRING" size="256"/>
+          <Column id="DETAIL_CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJikjong" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="DETAIL_CODE" type="STRING" size="256"/>
+          <Column id="DETAIL_CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSameTimeSelection" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="DETAIL_CODE" type="STRING" size="256"/>
+          <Column id="DETAIL_CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSalaryType" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="DETAIL_CODE" type="STRING" size="256"/>
+          <Column id="DETAIL_CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSalPaymentDate" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="PAYMENT_DATE" type="STRING" size="256"/>
+          <Column id="INPUTED_YEAR_MONTH" type="STRING" size="256"/>
+          <Column id="JIKJONG_CODE" type="STRING" size="256"/>
+          <Column id="TARGET_CHOICE" type="STRING" size="256"/>
+          <Column id="SAME_TIME_SELECTION" type="STRING" size="256"/>
+          <Column id="PAY_TYPE" type="STRING" size="256"/>
+          <Column id="SALARY_TYPE_CODE" type="STRING" size="256"/>
+          <Column id="NOTE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+include "lib::core.xjs"
+this.paymentDate
+
+this.payDateDialog_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	//MaskEdit에 yearMonth값을 이전 창(payInputCalculationForm)에서  baseYearMonth값을 받아 넣는다
+	this.yearMonth.set_value(baseYearMonth);
+	
+	application.dsDetailCode.filter("");
+	//동시 분리
+	application.dsDetailCode.filter("String(DETAIL_CODE).substr(0,3) == 'STS'");
+	this.dsSameTimeSelection.copyData(application.dsDetailCode,true);
+	
+	//Dataset.copyData(objDataset[, bFilteredOnly]):지정한 데이터셋의 행(row) 데이터를 복사하는 메소드입니다.
+	
+	
+	
+	//급여 상여 급사여
+	application.dsDetailCode.filter("String(DETAIL_CODE).substr(0,3) == 'SGC'");
+	this.dsPayType.copyData(application.dsDetailCode,true);
+	
+	
+	//연봉 월급 주급 등등
+	application.dsDetailCode.filter("String(DETAIL_CODE).substr(0,3) == 'PAC'");
+	this.dsSalaryType.copyData(application.dsDetailCode,true);
+	
+	//사무직 생산지 
+	application.dsDetailCode.filter("String(DETAIL_CODE).substr(0,3) == 'JJC'");
+	this.dsJikjong.copyData(application.dsDetailCode,true);
+	
+	alert(this.dsJikjong.getColumn(e.row,"DETAIL_CODE"));//확인하려고
+
+	//해당 귀속년월의 급/상여 지급일및 관련 정보를 조회하는 메서드
+	this.transaction(
+			"findSalPaymentsDateList",
+			"dataURL::hr/circumstance/findSalPaymentDateList.do",
+			"",
+			"dsSalPaymentDate=dsSalPaymentDate",
+			"inputedYearMonth="+baseYearMonth,
+			"callback"
+	);	
+	this.initialize(this);
+}
+
+this.cancelBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+}
+
+this.Grid00_oncelldblclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	
+	paymentDate=this.dsSalPaymentDate.getColumn(e.row,"PAYMENT_DATE");
+	this.opener.paymentDate.set_value(paymentDate);
+	alert(paymentDate);
+	this.close();
+}
+
+
+]]></Script>
+  </Form>
+</FDL>

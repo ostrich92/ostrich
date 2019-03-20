@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="overNightApplicationForm" classname="overNightApplicationForm" left="0" top="0" width="680" height="530" titletext="New Form" onload="overNightApplicationForm_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="연장 / 심야 초과근무신청" left="0.88%" top="0" right="0.88%" height="30" style="background:beige;align:center middle;font:bold 15 휴먼모음T;"/>
+        <Static id="Static01" taborder="1" text="조회기간" left="23.24%" top="60" height="30" style="background:beige;align:center middle;font:12 휴먼모음T;" width="70"/>
+        <Calendar id="searchFromDate" taborder="2" left="35%" top="60" height="30" width="120"/>
+        <Calendar id="searchToDate" taborder="3" left="59.71%" top="60" width="120" height="30"/>
+        <Static id="Static02" taborder="4" text="~" left="53.82%" top="60" width="30" height="30" style="background:beige;align:center middle;font:12 휴먼모음T;"/>
+        <Button id="batchBtn" taborder="5" text="일괄신청" left="89.12%" top="60" right="1.62%" height="30" style="background:beige;font:bold 10 휴먼모음T;" onclick="batchBtn_onclick"/>
+        <Button id="searchBtn" taborder="6" text="조 회" left="78.53%" top="60" right="12.21%" height="30" style="background:beige;font:bold 10 휴먼모음T;" onclick="searchBtn_onclick"/>
+        <Grid id="Grid00" taborder="7" useinputpanel="false" left="1.32%" top="106" right="1.62%" height="408" autofittype="col" binddataset="dsOverNight">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="122"/>
+                <Column size="98"/>
+                <Column size="104"/>
+                <Column size="104"/>
+                <Column size="92"/>
+                <Column size="101"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:beige;font:bold 9 휴먼모음T;" text="사원번호"/>
+                <Cell col="1" style="background:beige;font:bold 9 휴먼모음T;" text="사원명"/>
+                <Cell col="2" style="background:beige;font:bold 9 휴먼모음T;" text="신청일자"/>
+                <Cell col="3" style="background:beige;font:bold 9 휴먼모음T;" text="신청유형"/>
+                <Cell col="4" style="background:beige;font:bold 9 휴먼모음T;" text="승인여부"/>
+                <Cell col="5" style="background:beige;font:bold 9 휴먼모음T;" text="신청여부"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:EMP_CODE"/>
+                <Cell col="1" text="bind:EMP_NAME"/>
+                <Cell col="2" text="bind:BASIC_DAY" mask="####-##-##"/>
+                <Cell col="3" text="bind:TYPE"/>
+                <Cell col="4" text="bind:APPROVAL_STATUS"/>
+                <Cell col="5" text="bind:REQUEST_STATUS"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[include "lib::core.xjs"
+
+this.overNightApplicationForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	application.dsOverNight.filter("");
+	this.transaction(
+		"findOverNightAttdReport",
+		"dataURL::hr/attendance/findOverNightAttdReport.do",
+		"",
+		"dsOverNight=dsOverNight",
+		"",
+		"callback",
+		false
+	);
+	trace(application.dsOverNight.getRowCount());
+	application.dsOverNight.filter("BASIC_DAY==0");
+	trace(application.dsOverNight.getRowCount());
+	
+	this.initialize(this);
+}
+
+this.searchBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var fromDate				=			this.searchFromDate.value;
+	var toDate					=			this.searchToDate.value;
+	
+	if(fromDate==null || toDate==null){
+		alert("조회기간을 지정해주시기 바랍니다.");
+	}else{
+		if(fromDate>toDate){
+			alert("조회기간을 잘못 지정하였습니다.");
+			this.searchToDate.set_value("");
+		}else{
+			application.dsOverNight.filter("");
+			application.dsOverNight.filter("BASIC_DAY >= "+fromDate+" && BASIC_DAY <="+toDate+" && EMP_CODE=='"+application.gv_EMP_CODE+"'");
+		}if(application.dsOverNight.getRowCount()==0){
+			alert("조회할 내역이 없네요.");
+		}
+	}
+}
+
+
+this.batchBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	for(var i=0; i<application.dsOverNight.getRowCount(); i++){
+		application.dsOverNight.setColumn(i, "REQUEST_STATUS", "Y");
+	}
+	this.updateOverNight();
+}
+
+this.updateOverNight = function(){
+	this.transaction(
+		"updateRequestStatus",
+		"dataURL::hr/attendance/updateRequestStatus.do",
+		"dsOverNight=dsOverNight:u",
+		"",
+		"",
+		"callback",
+		false
+	);
+}
+
+this.callback = function(trid, ErrorCode, ErrorMsg){
+	if(trid=="updateRequestStatus"){
+		if(ErrorCode!=0){
+			alert(ErrorMsg);
+		}else{
+			alert("성공적으로 일괄신청을 완료하였습니다.");
+			this.searchFromDate.set_value("");
+			this.searchToDate.set_value("");
+			application.dsOverNight.filter("BASIC_DAY==0");
+		}
+	}
+}]]></Script>
+  </Form>
+</FDL>

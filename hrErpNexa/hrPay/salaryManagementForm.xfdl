@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="salaryManagementForm" classname="salaryManagementForm" left="0" top="0" width="700" height="500" titletext="New Form" onload="salaryManagementForm_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="수당 관리" left="0.14%" top="0" height="63" style="background:#e1f3c7ff;color:yellowgreen;align:center middle;font:bold 14 휴먼엑스포;" width="700"/>
+        <GroupBox id="GroupBox00" text="연장수당 및 기타수당 관리" taborder="1" left="7" top="86" width="685" height="408" style="border:1px solid lightsteelblue ;color:black;font:휴먼엑스포,11;"/>
+        <Static id="Static05" taborder="2" text="※연장수당 = 근로시간 * 시급 * 연장수당률" left="2%" top="104" right="54.29%" height="32" style="color:black;font:휴먼엑스포,11;"/>
+        <Button id="saveBtn" taborder="3" text="일괄저장" onclick="saveBtn_onclick" left="82.29%" top="103" right="3.43%" height="25" style="background:#e1f3c7ff;color:yellowgreen;"/>
+        <Static id="Static01" taborder="4" text="연장 수당" left="2.14%" top="132" right="2.29%" height="20" style="background:#e1f3c7ff;color:yellowgreen;align:center middle;font:HY견고딕,12,bold;"/>
+        <Grid id="overtimeSalGrid" taborder="5" binddataset="dsOvertimeSal" useinputpanel="false" autofittype="col" left="2%" top="160" right="16.71%" height="143" style="border:1 solid #cbcbcbff ;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#dcfad3ff;" text="NO"/>
+                <Cell col="1" style="background:#dcfad3ff;" text="연장수당코드"/>
+                <Cell col="2" style="background:#dcfad3ff;" text="연장수당명"/>
+                <Cell col="3" style="background:#dcfad3ff;" text="연장수당률"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow+1"/>
+                <Cell col="1" edittype="normal" text="bind:OVERTIME_SAL_CODE"/>
+                <Cell col="2" edittype="normal" text="bind:OVERTIME_SAL_NAME"/>
+                <Cell col="3" edittype="normal" text="bind:OVERTIME_SAL_RATE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="addOvertimeSalBtn" taborder="6" text="+" onclick="addOvertimeSalBtn_onclick" left="84.71%" top="232" height="31" style="background:#e1f3c7ff;color:yellowgreen;" width="45"/>
+        <Button id="removeOvertimeSalBtn" taborder="7" text="-" onclick="removeOvertimeSalBtn_onclick" left="84.71%" top="272" height="31" style="background:#e1f3c7ff;color:yellowgreen;" width="45"/>
+        <Static id="Static02" taborder="8" text="기타 수당" left="1.86%" top="309" right="2.29%" height="19" style="background:#e1f3c7ff;color:yellowgreen;align:center middle;font:HY견고딕,12,bold;"/>
+        <Grid id="etcSalGrid" taborder="9" binddataset="dsEtcSal" useinputpanel="false" autofittype="col" left="1.86%" top="337" right="17%" height="151" style="border:1 solid #cbcbcbff ;" oncellclick="etcSalGrid_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="150"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#dcfad3ff;" text="NO"/>
+                <Cell col="1" style="background:#dcfad3ff;" text="기타수당코드"/>
+                <Cell col="2" style="background:#dcfad3ff;" text="기타수당명"/>
+                <Cell col="3" style="background:#dcfad3ff;" text="금 액"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow+1"/>
+                <Cell col="1" edittype="normal" text="bind:ETC_SAL_CODE"/>
+                <Cell col="2" edittype="normal" text="bind:ETC_SAL_NAME"/>
+                <Cell col="3" displaytype="currency" edittype="normal" text="bind:ETC_SAL_PRICE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="addEtcSalBtn" taborder="10" text="+" onclick="addEtcSalBtn_onclick" left="84.71%" top="417" height="31" style="background:#e1f3c7ff;color:yellowgreen;" width="45"/>
+        <Button id="removeEtcSalBtn" taborder="11" text="-" onclick="removeEtcSalBtn_onclick" left="84.71%" top="457" height="31" style="background:#e1f3c7ff;color:yellowgreen;" width="45"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsEtcSal">
+        <ColumnInfo>
+          <Column id="ETC_SAL_CODE" type="STRING" size="256"/>
+          <Column id="ETC_SAL_NAME" type="STRING" size="256"/>
+          <Column id="ETC_SAL_PRICE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsOvertimeSal">
+        <ColumnInfo>
+          <Column id="OVERTIME_SAL_CODE" type="STRING" size="256"/>
+          <Column id="OVERTIME_SAL_NAME" type="STRING" size="256"/>
+          <Column id="OVERTIME_SAL_RATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[ include "lib::core.xjs"
+//메인폼
+this.salaryManagementForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+		
+		this.initialize(this);
+	
+		this.transaction(
+					"findSalaryList",
+					"dataURL::base/findSalaryList.do",
+					"",
+					"dsEtcSal=dsEtcSal dsOvertimeSal=dsOvertimeSal",
+					"",
+					"callback"
+					);	
+}
+//연장수당추가
+this.addOvertimeSalBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+		this.dsOvertimeSal.addRow();
+		alert(this.dsOvertimeSal.getRowCount());
+}
+//연장수당삭제
+this.removeOvertimeSalBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+		this.dsOvertimeSal.deleteRow(this.dsOvertimeSal.rowposition);
+
+}
+//기타수당추가
+this.addEtcSalBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+		this.dsEtcSal.addRow();
+		alert(this.dsEtcSal.getRowType(e.row));
+}
+//기타수당삭제
+this.removeEtcSalBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+		this.dsEtcSal.deleteRow(this.dsEtcSal.rowposition);
+
+}
+//일괄저장
+this.saveBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(confirm(" 현재내용을 저장 하시겠습니까? ")){
+	
+		this.transaction(
+			"batchSudang",
+			"dataURL::base/batchSudang.do",
+			"dsEtcSal=dsEtcSal:u dsOvertimeSal=dsOvertimeSal:u",
+			"dsEtcSal=dsEtcSal dsOvertimeSal=dsOvertimeSal",
+			"",
+			"callback"
+		);
+		alert(this.dsOvertimeSal.getRowCount());
+	}
+}
+
+this.callback=function(trid, ErrorCode, ErrorMsg){
+
+	 if(trid=='batchSudang'){
+		if(ErrorCode!=0)
+			alert(ErrorMsg);
+		else
+			alert(" 성공적으로 저장이 되었습니다 :) ");
+	}
+}
+
+this.etcSalGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	alert(this.dsEtcSal.getRowType(e.row));
+}
+]]></Script>
+  </Form>
+</FDL>

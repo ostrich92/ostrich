@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="loginForm" classname="loginForm" left="0" top="0" width="400" height="500" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="회사명" left="15.75%" top="3" right="15.75%" height="107" style="align:center middle;font:bold 20 Arial;"/>
+        <Static id="Static01" taborder="1" text="부서코드" left="15.25%" top="128" right="58.75%" height="39" style="font:bold 10 arial;"/>
+        <Static id="Static02" taborder="2" text="부서명" left="15.25%" top="184" right="58.75%" height="39" style="font:bold 10 arial;"/>
+        <Static id="Static03" taborder="3" text="사원코드" left="15.25%" top="240" right="58.75%" height="39" style="font:bold 10 arial;"/>
+        <Static id="Static04" taborder="4" text="사원명" left="15.25%" top="296" right="58.75%" height="39" style="font:bold 10 arial;"/>
+        <Button id="Button00" taborder="5" text="CANCEL" left="54%" top="384" right="14.25%" height="42"/>
+        <Button id="Button01" taborder="6" text="LOGIN" left="15.25%" top="384" right="53%" height="42"/>
+        <Edit id="Edit00" taborder="7" left="35.25%" top="126" right="26%" height="40"/>
+        <Edit id="Edit01" taborder="8" left="35.25%" top="182" right="14.75%" height="40"/>
+        <Edit id="Edit02" taborder="9" left="35.25%" top="238" right="26%" height="40"/>
+        <Edit id="Edit03" taborder="10" left="35.25%" top="294" right="14.75%" height="40"/>
+        <Button id="Button02" taborder="11" text="Button02" left="75%" top="126" right="15%" height="40"/>
+        <Button id="Button03" taborder="12" text="Button02" left="75%" top="238" right="15%" height="40"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

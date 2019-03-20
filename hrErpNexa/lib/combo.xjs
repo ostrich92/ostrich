@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script type="xscript5.0"><![CDATA[
+this.gfn_showComboInGridCell = function(grid, combo, row, cell, rowIndex)
+{
+	var objRect = grid.getCellRect(row, cell);
+	
+	var nTop = parseInt(objRect.top) + parseInt(grid.top);
+	var nLeft = parseInt(objRect.left) + parseInt(grid.left);
+	var nWidth = grid.getFormatColSize(cell);
+	var nHeight = grid.getFormatRowSize(rowIndex);  // 보통 1
+
+	combo.set_top(nTop);
+	combo.set_left(nLeft);
+	combo.set_width(nWidth);
+	combo.set_height(nHeight);
+			
+	combo.set_value(null);
+
+	combo.set_visible(true);
+	combo.dropdown();
+
+}]]></Script>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="GoogleMap" classname="GoogleMap" left="0" top="0" width="907" height="670" titletext="GoogleMap" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <WebBrowser id="WebBrowser01" left="1.98%" top="95" right="0.99%" taborder="4" onusernotify="WebBrowser01_onusernotify" bottom="17" onloadcompleted="WebBrowser01_onloadcompleted"/>
+        <Button id="Button00" taborder="5" text="검색" left="72.99%" top="17" right="3.53%" height="49" onclick="Button00_onclick"/>
+        <Edit id="Edit00" taborder="6" left="2.87%" top="17" right="29.88%" height="53" position="absolute" style="align:center middle;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+this.form_onload = function (obj:Form, e:LoadEventInfo)
+{
+   this.WebBrowser01.set_url("http://localhost:8282/hrErp/test/map.do");
+}  
+
+
+this.WebBrowser01_onusernotify = function(obj:WebBrowser, e:nexacro.WebTitleChangeEventInfo)
+{
+	trace("e.userdata :  " + e.userdata);
+}
+
+
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+     var addr = this.Edit00.value;
+	this.WebBrowser01.callMethod("searchPlaces", addr);
+}
+]]></Script>
+  </Form>
+</FDL>

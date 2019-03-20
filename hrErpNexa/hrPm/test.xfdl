@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="test" classname="test" left="0" top="0" width="1024" height="768" titletext="New Form" onload="test_onload">
+    <Layouts>
+      <Layout>
+        <WebBrowser id="WebBrowser00" left="2.05%" top="14" right="4.2%" height="340" taborder="0"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+this.test_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	
+	this.WebBrowser00.set_url("http://52.79.64.94/hrErp/test/test.do");
+		
+		
+		
+		
+		
+		}
+]]></Script>
+  </Form>
+</FDL>

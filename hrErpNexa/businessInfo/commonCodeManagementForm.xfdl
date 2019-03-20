@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="commonCodeManagementForm" classname="commonCodeManagementForm" left="0" top="0" width="700" height="500" onload="commonCodeManagementForm_onload">
+    <Layouts>
+      <Layout>
+        <GroupBox id="codeGroupBox" text="코드" taborder="0" left="10" top="10" width="330" height="60"/>
+        <GroupBox id="detailCodeGroupBox" text="세부코드" taborder="1" left="350" top="10" width="330" height="60"/>
+        <Grid id="codeGrid" taborder="8" binddataset="dsCode" useinputpanel="false" left="10" top="80" width="330" height="410" oncellclick="codeGrid_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="65"/>
+                <Column size="90"/>
+                <Column size="100"/>
+                <Column size="62"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="font:bold antialias 9 함초롬돋움;" text="사용잠금"/>
+                <Cell col="1" style="font:bold antialias 9 함초롬돋움;" text="구분코드"/>
+                <Cell col="2" style="font:bold antialias 9 함초롬돋움;" text="코드명"/>
+                <Cell col="3" style="font:bold antialias 9 함초롬돋움;" text="status"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="expr:comp.parent.showEditType(dataset.getRowType(currow))" edittype="expr:comp.parent.showEditType(dataset.getRowType(currow))" text="bind:USING_STATUS" expr="expr:comp.parent.showCheckBoxStatus(USING_STATUS)"/>
+                <Cell col="1" text="bind:CODE"/>
+                <Cell col="2" edittype="normal" text="bind:CODE_NAME"/>
+                <Cell col="3" expr="expr:comp.parent.showRowType(dataset.getRowType(currow))"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="detailCodeGrid" taborder="9" binddataset="dsDetailCode" useinputpanel="false" left="350" top="80" width="330" height="410">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="65"/>
+                <Column size="90"/>
+                <Column size="100"/>
+                <Column size="62"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="font:bold antialias 9 함초롬돋움;" text="사용잠금"/>
+                <Cell col="1" style="font:bold antialias 9 함초롬돋움;" text="상세코드"/>
+                <Cell col="2" style="font:bold antialias 9 함초롬돋움;" text="상세코드명"/>
+                <Cell col="3" style="font:bold antialias 9 함초롬돋움;" text="status"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="expr:comp.parent.showEditType(dataset.getRowType(currow))" edittype="expr:comp.parent.showEditType(dataset.getRowType(currow))" text="bind:USING_STATUS" expr="expr:comp.parent.showCheckBoxStatus(USING_STATUS)"/>
+                <Cell col="1" edittype="normal" text="bind:DETAIL_CODE"/>
+                <Cell col="2" edittype="normal" text="bind:DETAIL_CODE_NAME"/>
+                <Cell col="3" expr="expr:comp.parent.showRowType(dataset.getRowType(currow))"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="codeInsertButton" taborder="10" text="추가" onclick="codeInsertButton_onclick" left="20" top="30" width="50" height="25" style="font:bold antialias 10 함초롬돋움;"/>
+        <Button id="codeDeleteButton" taborder="11" text="삭제" onclick="codeDeleteButton_onclick" left="75" top="30" width="50" height="25" style="font:bold antialias 10 함초롬돋움;"/>
+        <Button id="codeBatchSaveButton" taborder="12" text="사용 잠금 / 일괄 저장" onclick="codeBatchSaveButton_onclick" left="130" top="30" width="150" height="25" style="padding:0 0 0 0;font:bold antialias 10 함초롬돋움;"/>
+        <Button id="detailCodeInsertButton" taborder="13" text="추가" onclick="detailCodeInsertButton_onclick" left="360" top="30" width="50" height="25" style="font:bold antialias 10 함초롬돋움;"/>
+        <Button id="detailCodeDeleteButton" taborder="14" text="삭제" onclick="detailCodeDeleteButton_onclick" left="415" top="30" width="50" height="25" style="font:bold antialias 10 함초롬돋움;"/>
+      </Layout>
+    </Layouts>
+    <Bind/>
+    <Objects/>
+    <Script type="xscript5.0"><![CDATA[
+include "lib::core.xjs"
+
+/* ----------------------
+	폼 load 이벤트
+ --------------------- */
+this.commonCodeManagementForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	application.dsCode.filter("");   // dsCode 는 필터 해제
+	application.dsCode.set_rowposition(-1);  // 최초에는 선택된 code 레코드 없음
+	application.dsDetailCode.filter("CODE=''");    // dsDetailCode 는 최초 0 건 출력되도록 필터
+
+	this.initialize(this);
+}
+
+/* --------------------------------------
+	codeGrid 관련 버튼 이벤트
+ ---------------------------------------- */
+this.codeInsertButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.showModalPopup(this, "base::commonCodeInsertForm.xfdl", "");
+}
+
+this.codeDeleteButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if( application.dsDetailCode.getRowCount() != 0 ) {
+		alert("현 코드에 속한 세부코드들을 먼저 삭제해야 합니다");
+	} else {
+		
+		if( confirm("현 코드를 삭제하시겠습니까?") ) {
+			application.dsCode.deleteRow(application.dsCode.rowposition);
+		} 
+	}
+
+}
+
+this.codeBatchSaveButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.transaction(
+		"batchCode",
+		"dataURL::base/code/batchCode.do",
+		"dsCode=dsCode:U dsDetailCode=dsDetailCode:U",
+		"dsCode=dsCode dsDetailCode=dsDetailCode",
+		"",
+		"codeBatchSaveButton_onclick_callBack"
+	);
+
+}
+
+this.codeBatchSaveButton_onclick_callBack = function(trId, ErrorCode, ErrorMsg) {
+
+	if( ErrorCode < 0 ) {
+		var msg = "에러 코드 " + ErrorCode + " : " + ErrorMsg;
+		alert(msg);
+	} 
+}
+
+/* --------------------------------------
+	detailCodeGrid 관련 버튼 이벤트
+ ---------------------------------------- */
+ this.detailCodeInsertButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var code = application.dsCode.getColumn(application.dsCode.rowposition,"CODE");
+		
+	if( code == null || code == undefined ) {
+		alert("코드를 먼저 선택하세요.");
+		return;	
+	}
+		
+	application.dsDetailCode.addRow();
+	application.dsDetailCode.setColumn(application.dsDetailCode.rowposition,"CODE", code);
+
+}
+
+this.detailCodeDeleteButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if( confirm("현 코드를 삭제하시겠습니까?") ) {
+		application.dsDetailCode.deleteRow(application.dsDetailCode.rowposition);
+	}
+}
+
+/* --------------------------------------
+	codeGrid 이벤트
+ ---------------------------------------- */
+ this.codeGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	var code = application.dsCode.getColumn(e.row, "CODE");
+	var filterStr = "CODE=='" + code + "'";
+	application.dsDetailCode.filter(filterStr);
+
+}
+
+
+/* --------------------------------------
+	사용자 정의 함수
+ ---------------------------------------- */
+/*
+그리드 체크박스가 ROWTYPE 에 따라 동적으로 생성되는 함수
+
+Dataset.ROWTYPE_EMPTY (0) : 존재하지 않는 행의 상태 => "none"
+Dataset.ROWTYPE_NORMAL (1) : 초기 행의 상태 => "normal"
+Dataset.ROWTYPE_INSERT (2) : 추가된 행의 상태 => "insert"
+Dataset.ROWTYPE_UPDATE (4) : 수정된 행의 상태 => "update"
+Dataset.ROWTYPE_DELETE (8) : 삭제된 행의 상태 => "delete"
+Dataset.ROWTYPE_GROUP (16) : 그룹 정보 행의 상태 => group"
+
+그리드에서 expr  => expr:comp.parent.showEditType(dataset.getRowType(currow))
+*/
+this.showEditType = function(rowType)
+{
+	switch(rowType) {
+	
+		case Dataset.ROWTYPE_EMPTY :  
+			return 'NONE'; 
+		case Dataset.ROWTYPE_NORMAL :  
+			return 'checkbox'; 
+		case Dataset.ROWTYPE_INSERT :  
+			return 'none'; 
+		case Dataset.ROWTYPE_UPDATE :
+ 			return 'checkbox'; 
+		case Dataset.ROWTYPE_DELETE :  
+			return 'none'; 
+		case Dataset.ROWTYPE_group :
+			return 'none'; 
+		
+	}
+
+}]]></Script>
+  </Form>
+</FDL>

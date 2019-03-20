@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="empGogleChartDialog" classname="empGogleChartDialog" left="0" top="0" width="720" height="520" titletext="New Form" onload="empGogleChartDialog_onload">
+    <Layouts>
+      <Layout>
+        <WebBrowser id="WebBrowser00" left="2.22%" top="11" right="2.08%" height="493" taborder="0"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+this.empGogleChartDialog_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.WebBrowser00.set_url("http://localhost:8282/hrErp/EmpInfoGogleChart.html");
+}
+]]></Script>
+  </Form>
+</FDL>

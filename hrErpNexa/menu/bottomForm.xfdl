@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="bottomForm" classname="bottomForm" left="0" top="0" width="720" height="20" style="font:bold 9 Dotum;">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="ⓒ Copyright 2018  HR Erp. All right reserved" left="20" top="0" height="20" style="padding:0 0 1 0;align:center middle;font:bold antialias 9 함초롬돋움;" width="680"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

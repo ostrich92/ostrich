@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="deptCodeSearchForm" classname="deptCodeSearchForm" left="0" top="0" width="350" height="250" titletext="부서코드 검색">
+    <Layouts>
+      <Layout>
+        <Button id="cancleButton" taborder="0" text="취  소" left="250" top="15" height="30" style="padding:0 0 0 0;font:bold antialias 12 함초롬돋움;" width="85" onclick="cancleButton_onclick"/>
+        <Grid id="deptCodeGrid" taborder="1" useinputpanel="false" left="15" top="55" height="185" width="320" binddataset="dsDept" oncellclick="deptCodeGrid_oncellclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="110"/>
+                <Column size="110"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="font:bold antialias 9 함초롬돋움;" text="부서 코드"/>
+                <Cell col="1" style="font:bold antialias 9 함초롬돋움;" text="부서명"/>
+                <Cell col="2" style="font:bold antialias 9 함초롬돋움;" text="전화번호"/>
+              </Band>
+              <Band id="body">
+                <Cell style="font:antialias 9 함초롬돋움;" text="bind:DEPT_CODE"/>
+                <Cell col="1" style="font:antialias 9 함초롬돋움;" text="bind:DEPT_NAME"/>
+                <Cell col="2" style="font:antialias 9 함초롬돋움;" text="bind:DEPT_TEL"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+this.deptCodeGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	var dsDept = this.opener.dsDept;
+	
+	var index = dsDept.rowposition;
+	
+	var deptCode = dsDept.getColumn(index ,"DEPT_CODE");
+	var deptName = dsDept.getColumn(index ,"DEPT_NAME");
+	
+	var returnArr = new Array(deptCode, deptName);
+	
+	this.opener.getValueFromPopup(this.name, returnArr);
+	
+	this.close();
+
+}
+
+this.cancleButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	obj.parent.close();
+}
+]]></Script>
+  </Form>
+</FDL>

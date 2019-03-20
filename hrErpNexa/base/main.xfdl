@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="main" classname="main" left="0" top="0" width="1024" height="768" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Button id="Button00" taborder="0" text="SCREEN A" left="2.34%" top="16" right="85.94%" height="50" onclick="changeDiv_onclick"/>
+        <Button id="Button01" taborder="1" text="SCREEN B" left="15.63%" top="16" right="72.66%" height="50" onclick="changeDiv_onclick"/>
+        <Button id="Button02" taborder="2" text="SCREEN C" left="29.3%" top="16" right="58.98%" height="50" onclick="changeDiv_onclick"/>
+        <Div id="Div00" taborder="3" text="Div00" left="2.44%" top="79" right="1.56%" height="670"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+this.changeDiv_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(obj.text == "SCREEN A") {
+	
+		this.callGA("testcategory", "SCREEN A", "Base::screenA.xfdl");
+		
+		this.Div00.set_url("Base::screenA.xfdl");
+				
+	} else if(obj.text == "SCREEN B") {
+	
+		this.callGA("testcategory", "SCREEN B", "Base::screenB.xfdl");
+		this.Div00.set_url("Base::screenB.xfdl");
+		
+	} else if(obj.text == "SCREEN C") {
+	
+		this.callGA("testcategory", "SCREEN C", "Base::screenC.xfdl");
+		this.Div00.set_url("Base::screenC.xfdl");
+			
+	} else {
+	
+		// TODO
+	}
+}
+
+// call google analytics _trackEvent
+this.callGA = function(category, action, opt_label) {
+	
+	_gaq.push(['_trackEvent',category, action, opt_label]);
+}]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="dailyAttdRestApplicationForm" classname="dailyAttdRestApplicationForm" left="0" top="0" width="700" height="540" titletext="New Form" onload="dailyAttdRestApplicationForm_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="근태외 신청" left="1%" top="8" right="0.29%" height="40" onclick="Static00_onclick" style="background:chartreuse;"/>
+        <Static id="Static01" taborder="1" text="신청구분" left="2.43%" top="72" right="87.86%" height="23" style="background:chartreuse;color:black;"/>
+        <Static id="Static02" taborder="2" text="~" left="74.71%" top="109" right="20%" height="23" style="background:chartreuse;color:black;"/>
+        <Static id="Static03" taborder="3" text="사원번호" left="2.43%" top="121" right="87.86%" height="23" style="background:chartreuse;color:black;"/>
+        <Static id="Static04" taborder="4" text="기타수당" left="2.43%" top="173" right="87.86%" height="23" style="background:chartreuse;color:black;"/>
+        <Static id="Static05" taborder="5" text="추가경비" left="24.86%" top="169" right="65.43%" height="23" style="background:chartreuse;color:black;"/>
+        <Static id="Static06" taborder="6" text="사유" left="50.29%" top="169" right="40%" height="23" style="background:chartreuse;color:black;"/>
+        <Static id="Static07" taborder="7" text="사원명" left="24.86%" top="117" right="65.43%" height="23" style="background:chartreuse;color:black;"/>
+        <Static id="Static08" taborder="8" text="신청기간" left="50.29%" top="113" right="40%" height="23" onclick="Static08_onclick" style="background:chartreuse;color:black;"/>
+        <Static id="Static09" taborder="9" text="부서" left="24.86%" top="72" right="65.43%" height="23" style="background:chartreuse;color:black;"/>
+        <Static id="Static10" taborder="10" text="신청날짜" left="50.29%" top="72" right="40%" height="23" onclick="Static10_onclick" style="background:chartreuse;color:black;"/>
+        <Static id="Static11" taborder="11" text="근태외 현황 조회" onclick="Static00_onclick" left="1%" top="232" right="0.71%" height="40" style="background:chartreuse;"/>
+        <Button id="Button00" taborder="12" text="신청" left="73.14%" top="200" right="13.29%" height="24" style="background:chartreuse;color:black;" onclick="Button00_onclick"/>
+        <Combo id="applyType" taborder="13" left="12.71%" top="73" right="76.57%" height="22" innerdataset="@dsAttdRestType" codecolumn="DETAIL_CODE" datacolumn="DETAIL_CODE_NAME"/>
+        <Combo id="etcSal" taborder="14" text="Combo01" left="12.86%" top="175" right="76.14%" height="21" innerdataset="@dsEtcSalCopy" codecolumn="ETC_SAL_CODE" datacolumn="ETC_SAL_NAME"/>
+        <Calendar id="requestDate" taborder="15" left="62%" top="74" right="16.29%" height="23"/>
+        <Calendar id="startDate" taborder="16" left="61.29%" top="112" right="26.86%" height="21"/>
+        <Calendar id="endDate" taborder="17" left="82.14%" top="109" right="6%" height="21"/>
+        <Edit id="empCode" taborder="18" left="13.14%" top="123" right="76.29%" height="20" oneditclick="Edit00_oneditclick"/>
+        <Edit id="plusCost" taborder="19" oneditclick="Edit00_oneditclick" left="35.71%" top="168" right="53.71%" height="20"/>
+        <Edit id="empName" taborder="20" oneditclick="Edit00_oneditclick" left="35.71%" top="120" right="53.71%" height="20"/>
+        <Edit id="deptName" taborder="21" oneditclick="Edit00_oneditclick" left="35.86%" top="75" right="53.57%" height="20"/>
+        <Edit id="cause" taborder="22" oneditclick="Edit00_oneditclick" left="61%" top="164" right="12%" height="20"/>
+        <Static id="Static12" taborder="23" text="~" left="36.71%" top="281" right="58.86%" height="23" style="background:chartreuse;color:black;"/>
+        <Static id="Static13" taborder="24" text="조회기간" left="2.29%" top="281" right="88%" height="23" style="background:chartreuse;color:black;"/>
+        <Calendar id="searchFromDate" taborder="25" left="13.29%" top="282" right="64.57%" height="21"/>
+        <Calendar id="searchToDate" taborder="26" left="43.43%" top="283" right="30.57%" height="21"/>
+        <Button id="searchBtn" taborder="27" text="조회" left="71.29%" top="282" right="16.71%" height="26" style="background:chartreuse;" onclick="searchBtn_onclick"/>
+        <Grid id="Grid00" taborder="28" useinputpanel="false" left="2%" top="312" right="1.71%" height="218" binddataset="dsDailyAttdRest">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="55"/>
+                <Column size="54"/>
+                <Column size="55"/>
+                <Column size="70"/>
+                <Column size="55"/>
+                <Column size="58"/>
+                <Column size="58"/>
+                <Column size="59"/>
+                <Column size="61"/>
+                <Column size="138"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사원번호"/>
+                <Cell col="1" text="사원명"/>
+                <Cell col="2" text="승인상태"/>
+                <Cell col="3" text="비용"/>
+                <Cell col="4" text="일수"/>
+                <Cell col="5" text="시작일"/>
+                <Cell col="6" text="종료일"/>
+                <Cell col="7" text="신청일"/>
+                <Cell col="8" text="근태외구분"/>
+                <Cell col="9" text="사유"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:EMP_CODE"/>
+                <Cell col="1" text="bind:EMP_NAME"/>
+                <Cell col="2" text="bind:APPROVAL_STATUS"/>
+                <Cell col="3" text="bind:COST"/>
+                <Cell col="4" text="bind:DAYS"/>
+                <Cell col="5" text="bind:START_DATE"/>
+                <Cell col="6" text="bind:END_DATE"/>
+                <Cell col="7" text="bind:REQUEST_DATE"/>
+                <Cell col="8" text="bind:ATTD_REST_CODE"/>
+                <Cell col="9" text="bind:CAUSE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsAttdRestType">
+        <ColumnInfo>
+          <Column id="DETAIL_CODE" type="STRING" size="256"/>
+          <Column id="DETAIL_CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEtcSalCopy">
+        <ColumnInfo>
+          <Column id="ETC_SAL_CODE" type="STRING" size="256"/>
+          <Column id="ETC_SAL_NAME" type="STRING" size="256"/>
+          <Column id="ETC_SAL_PRICE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+this.dailyAttdRestApplicationForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	
+	
+	this.deptName.set_value(application.gv_DEPT_NAME);
+	this.empCode.set_value(application.gv_EMP_CODE);
+	this.empName.set_value(application.gv_EMP_NAME);
+	
+	//오늘 날짜 구하기
+	var currDate = new Date();
+	var year = currDate.getFullYear().toString().padLeft(4, "0");
+	var month = (currDate.getMonth()+1).toString().padLeft(2, "0");
+	var day = currDate.getDate().toString().padLeft(2, "0");
+	
+	this.requestDate.set_value(year+month+day);
+	
+	
+	//코드정보 구해 오기 
+	application.dsDetailCode.filter("CODE=='CO-17'");
+	this.dsAttdRestType.copyData(application.dsDetailCode,true);
+	
+	//수당
+	this.transaction("findSalaryList",
+				"dataURL::base/findSalaryList.do",
+				"",
+				"dsEtcSal=dsEtcSal dsOvertimeSal=dsOvertimeSal",
+				"",
+				"callback",
+				false);
+				
+	//기타수당 정보 가져오기
+	this.dsEtcSalCopy.copyData(application.dsEtcSal,true);
+	
+	
+	
+	//근태외 정보 
+	
+	this.transaction(
+		"findAttdRestList",
+		"dataURL::hr/attendance/findAttdRestList.do",
+		"",
+		"dsDailyAttdRest=dsDailyAttdRest",
+		"empCode='"+application.gv_EMP_CODE+"'",
+		"callback"
+	);
+	application.dsDailyAttdRest.filter("START_DATE==0");
+
+	
+}
+
+
+//근태외 신청시
+
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+
+	//신청시 기간계산하는 부분	
+	var fromDate = new Date();
+	var toDate = new Date();
+	var calDate;
+	var day = 1000*60*60*24;
+	
+	fromDate.setFullYear(this.startDate.getYear());
+	fromDate.setMonth(this.startDate.getMonth()-1);
+	fromDate.setDate(this.startDate.getDay());
+	
+	toDate.setFullYear(this.endDate.getYear());
+	toDate.setMonth(this.endDate.getMonth()-1);
+	toDate.setDate(this.endDate.getDay());
+	
+	calDate = toDate.getTime() - fromDate.getTime();
+	
+	
+	// 신청 기간	
+	var v_days = (calDate/day) +1 ;
+	
+	// 변수 값 적용
+	var v_empCode     = this.empCode.value;	
+	var v_applyType   = this.applyType.value;	
+	var v_requestDate = this.requestDate.value;
+	
+	var v_startDate   = this.startDate.value;
+	var v_endDate     = this.endDate.value;
+	
+	
+	
+	
+	
+	this.dsEtcSalCopy.filter("");
+	this.dsEtcSalCopy.filter("ETC_SAL_CODE=='"+this.etcSal.value+"'");
+	var etcPrice = this.dsEtcSalCopy.getColumn( 0, "ETC_SAL_PRICE");
+	
+	alert(etcPrice+"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+	
+	if(etcPrice==null){
+		etcPrice=0;
+	}
+	
+	if(this.plusCost.value==undefined){
+		this.plusCost.value=0;
+	}
+	
+	var v_cost = parseInt(etcPrice)+parseInt(this.plusCost.value);
+    var v_cause= this.cause.value;
+    
+	
+	if(v_startDate==null || v_endDate==null || v_applyType==undefined){
+		alert(" 정보를 모두 입력해주세요 :( ");
+		}else if(this.startDate.value > this.endDate.value){
+		alert("기간을 재설정 해주세요");
+		callback;
+	
+	}else{
+		if(confirm(" 입력한 내용을 저장 하시겠습니까? ")){
+	
+			application.dsDailyAttdRest.addRow();
+			application.dsDailyAttdRest.setColumn(application.dsDailyAttdRest.rowposition,"EMP_CODE",v_empCode);
+			application.dsDailyAttdRest.setColumn(application.dsDailyAttdRest.rowposition,"ATTD_REST_CODE",v_applyType);
+			application.dsDailyAttdRest.setColumn(application.dsDailyAttdRest.rowposition,"REQUEST_DATE",v_requestDate);
+			application.dsDailyAttdRest.setColumn(application.dsDailyAttdRest.rowposition,"START_DATE",v_startDate);
+			application.dsDailyAttdRest.setColumn(application.dsDailyAttdRest.rowposition,"END_DATE",v_endDate);
+			application.dsDailyAttdRest.setColumn(application.dsDailyAttdRest.rowposition,"DAYS",v_days);
+			application.dsDailyAttdRest.setColumn(application.dsDailyAttdRest.rowposition,"COST",v_cost);
+			application.dsDailyAttdRest.setColumn(application.dsDailyAttdRest.rowposition,"CAUSE",v_cause);
+			application.dsDailyAttdRest.setColumn(application.dsDailyAttdRest.rowposition,"APPROVAL_STATUS","N");
+			application.dsDailyAttdRest.setColumn(application.dsDailyAttdRest.rowposition,"EMP_NAME",this.empName.value);
+	
+			this.transaction(
+				"addDailyAttdRest",
+				"dataURL::hr/attendance/addDailyAttdRest.do",
+				"dsDailyAttdRest=dsDailyAttdRest:u",
+				"dsDailyAttdRest=dsDailyAttdRest",
+				"",
+				"callback"
+			);
+		}
+	}
+	
+	
+	
+	
+}
+
+//근태외 조회시
+
+this.searchBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	
+	if(this.searchFromDate.value==null || this.searchToDate.value==null){
+		alert("조회기간을 선택해주세요");
+	}else if( this.searchFromDate.value > this.searchToDate.value ){
+		alert(this.searchFromDate.value );
+		alert(" 조회기간이 잘못되었습니다 일자를 확인해 주세엿 데헷 ^!^ ");
+		this.searchFromDate.set_value="";
+		this.searchToDate.set_value="";
+	}else{ 
+	
+		application.dsDailyAttdRest.filter("");
+		application.dsDailyAttdRest.filter("START_DATE >='"+this.searchFromDate.value+"' && START_DATE <= '"+this.searchToDate.value+"'");
+		if(application.dsDailyAttdRest.getRowCount() == 0 ){
+			alert("조회할 내역이 없습니다. ");
+			this.searchFromDate.set_value="";
+			this.searchToDate.set_value="";
+		}
+	}
+}
+
+
+function callback(trid, ErrorCode, ErrorMsg) {
+	if(trid=="addDailyAttdRest"){
+		if(ErrorCode<0){
+			alert(ErrorMsg);	
+		}else{		
+			alert(" 성공적으로 저장이 되었습니다 ");
+			this.applyType.value="";
+			this.cause.value="";
+			this.endDate.value="";
+			this.startDate.value="";
+			this.plusCost.value="";
+			this.requestDate.value="";
+			this.dsEtcSalCopy.filter("");
+		}
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

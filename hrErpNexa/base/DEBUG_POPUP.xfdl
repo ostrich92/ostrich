@@ -1,0 +1,582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="DEBUG_POPUP" classname="DEBUG_POPUP" left="0" top="0" width="920" height="500" titletext="DEBUG_POPUP" onload="DEBUG_POPUP_onload">
+    <Layouts>
+      <Layout>
+        <Tab id="tabMain" taborder="14" left="10" top="140" tabindex="0" scrollbars="autoboth" width="900" height="345">
+          <Tabpages>
+            <Tabpage id="tab1" text="데이터셋 DATA">
+              <Layouts>
+                <Layout>
+                  <Grid id="grdDataset" taborder="0" binddataset="dsGrdDataset" autoenter="select" useinputpanel="false" cellsizingtype="col" fillareatype="none" nodatatext="No Data" oncellclick="grdDataset_oncellclick" onheadclick="grdDataset_onheadclick" left="10" top="10" width="880" height="300" autosizingtype="none" autofittype="none" style="font:antialias 10 함초롬돋움;">
+                    <Formats>
+                      <Format id="default"/>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tab2" text="데이터셋 XML">
+              <Layouts>
+                <Layout>
+                  <TextArea id="txtDataXml" taborder="0" readonly="true" left="10" top="10" style="selectcolor:white;selectbackground:black;" width="880" height="300" oneditclick="tabMain_tab2_txtDataXml_oneditclick"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tab3" text="Global 변수">
+              <Layouts>
+                <Layout width="898" height="321">
+                  <Grid id="globalVariablesGrid" taborder="0" useinputpanel="false" left="10" top="10" width="380" height="300" binddataset="dsGlobalVariables">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="50"/>
+                          <Column size="150"/>
+                          <Column size="150"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="24" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell style="font:antialias 12 함초롬돋움;" text="No"/>
+                          <Cell col="1" style="font:antialias 12 함초롬돋움;" text="Global 변수 이름"/>
+                          <Cell col="2" style="font:antialias 12 함초롬돋움;" text="Global 변수 값"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell style="font:12 함초롬돋움;" expr="expr:currow+1"/>
+                          <Cell col="1" style="font:12 함초롬돋움;" text="bind:GLOBAL_VAR_NAME"/>
+                          <Cell col="2" style="font:12 함초롬돋움;" text="bind:GLOBAL_VAR_VALUE"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Button id="btnCopy" taborder="35" text="ColumnInfo Copy" onclick="btnCopy_onclick" top="94" right="402" width="114" height="25" cssclass="btn_gridin"/>
+        <Edit id="edtValue" taborder="36" readonly="true" left="85" top="94" right="528" height="25"/>
+        <Static id="stCopyValue" taborder="37" text="복사된 값" cssclass="detail_left_bg2" left="25" top="94" width="60" height="25"/>
+        <Combo id="cbComponent" taborder="38" text="선택" codecolumn="codecolumn" datacolumn="datacolumn" index="0" left="318" top="54" width="120" height="25">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn"/>
+                <Col id="datacolumn">선택</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">bind:</Col>
+                <Col id="datacolumn">GridBind</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">sta</Col>
+                <Col id="datacolumn">Static</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">ed</Col>
+                <Col id="datacolumn">Edit</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">ed</Col>
+                <Col id="datacolumn">MaskEdit</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">btn</Col>
+                <Col id="datacolumn">Button</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">cb</Col>
+                <Col id="datacolumn">Combo</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">cal</Col>
+                <Col id="datacolumn">Calendar</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">chk</Col>
+                <Col id="datacolumn">CheckBox</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">ta</Col>
+                <Col id="datacolumn">TextArea</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">rad</Col>
+                <Col id="datacolumn">Radio</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">div</Col>
+                <Col id="datacolumn">Div</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">grd</Col>
+                <Col id="datacolumn">Grid</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">ds</Col>
+                <Col id="datacolumn">Dataset</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">lst</Col>
+                <Col id="datacolumn">ListBox</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">pdiv</Col>
+                <Col id="datacolumn">PopupDiv</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">spn</Col>
+                <Col id="datacolumn">Spin</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">tab</Col>
+                <Col id="datacolumn">Tab</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">tpg</Col>
+                <Col id="datacolumn">Tabpage</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">web</Col>
+                <Col id="datacolumn">WebBrowser</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Static id="stComponent" taborder="39" text="Component" cssclass="detail_left_bg2" left="233" top="54" width="75" height="25"/>
+        <Combo id="cbCompNameMth" taborder="40" value="1" text="낙타 표기법" codecolumn="codecolumn" datacolumn="datacolumn" index="0" left="85" top="54" width="125" height="25">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">낙타 표기법</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">헝가리안 표기법</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Static id="stComponent00" taborder="47" text="표기법" cssclass="detail_left_bg1" left="25" top="54" width="50" height="25" style="align:left middle;"/>
+        <Static id="Static05" taborder="48" text="DataSet" usedecorate="true" cssclass="search_bul" left="23" top="18" width="50" height="25"/>
+        <Combo id="cbDatasetList" taborder="49" text="선택" innerdataset="@dsDatasetList" codecolumn="DATASET_ID" datacolumn="DATASET_NAME" index="0" onitemchanged="cbDatasetList_onitemchanged" left="83" top="18" width="180" height="25"/>
+        <Static id="Static01" taborder="50" text="GlobalDataSet" usedecorate="true" cssclass="search_bul" left="273" top="18" width="85" height="25"/>
+        <Combo id="cbGlobalDatasetList" taborder="51" text="선택" innerdataset="@dsGlobalDatasetList" codecolumn="DATASET_ID" datacolumn="DATASET_NAME" index="0" onitemchanged="cbGlobalDatasetList_onitemchanged" left="368" top="18" width="225" height="25"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsDatasetList">
+        <ColumnInfo>
+          <Column id="DATASET_ID" type="STRING" size="256"/>
+          <Column id="DATASET_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DATASET_NAME">선택</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGrdDataset"/>
+      <Dataset id="dsGlobalDatasetList">
+        <ColumnInfo>
+          <Column id="DATASET_ID" type="STRING" size="256"/>
+          <Column id="DATASET_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DATASET_NAME">선택</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGlobalVariables">
+        <ColumnInfo>
+          <Column id="GLOBAL_VAR_NAME" type="STRING" size="256"/>
+          <Column id="GLOBAL_VAR_VALUE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[/**
+
+ * 개    요 :
+ *  1) 부모창의 Dataset value를 조회한다.
+    2) Dataset Column 추가시 사용하기 편하도록 ColumnInfo Copy를 사용하여 컬럼 추가시 편하도록 함
+    3) 그리드 컬럼및 헤더 클릭시 값 복사되도록 함.
+ *
+ *
+ */
+
+this.DEBUG_POPUP_onload = function(obj:Form, e:nexacro.LoadEventInfo) {
+	
+	this.fnDatasetAdd(this.opener);
+	
+	var components = this.opener.components;
+	
+	for(var i=0; i < components.length; i++){
+	
+		var comp = components[i];
+		
+		if(this.getObjectType(comp) == "Div"){
+		
+			this.fnDatasetAdd(comp);
+			
+		} else if(this.getObjectType(comp) == "Tab") {
+		
+			var sScope = "this.opener." + comp.id + "." + comp.tabpages[comp.tabindex].id;
+			
+			this.fnDatasetAdd(comp.tabpages[comp.tabindex]);
+			
+		} 
+	}
+	
+	var globalChildren = application.all;
+	
+	for(var i=0; i<globalChildren.length; i++) {
+	
+		var child = globalChildren[i];
+
+		if(this.getObjectType(child) == "Dataset") {
+		
+			var viRow = this.dsGlobalDatasetList.addRow();
+			
+			this.dsGlobalDatasetList.setColumn(viRow,"DATASET_ID", "application." + child.name);
+			this.dsGlobalDatasetList.setColumn(viRow,"DATASET_NAME", child.name);
+			
+		} else if(this.getObjectType(child) == "String" || this.getObjectType(child) == "Number" || 
+			this.getObjectType(child) == "Boolean" || this.getObjectType(child) == "Date") {
+		
+			var newRowIndex = this.dsGlobalVariables.addRow();
+
+			this.dsGlobalVariables.setColumn(newRowIndex, "GLOBAL_VAR_NAME", "");
+			this.dsGlobalVariables.setColumn(newRowIndex, "GLOBAL_VAR_VALUE", child);
+	
+		}
+		
+	}
+		
+}
+
+
+this.fnDatasetAdd = function(comp){
+
+	var children = comp.objects;
+		
+	for(var i=0; i < children.length; i++) {
+	
+		var child = children[i];
+				
+		if(this.getObjectType(child) == "Dataset") {
+
+			var viRow = this.dsDatasetList.addRow();
+			
+			this.dsDatasetList.setColumn(viRow,"DATASET_ID", "this.opener." + child.name);
+			this.dsDatasetList.setColumn(viRow,"DATASET_NAME", comp.id + "_" + child.name);
+			
+		} 
+	}
+}
+
+this.cbDatasetList_onitemchanged = function(obj:Combo, e:nexacro.ItemChangeEventInfo){
+
+	// trace(e.postvalue);  // e.postvalue : this.opener.[데이터셋 이름]
+	
+	if(this.isNotNull(e.postvalue)){
+	
+		this.tabMain.set_tabindex(0);
+		this.cbGlobalDatasetList.set_index(0);
+
+		var voDataset = eval(e.postvalue);   // [object Dataset]
+		
+		var vsDatasetXml = voDataset.saveXML();		
+	    this.dsGrdDataset.loadXML(vsDatasetXml, true);  // true : loadXML 시 기존 DataSet 내용 삭제
+	    	    
+	    this.tabMain.tab2.txtDataXml.set_value(vsDatasetXml);
+	    
+	    this.showDynamicGrid(this.tabMain.tab1.grdDataset, this.dsGrdDataset);
+	    
+	} else {
+	
+		this.clearGrid(this.tabMain.tab1.grdDataset);
+		
+		this.tabMain.tab2.txtDataXml.set_value(null);
+		
+	}
+	
+	this.cbGlobalDatasetList.set_value(null);
+}
+
+this.btnCopy_onclick = function(obj:Button,  e:nexacro.ClickEventInfo){
+
+	var vsXml = this.dsGrdDataset.saveXML();
+	
+	vsXml = vsXml.substring(vsXml.indexOf("<ColumnInfo>"),vsXml.length);
+	vsXml = vsXml.substring(0,vsXml.indexOf("<Rows>"));
+	
+	system.setClipboard("CF_TEXT",vsXml);
+	this.edtValue.set_value(vsXml);
+
+}
+
+this.grdDataset_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo){ 
+
+    var vsText = obj.getCellText(e.row, e.cell);
+
+    system.setClipboard("CF_TEXT",vsText);
+    this.edtValue.set_value(vsText);
+
+}
+
+
+this.grdDataset_onheadclick = function(obj:Grid, e:nexacro.GridClickEventInfo){
+	var vsComponent = this.cbComponent.value;
+	var vsText = obj.getCellText(-1, e.cell);
+	
+	if(this.isNotNull(vsComponent)){
+		
+		var vsNameMth = this.cbCompNameMth.value;
+		//기본은 낙타표기법
+		if(vsNameMth == "2"){
+			var arrNm = vsText.split("_");
+			
+			var vsColumNm = "";
+			for(var i = 0; i < arrNm.length; i++){
+			  
+			  if (this.isNotEmpty(arrNm[i])) {
+			  
+				var vsNameSub = arrNm[i].toLowerCase();
+				vsColumNm += vsNameSub.substring(0,1).toUpperCase() + vsNameSub.substring(1,vsNameSub.length);
+				
+			  }
+			}
+			vsText = vsColumNm;
+		} 	
+	
+		vsText = vsComponent + vsText;
+	}
+	
+	
+	system.setClipboard("CF_TEXT",vsText);
+	this.edtValue.set_value(vsText);
+}
+
+
+this.cbGlobalDatasetList_onitemchanged = function(obj:Combo, e:nexacro.ItemChangeEventInfo){
+
+	if(this.isNotNull(e.postvalue)){
+	
+		this.tabMain.set_tabindex(0);
+		this.cbDatasetList.set_index(0);
+		
+		var voDataset = eval(e.postvalue);
+		var vsDatasetXml = voDataset.saveXML();
+				
+	    this.dsGrdDataset.loadXML(vsDatasetXml);
+	    this.tabMain.tab2.txtDataXml.set_value(vsDatasetXml);
+	   
+		this.showDynamicGrid(this.tabMain.tab1.grdDataset, this.dsGrdDataset);
+	   
+	}else {
+		
+		this.clearGrid(this.tabMain.tab1.grdDataset);
+		this.tabMain.tab2.txtDataXml.set_value(null);
+
+	}
+	
+	this.dsDatasetList.set_value(null);
+}
+
+this.defaultFormat = "<Formats><Format id=" + "\"default\"" + "></Format></Formats>";
+
+this.clearGrid = function(sourceGrid) {
+
+	sourceGrid.set_formats(this.defaultFormat);
+
+}
+
+this.showDynamicGrid = function(sourceGrid, sourceDs) {
+
+	sourceGrid.set_formats(this.defaultFormat);
+		
+	sourceGrid.appendContentsRow("head");
+	sourceGrid.appendContentsRow("body");
+		
+	sourceGrid.setRealColSize(0, 30, false);
+	sourceGrid.setCellProperty("Head", 0, "text", "No");
+	sourceGrid.setCellProperty("Body", 0, "expr", "expr:currow+1");
+
+	for(var i=0 ; i < sourceDs.getColCount() ; i++ ) {
+			
+		var colIndex = sourceGrid.appendContentsCol();
+			
+		sourceGrid.setRealColSize(colIndex, 100, false);
+		
+		
+		sourceGrid.setCellProperty("Head", colIndex, "text", sourceDs.getColID(i));
+		sourceGrid.setCellProperty("Body", colIndex, "expr", "dataset.getColID(this.col - 1)!=null?dataset.getColumn(currow, dataset.getColID(this.col - 1)):''");
+	trace(sourceDs.getColID(i) + " " + sourceDs.getColumn(0, sourceDs.getColID(i)));
+	}
+	
+	
+
+}
+
+
+/*
+	오브젝트 유형을 문자열로 리턴한다. 
+	@param obj 오브젝트
+	@return 오브젝트의 유형
+*/    
+
+this.getObjectType = function(obj) {
+
+	if(this.isNull(obj)) {
+		return null;
+	} else if(Eco.isArray(obj)) {
+		return "Array";
+	} else if(Eco.isString(obj)) {
+		return "String";
+	} else if(Eco.isFunction(obj)) {
+		return "Function";
+	} else if(Eco.isBoolean(obj)) {
+		return "Boolean";
+	} else if(Eco.isDate(obj)) {
+		return "Date";
+	} else if(Eco.isNumber(obj) 
+		|| (typeof(obj) == "object" && typeof(obj.valueOf()) == "number")) { //BigDecimal 인 경우 처리
+		return "Number";
+	} else if(Eco.XComp.typeOf(obj)) {
+		return Eco.XComp.typeOf(obj);
+	}
+	
+	return "Object";
+}
+
+
+/**
+	Object 가 null 또는 undefined 인지 여부를 검사한다.
+	인자로 넘어온 오브젝트 중 하나라도 null 이면 true 를 리턴한다. 
+	
+	@param arguments 를 이용하여 가변인자로 검사할 오브젝트 리스트를 받는다. 
+*/
+this.isNull = function() {
+
+	for(var i=0; i<arguments.length; i++) {
+	
+		var obj = arguments[i];
+		
+		if(obj == null || typeof(obj) == "undefined") {
+			return true;
+		}
+		
+		if (new String(obj).valueOf() == "undefined") {
+			return true;
+		}
+		
+		var strCheck = new String(obj);
+
+		if (strCheck == null || strCheck.toString().length == 0 ) {
+			return true;
+		}
+	} // end of for
+	return false;
+}
+  
+this.isNotNull = function () {
+
+	for(var i=0; i<arguments.length; i++) {
+	
+		var obj = arguments[i];
+		var chk = this.isNull(obj);
+		
+		if(chk) {
+			return false;
+		}
+	}
+	
+	return true;
+}     
+    
+/*
+	Object 의 값(value)이 비었는지 검사한다. 
+	파라미터로 여러개의 Object 를 검사할 때는 하나라도 empty 이면 true 리턴한다.
+	isEmpty(GRID) : binddataset 이 empty인지 검사
+	isEmpty(DATASET) : rowcount 가 0 인지 검사
+	isEmpty(String) : trim().length 가 0인지 검사
+	isEmpty(ARRAY) : length 가 0 인지 검사
+	isEmpty(object) : value 가 empty 인지 검사
+	isEmpty(null) : true 리턴
+*/
+this.isEmpty = function () {
+	for(var i=0; i<arguments.length; i++) {
+		var obj = arguments[i];
+		if(this.isNull(obj)) {
+			return true;
+		}
+		var objType = this.getObjectType(obj);
+		switch(objType) {
+			case "Array":
+				if(obj.length <= 0) {
+					return true;
+				}
+				break;
+			case "String":
+				if(obj.trim().length <= 0) {
+					return true;
+				}
+				break;
+			case "Dataset":
+				if(obj.rowcount <= 0) {
+					return true;
+				}
+				break;
+			case "Grid":
+				if(obj.binddataset.rowcount <= 0) {
+					return true;
+				}
+				break;
+			case "Function":
+			case "Boolean":
+			case "Number":
+			case "Date":
+
+			//이 아이들은 Pass
+            break;
+            
+			default:
+				//debug("[isEmpty] unknown type encountered : " + objType);
+				if(this.isEmpty(obj.value)) {
+					return true;
+				}
+		}
+	}
+	return false;
+} 
+
+/*
+	not empty 여부 확인.
+*/
+this.isNotEmpty = function () {
+	for(var i=0; i<arguments.length; i++) {
+		var obj = arguments[i];
+		var chk = this.isEmpty(obj);
+		if(chk) {
+			return false;
+		}
+	}
+	return true;
+}
+
+]]></Script>
+  </Form>
+</FDL>

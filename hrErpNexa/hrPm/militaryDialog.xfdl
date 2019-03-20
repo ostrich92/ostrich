@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="militaryDialog" classname="militaryDialog" left="0" top="0" width="600" height="400" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Grid id="Grid00" taborder="0" useinputpanel="false" left="2.86%" top="81" right="3.43%" height="304" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24" band="head"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="순번"/>
+                <Cell col="1" text="병역구분"/>
+                <Cell col="2" text="군번"/>
+                <Cell col="3" text="입영일자"/>
+                <Cell col="4" text="전역일자"/>
+                <Cell col="5" text="군별"/>
+                <Cell col="6" text="병과"/>
+                <Cell col="7" text="제대구분"/>
+                <Cell col="8" text="계급"/>
+                <Cell col="9" text="면제사유"/>
+                <Cell row="1"/>
+                <Cell row="1" col="1"/>
+                <Cell row="1" col="2"/>
+                <Cell row="1" col="3"/>
+                <Cell row="1" col="4"/>
+                <Cell row="1" col="5"/>
+                <Cell row="1" col="6"/>
+                <Cell row="1" col="7"/>
+                <Cell row="1" col="8"/>
+                <Cell row="1" col="9"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="병역정보조회" left="1.5%" top="9" right="1.5%" height="62" style="background:papayawhip;align:center middle;font:bold 14 arial;"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

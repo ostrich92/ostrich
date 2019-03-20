@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="testForm" classname="testForm" left="0" top="0" width="700" height="500" titletext="New Form" onload="testForm_onload">
+    <Layouts>
+      <Layout>
+        <WebBrowser id="WebBrowser00" left="16" top="16" width="339" height="90" taborder="0"/>
+        <Button id="excelUploadButton" taborder="2" text="upload" left="384" top="114" width="68" height="27" onclick="excelUploadButton_onclick"/>
+        <FileUpload id="excelUpload" taborder="3" retry="0" index="0" left="17" top="114" width="352" height="90" style="buttontext:Select;font:antialias 10 함초롬돋움;" multiselect="true" onitemchanged="excelUpload_onitemchanged" onsuccess="excelUpload_onsuccess"/>
+        <Grid id="Grid00" taborder="4" useinputpanel="false" left="16" top="215" width="608" height="209" binddataset="dsUploadResult" cellsizingtype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="39"/>
+                <Column size="100"/>
+                <Column size="250"/>
+                <Column size="200"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="font:antialias 12 함초롬돋움;" text="No"/>
+                <Cell col="1" style="font:antialias 12 함초롬돋움;" expr="expr:dataset.getColID(this.col - 1)!=null?dataset.getColID(this.col - 1):''&quot;"/>
+                <Cell col="2" style="font:antialias 12 함초롬돋움;" expr="expr:dataset.getColID(this.col - 1)!=null?dataset.getColID(this.col - 1):''&quot;"/>
+                <Cell col="3" style="font:antialias 12 함초롬돋움;" expr="expr:dataset.getColID(this.col - 1)!=null?dataset.getColID(this.col - 1):''&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="expr:currow+1"/>
+                <Cell col="1" expr="expr:dataset.getColID(this.col - 1)!=null?dataset.getColumn(currow, dataset.getColID(this.col - 1)):&quot;&quot;"/>
+                <Cell col="2" expr="expr:dataset.getColID(this.col - 1)!=null?dataset.getColumn(currow, dataset.getColID(this.col - 1)):&quot;&quot;"/>
+                <Cell col="3" expr="expr:dataset.getColID(this.col - 1)!=null?dataset.getColumn(currow, dataset.getColID(this.col - 1)):&quot;&quot;"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsUploadResult"/>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+include "lib::core.xjs"
+
+
+this.testForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.WebBrowser00.set_url("http://localhost:8282/hrErp/");
+	this.initialize(this);
+
+}
+
+this.excelUploadButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(this.excelUpload.value == null) {
+		trace("파일 없음");
+		return;
+	}
+	
+	this.excelUpload.upload("http://localhost:8282/hrErp/upload/excelUploadTest");
+	
+}
+
+this.excelUpload_onitemchanged = function(obj:FileUpload,  e:nexacro.FileUploadItemChangeEventInfo)
+{
+	this.excelUpload.appendItem();
+}
+
+this.excelUpload_onsuccess = function(obj:FileUpload,  e:nexacro.FileUploadLoadEventInfo)
+{
+	if( e.errorcode == 0 ) //upload completed
+	{
+		this.dsUploadResult.copyData(e.datasets[0]);		
+	}
+	
+	
+}
+]]></Script>
+  </Form>
+</FDL>

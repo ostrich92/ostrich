@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="empCodeSearchForm" classname="empCodeSearchForm" left="0" top="0" width="350" height="250" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Button id="cancleButton" taborder="0" text="취  소" onclick="cancleButton_onclick" left="250" top="15" width="85" height="30" style="padding:0 0 0 0;font:bold antialias 12 함초롬돋움;"/>
+        <Grid id="empCodeGrid" taborder="1" binddataset="dsEmp" useinputpanel="false" oncellclick="empCodeGrid_oncellclick" left="15" top="55" width="320" height="185" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="110"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="font:bold antialias 9 함초롬돋움;" text="사원 코드"/>
+                <Cell col="1" style="font:bold antialias 9 함초롬돋움;" text="사원명"/>
+              </Band>
+              <Band id="body">
+                <Cell style="font:antialias 9 함초롬돋움;" text="bind:EMP_CODE"/>
+                <Cell col="1" style="font:antialias 9 함초롬돋움;" text="bind:EMP_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+this.empCodeGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	
+	var dsEmp = this.opener.dsEmp;
+	
+	var index = dsEmp.rowposition;
+	
+	var empCode = dsEmp.getColumn(index ,"EMP_CODE");
+	var empName = dsEmp.getColumn(index ,"EMP_NAME");
+	
+	var returnArr = new Array(empCode, empName);
+	
+	this.opener.getValueFromPopup(this.name, returnArr);
+	
+	this.close();
+	
+}
+
+this.cancleButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	obj.parent.close();
+}
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="screenB" classname="screenB" left="0" top="0" width="1024" height="768" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Button id="Button00" taborder="0" text="SCREEN B" left="22.17%" top="150" right="25.78%" height="200" style="background:bisque;"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

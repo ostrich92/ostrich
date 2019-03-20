@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="highesEducationDialog" classname="highesEducationDialog" left="0" top="0" width="300" height="350" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Grid id="Grid00" taborder="0" useinputpanel="false" left="2.67%" top="69" right="2.67%" height="274" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="NO"/>
+                <Cell col="1" text="학력코드"/>
+                <Cell col="2" text="최종학력명"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="최종학력 조회" left="2.67%" top="6" right="2.67%" height="57" style="background:papayawhip;align:center middle;font:bold 14 arial;"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

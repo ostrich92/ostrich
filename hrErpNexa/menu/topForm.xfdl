@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="topForm" classname="topForm" left="0" top="0" width="900" height="40">
+    <Layouts>
+      <Layout>
+        <Menu id="mainMenuBar" taborder="0" left="5" top="5" width="882" height="30" innerdataset="@dsMenu" levelcolumn="MENU_LEVEL" captioncolumn="MENU_NAME" onmenuclick="mainMenuBar_onmenuclick" idcolumn="URL" style="itempadding:0 10 0 10;font:bold 9 함초롬돋움;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+include "lib::core.xjs"
+
+this.mainMenuBar_onmenuclick = function(obj:Menu, e:nexacro.MenuClickEventInfo)
+{
+	var formURL = e.id;
+	trace(formURL);
+	this.openContentFrame(formURL);
+}
+
+
+
+this.openContentFrame = function(formURL)
+{
+	var contentsFrame = application.mainframe.all["VFrameSet0"]
+		.all["HFrameSet0"].all["VFrameSet1"].all["ContentsFrame"];
+
+	var statusForm = application.mainframe.all["VFrameSet0"]
+		.all["HFrameSet0"].all["VFrameSet1"].all["StatusFrame"].form;
+		   
+	var menuPath = application.dsMenu.lookup("ID", formURL, "MENU_PATH");
+
+	statusForm.menuPathStatic.set_text(menuPath);
+	contentsFrame.set_formurl(formURL + ".xfdl");
+	contentsFrame.show();
+}]]></Script>
+  </Form>
+</FDL>

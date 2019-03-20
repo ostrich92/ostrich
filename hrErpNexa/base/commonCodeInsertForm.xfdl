@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="commonCodeInsertForm" classname="commonCodeInsertForm" left="0" top="0" width="350" height="250" titletext="공통코드 등록" onload="commonCodeInsertForm_onload">
+    <Layouts>
+      <Layout>
+        <Grid id="grdCurrentCode" taborder="0" binddataset="dsCode" useinputpanel="false" cellclickbound="cell" left="10" top="10" width="330" height="140" style="font:bold 9 Dotum;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="140"/>
+                <Column size="170"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="font:bold antialias 9 함초롬돋움;" text="현재 등록된 구분코드"/>
+                <Cell col="1" style="font:bold antialias 9 함초롬돋움;" text="코드명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE"/>
+                <Cell col="1" text="bind:CODE_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="구분코드" left="10" top="160" width="60" height="20" style="color:black;font:bold antialias 9 함초롬돋움;"/>
+        <Static id="Static02" taborder="3" text="코드명" left="10" top="187" width="60" height="20" style="color:black;font:bold antialias 9 함초롬돋움;"/>
+        <Edit id="codeNameEdit" taborder="6" left="80" top="185" width="260" height="20" style="color:black;font:antialias 9 함초롬돋움;"/>
+        <Edit id="codeEdit" taborder="8" displaynulltext="새로운 구분코드를 입력하세요" left="80" top="160" width="260" height="20" style="color:black;font:antialias 9 함초롬돋움;"/>
+        <Button id="codeInsertButton" taborder="9" text="추 가" onclick="codeInsertButton_onclick" left="194" top="210" width="70" height="25" style="padding:0 0 0 0;font:bold antialias 10 함초롬돋움;"/>
+        <Button id="cancleButton" taborder="10" text="취 소" onclick="cancleButton_onclick" left="270" top="210" width="70" height="25" style="padding:0 0 0 0;font:bold antialias 10 함초롬돋움;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+this.commonCodeInsertForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.grdCurrentCode.setFocus();
+}
+
+
+this.codeInsertButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var code = this.codeEdit.value.toUpperCase();   // CODE 는 대문자 변환
+	var codeName = this.codeNameEdit.value;
+	
+	if( code == undefined || code == '' || codeName == undefined || codeName == '' ) {
+		alert("입력하지 않은 값이 있습니다.");
+		return;
+	}
+	
+	if( application.dsCode.findRow("CODE", code) >= 0 ) {
+		alert("중복된 코드입니다. \n다른 코드를 입력하세요");
+		return;
+	}
+	
+	application.dsCode.addRow();
+	application.dsCode.setColumn(application.dsCode.rowposition, "CODE", code);
+	application.dsCode.setColumn(application.dsCode.rowposition, "CODE_NAME", codeName);
+	application.dsCode.setColumn(application.dsCode.rowposition, "USING_STATUS", null);
+
+	var filterStr = "CODE=='" + code + "'";
+	application.dsDetailCode.filter(filterStr);
+
+	this.close();
+
+}
+
+this.cancleButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();	
+
+}
+]]></Script>
+  </Form>
+</FDL>

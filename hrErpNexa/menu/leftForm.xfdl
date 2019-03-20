@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="leftForm" classname="leftForm" left="0" top="0" width="200" height="600" titletext="leftForm" onload="leftForm_onload" style="border:0 none black ;padding:0 0 0 0;" scrollbars="none">
+    <Layouts>
+      <Layout>
+        <Grid id="mainTreeGrid" taborder="0" useinputpanel="false" left="10" top="125" width="180" height="465" binddataset="dsMenu" treeinitstatus="expand,all" treeusecheckbox="false" oncellclick="mainTreeGrid_oncellclick" oncelldblclick="mainTreeGrid_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="200"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell displaytype="tree" edittype="tree" style="font:antialias 8 함초롬돋움;" text="bind:MENU_NAME" treestartlevel="1" treelevel="bind:LEVEL"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" left="10" top="5" width="32%" height="24" style="background:silver;color:black;align:center middle;font:antialias 10 함초롬돋움;" text="사원코드"/>
+        <Static id="Static01" taborder="2" left="10" top="34" width="32%" height="24" style="background:silver;color:black;align:center middle;font:antialias 10 함초롬돋움;" text="사원명"/>
+        <Static id="Static02" taborder="3" left="10" top="63" width="32%" height="24" style="background:silver;color:black;align:center middle;font:antialias 10 함초롬돋움;" text="부서"/>
+        <Static id="Static03" taborder="4" left="10" top="92" width="32%" height="24" style="background:silver;color:black;align:center middle;font:antialias 10 함초롬돋움;" text="직급"/>
+        <Static id="empCodeStatic" taborder="5" left="80" top="5" width="55%" height="24" style="background:transparent;border:1 solid lavender ;color:black;padding:0 0 0 5;align:left middle;font:antialias 10 함초롬돋움;" onclick="userIdStatic_onclick"/>
+        <Static id="Static06" taborder="7" expr="expr:gvUserId" text="사원ID" left="113" top="72" width="55%" height="24" style="background:transparent;color:black;padding:0 0 0 5;align:left middle;font:antialias 10 함초롬돋움;"/>
+        <Static id="empNameStatic" taborder="8" left="80" top="34" width="55%" height="24" style="background:transparent;border:1 solid lavender ;color:black;padding:0 0 0 5;align:left middle;font:antialias 10 함초롬돋움;"/>
+        <Static id="deptNameStatic" taborder="9" left="80" top="63" width="55%" height="24" style="background:transparent;border:1 solid lavender ;color:black;padding:0 0 0 5;align:left middle;font:antialias 10 함초롬돋움;"/>
+        <Static id="positionNameStatic" taborder="10" left="80" top="92" width="55%" height="24" style="background:transparent;border:1 solid lavender ;color:black;padding:0 0 0 5;align:left middle;font:antialias 10 함초롬돋움;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+include "lib::core.xjs"
+
+this.openedMenuTabArray = new Array();  // 사용자가 여는 메뉴 목록을 저장
+
+/* --------------------------------------
+	폼 load 이벤트
+ ---------------------------------------- */
+this.leftForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{	
+	// tab_home 탭페이지는 이미 있으므로 인덱스 0 에 추가
+	Eco.array.insertAt(
+			this.openedMenuTabArray , // array
+			0 ,  					// 인덱스, tab_home 은 항상 처음
+			"tab_home"				// 삽입할 tabPage 의 ID
+	)
+		
+	this.initialize(this);
+}
+
+/* --------------------------------------
+	mainTreeGrid 이벤트
+ ---------------------------------------- */
+/*
+	mainTreeGrid 더블클릭시 dsMenu 에서 menuName, formURL, menuId 검색 후
+	this.openMenu(menuId, menuName, formURL) 호출 : 해당 함수 params 참조
+*/
+this.mainTreeGrid_oncelldblclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	var menuName = application.dsMenu.getColumn(application.dsMenu.rowposition, "MENU_NAME");
+	var formURL = application.dsMenu.getColumn(application.dsMenu.rowposition, "MENU_URL");
+	var menuId = formURL.split("::")[1];
+	
+	// param 예시 : commonCodeManagementForm , 기초코드관리, businessInfo::commonCodeManagementForm
+	this.openMenu(menuId, menuName, formURL);
+	
+}
+
+/* --------------------------------------
+	사용자 정의 함수
+ ---------------------------------------- */
+/*
+	leftFrom 의 메뉴 그리드 클릭시 mainForm 의 mainTab 출력 
+	처음 여는 메뉴인 경우 mainTab 에 탭페이지 추가 / openedMenuTabArray 에 저장
+	기존에 연 메뉴인 경우 해당 탭페이지를 보여줌
+	
+	@param menuId : "tab_" + menuId 가 탭페이지의 ID 
+	@param menuName : 탭페이지의 버튼에 보여지는 이름
+	@param formURL : formURL + ".xfdl" 이 탭페이지 내의 폼의 경로
+*/
+this.openMenu = function(menuId, menuName, formURL)
+{
+	var statusForm = application.mainframe.VFrameSet0.HFrameSet0.VFrameSet1.StatusFrame.form;
+
+	var mainForm = application.mainframe.VFrameSet0.HFrameSet0.VFrameSet1.MenuTabFrame.form;
+	var mainTab = mainForm.mainTab;
+
+	// mainTab 에서 "tab_"+menuId 에 해당하는 탭페이지를 찾는다
+	var tabPage = mainTab.components["tab_"+menuId];
+
+	if(tabPage) {  // "tab_"+menuId 에 해당하는 탭페이지가 존재하면
+		
+		// "tab_"+menuId 에 해당하는 탭페이지의 인덱스를 openedMenuTabArray 에서 검색
+		var tabIndex = Eco.array.indexOf(this.openedMenuTabArray, "tab_"+menuId);
+		
+		// 해당 탭페이지의 인덱스를 mainTab 에 세팅 : 해당 탭페이지를 보여줌 
+		mainTab.set_tabindex(tabIndex);
+	
+	} else {  // "tab_"+menuId 에 해당하s는 탭페이지가 존재하지 않으면
+	
+		// insertTabpage 메서드는 추가된 탭페이지의 인덱스를 반환
+		// Tab.insertTabpage(strID,nIndex[,strURL[,strText]])
+		var nIndex = mainTab.insertTabpage(
+			"tab_"+menuId , 
+			mainTab.getTabpageCount() ,
+			formURL+".xfdl",
+			menuName
+		);
+		
+		// this.openedMenuTabArray 에 "tab_"+menuId 를 저장
+		Eco.array.insertAt(
+			this.openedMenuTabArray , 
+			nIndex ,  
+			["tab_"+menuId]
+		);
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

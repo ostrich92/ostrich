@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="dailyAttdRestApplicationForm" classname="dailyAttdRestApplicationForm" inheritanceid="" position="absolute 0 0 962 650" titletext="New Form" style="background:white;" onload="dailyAttdRestApplicationForm_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" text="근태외 신청" position2="absolute l:0 w:962 t:0 h:40" positiontype="position2" style="background:#e1f3c7ff;color:yellowgreen;align:center middle;font:휴먼엑스포,14,bold;"/>
+        <Static id="Static01" text="근태외 현황 조회" position2="absolute l:0 w:962 t:364 h:40" positiontype="position2" style="background:#e1f3c7ff;color:yellowgreen;align:center middle;font:휴먼엑스포,14,bold;"/>
+        <GroupBox id="GroupBox00" position2="absolute l:16 w:936 t:56 h:296" positiontype="position2"/>
+        <Static id="Static17" text="신청구분" enable="false" enableevent="false" position2="absolute l:58 w:94 t:88 h:24" positiontype="position2" style="background:#897585ff;color:black;align:center middle; :disabled {background:#e1f3c7ff;color:yellowgreen;font:휴먼엑스포,12,bold;opacity:100;}"/>
+        <Static id="Static02" text="부서" enable="false" enableevent="false" position2="absolute l:325 w:94 t:88 h:24" positiontype="position2" style="background:#897585ff;color:black;align:center middle; :disabled {background:#e1f3c7ff;color:yellowgreen;font:휴먼엑스포,12,bold;opacity:100;}"/>
+        <Static id="Static03" text="사원번호" enable="false" enableevent="false" position2="absolute l:58 w:94 t:170 h:24" positiontype="position2" style="background:#897585ff;color:black;align:center middle; :disabled {background:#e1f3c7ff;color:yellowgreen;font:휴먼엑스포,12,bold;opacity:100;}"/>
+        <Static id="Static04" text="기타수당" enable="false" enableevent="false" position2="absolute l:58 w:94 t:252 h:24" positiontype="position2" style="background:#897585ff;color:black;align:center middle; :disabled {background:#e1f3c7ff;color:yellowgreen;font:휴먼엑스포,12,bold;opacity:100;}"/>
+        <Static id="Static05" text="사원명" enable="false" enableevent="false" position2="absolute l:325 w:94 t:170 h:24" positiontype="position2" style="background:#897585ff;color:black;align:center middle; :disabled {background:#e1f3c7ff;color:yellowgreen;font:휴먼엑스포,12,bold;opacity:100;}"/>
+        <Static id="Static06" text="추가경비" enable="false" enableevent="false" position2="absolute l:325 w:94 t:252 h:24" positiontype="position2" style="background:#897585ff;color:black;align:center middle; :disabled {background:#e1f3c7ff;color:yellowgreen;font:휴먼엑스포,12,bold;opacity:100;}"/>
+        <Static id="Static07" text="신청날짜" enable="false" enableevent="false" position2="absolute l:592 w:94 t:88 h:24" positiontype="position2" style="background:#897585ff;color:black;align:center middle; :disabled {background:#e1f3c7ff;color:yellowgreen;font:휴먼엑스포,12,bold;opacity:100;}"/>
+        <Static id="Static08" text="사유" enable="false" enableevent="false" position2="absolute l:592 w:94 t:252 h:24" positiontype="position2" style="background:#897585ff;color:black;align:center middle; :disabled {background:#e1f3c7ff;color:yellowgreen;font:휴먼엑스포,12,bold;opacity:100;}"/>
+        <Button id="Button00" taborder="1" text="신  청" position2="absolute l:786 w:142 t:302 h:26" positiontype="position2" onclick="Button00_onclick" style="background:#e1f3c7ff;color:yellowgreen;"/>
+        <Static id="Static15" text="신청기간" enable="false" enableevent="false" position2="absolute l:592 w:94 t:170 h:24" positiontype="position2" style="background:#897585ff;color:black;align:center middle; :disabled {background:#e1f3c7ff;color:yellowgreen;font:휴먼엑스포,12,bold;opacity:100;}"/>
+        <Calendar id="startDate" taborder="1" dateformat="yyyy-MM-dd" canchange="startDate_canchange" position2="absolute l:688 w:110 t:170 h:24" positiontype="position2" style="align:center middle;"/>
+        <Static id="Static16" text="~" enable="false" enableevent="false" position2="absolute l:799 w:24 t:170 h:24" positiontype="position2" style="background:#897585ff;color:black;align:center middle; :disabled {background:#e1f3c7ff;color:yellowgreen;font:휴먼엑스포,12,bold;opacity:100;}"/>
+        <Calendar id="endDate" taborder="1" dateformat="yyyy-MM-dd" canchange="endDate_canchange" position2="absolute l:825 w:118 t:170 h:24" positiontype="position2" style="align:center middle;"/>
+        <Static id="Static11" text="조회기간" enable="false" enableevent="false" position2="absolute l:29 w:94 t:416 h:24" positiontype="position2" style="background:#897585ff;color:black;align:center middle; :disabled {background:#e1f3c7ff;color:yellowgreen;font:휴먼엑스포,12,bold;opacity:100;}"/>
+        <Calendar id="searchFromDate" taborder="1" dateformat="yyyy-MM-dd" position2="absolute l:126 w:126 t:416 h:24" positiontype="position2" style="align:center middle;"/>
+        <Static id="Static12" text="~" enable="false" enableevent="false" position2="absolute l:253 w:24 t:416 h:24" positiontype="position2" style="background:#897585ff;color:black;align:center middle; :disabled {background:#e1f3c7ff;color:yellowgreen;font:휴먼엑스포,12,bold;opacity:100;}"/>
+        <Calendar id="searchToDate" taborder="1" dateformat="yyyy-MM-dd" position2="absolute l:278 w:126 t:416 h:24" positiontype="position2" style="align:center middle;"/>
+        <Button id="searchBtn" taborder="1" text="조 회" position2="absolute l:414 w:84 t:412 h:32" positiontype="position2" onclick="searchBtn_onclick" style="background:#e1f3c7ff;color:yellowgreen;"/>
+        <Edit id="empCode" taborder="1" position2="absolute l:154 w:146 t:171 h:24" positiontype="position2" enable="false"/>
+        <Edit id="empName" taborder="1" position2="absolute l:421 w:146 t:170 h:24" positiontype="position2" enable="false"/>
+        <Edit id="deptName" taborder="1" position2="absolute l:421 w:146 t:88 h:24" positiontype="position2" enable="false"/>
+        <Combo id="applyType" taborder="1" position2="absolute l:154 w:146 t:88 h:24" positiontype="position2" index="-1" innerdataset="@dsAttdRestType" datacolumn="detail_code_name" codecolumn="detail_code"/>
+        <Grid id="Grid00" taborder="1" useinputpanel="false" position2="absolute l:20 w:924 t:448 h:186" positiontype="position2" binddataset="dsDailyAttdRest" formats="&lt;Formats&gt;&#10;  &lt;Format id=&quot;default&quot;&gt;&#10;    &lt;Columns&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;    &lt;/Columns&gt;&#10;    &lt;Rows&gt;&#10;      &lt;Row band=&quot;head&quot; size=&quot;24&quot;/&gt;&#10;      &lt;Row band=&quot;body&quot; size=&quot;24&quot;/&gt;&#10;    &lt;/Rows&gt;&#10;    &lt;Band id=&quot;head&quot;&gt;&#10;      &lt;Cell col=&quot;0&quot; disptype=&quot;normal&quot; text=&quot;emp_code&quot;/&gt;&#10;      &lt;Cell col=&quot;1&quot; disptype=&quot;normal&quot; text=&quot;emp_name&quot;/&gt;&#10;      &lt;Cell col=&quot;2&quot; disptype=&quot;normal&quot; text=&quot;approval_status&quot;/&gt;&#10;      &lt;Cell col=&quot;3&quot; disptype=&quot;normal&quot; text=&quot;cause&quot;/&gt;&#10;      &lt;Cell col=&quot;4&quot; disptype=&quot;normal&quot; text=&quot;cost&quot;/&gt;&#10;      &lt;Cell col=&quot;5&quot; disptype=&quot;normal&quot; text=&quot;days&quot;/&gt;&#10;      &lt;Cell col=&quot;6&quot; disptype=&quot;normal&quot; text=&quot;start_date&quot;/&gt;&#10;      &lt;Cell col=&quot;7&quot; disptype=&quot;normal&quot; text=&quot;end_date&quot;/&gt;&#10;      &lt;Cell col=&quot;8&quot; disptype=&quot;normal&quot; text=&quot;request_date&quot;/&gt;&#10;      &lt;Cell col=&quot;9&quot; disptype=&quot;normal&quot; text=&quot;attd_rest_code&quot;/&gt;&#10;      &lt;Cell col=&quot;10&quot; disptype=&quot;normal&quot; text=&quot;attd_rest_seq&quot;/&gt;&#10;    &lt;/Band&gt;&#10;    &lt;Band id=&quot;body&quot;&gt;&#10;      &lt;Cell col=&quot;0&quot; disptype=&quot;normal&quot; text=&quot;bind:emp_code&quot;/&gt;&#10;      &lt;Cell col=&quot;1&quot; disptype=&quot;normal&quot; text=&quot;bind:emp_name&quot;/&gt;&#10;      &lt;Cell col=&quot;2&quot; disptype=&quot;normal&quot; text=&quot;bind:approval_status&quot;/&gt;&#10;      &lt;Cell col=&quot;3&quot; disptype=&quot;normal&quot; text=&quot;bind:cause&quot;/&gt;&#10;      &lt;Cell col=&quot;4&quot; disptype=&quot;normal&quot; text=&quot;bind:cost&quot;/&gt;&#10;      &lt;Cell col=&quot;5&quot; disptype=&quot;normal&quot; text=&quot;bind:days&quot;/&gt;&#10;      &lt;Cell col=&quot;6&quot; disptype=&quot;normal&quot; text=&quot;bind:start_date&quot;/&gt;&#10;      &lt;Cell col=&quot;7&quot; disptype=&quot;normal&quot; text=&quot;bind:end_date&quot;/&gt;&#10;      &lt;Cell col=&quot;8&quot; disptype=&quot;normal&quot; text=&quot;bind:request_date&quot;/&gt;&#10;      &lt;Cell col=&quot;9&quot; disptype=&quot;normal&quot; text=&quot;bind:attd_rest_code&quot;/&gt;&#10;      &lt;Cell col=&quot;10&quot; disptype=&quot;normal&quot; text=&quot;bind:attd_rest_seq&quot;/&gt;&#10;    &lt;/Band&gt;&#10;  &lt;/Format&gt;&#10;&lt;/Formats&gt;&#10;" style="background:transparent left top;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="80"/>
+                <Column size="250"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#dcfad3ff;" text="사원번호"/>
+                <Cell col="1" style="background:#dcfad3ff;" text="사원명"/>
+                <Cell col="2" style="background:#dcfad3ff;" text="승인상태"/>
+                <Cell col="3" style="background:#dcfad3ff;" text="비용"/>
+                <Cell col="4" style="background:#dcfad3ff;" text="일수"/>
+                <Cell col="5" style="background:#dcfad3ff;" text="시작일"/>
+                <Cell col="6" style="background:#dcfad3ff;" text="종료일"/>
+                <Cell col="7" style="background:#dcfad3ff;" text="신청일"/>
+                <Cell col="8" style="background:#dcfad3ff;" text="근태외구분"/>
+                <Cell col="9" text="사유"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:emp_code"/>
+                <Cell col="1" text="bind:emp_name"/>
+                <Cell col="2" text="bind:approval_status"/>
+                <Cell col="3" text="bind:cost" mask="99,999"/>
+                <Cell col="4" text="bind:days"/>
+                <Cell col="5" text="bind:start_date" mask="####-##-##"/>
+                <Cell col="6" text="bind:end_date" mask="####-##-##"/>
+                <Cell col="7" text="bind:request_date" mask="####-##-##"/>
+                <Cell col="8" displaytype="combo" text="bind:attd_rest_code" combodataset="dsAttdRestType" combocodecol="detail_code" combodatacol="detail_code_name" combodisplay="edit"/>
+                <Cell col="9" text="bind:cause"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Calendar id="requestDate" taborder="1" position2="absolute l:694 w:146 t:87 h:24" positiontype="position2" dateformat="yyyy-MM-dd" value="null" style="align:center middle;"/>
+        <Combo id="etcSal" taborder="1" position2="absolute l:154 w:146 t:252 h:24" positiontype="position2" index="-1" innerdataset="@dsEtcSalCopy" codecolumn="etc_sal_code" datacolumn="etc_sal_name"/>
+        <Edit id="cause" taborder="1" position2="absolute l:691 w:241 t:251 h:24" positiontype="position2"/>
+        <MaskEdit id="plusCost" taborder="1" position2="absolute l:421 w:146 t:252 h:24" positiontype="position2" mask="99,999"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsAttdRestType" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="detail_code" type="STRING" size="256"/>
+          <Column id="detail_code_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEtcSalCopy" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="etc_sal_code" type="STRING" size="256"/>
+          <Column id="etc_sal_name" type="STRING" size="256"/>
+          <Column id="etc_sal_price" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTempRest">
+        <ColumnInfo>
+          <Column id="emp_code" type="STRING" size="256"/>
+          <Column id="emp_name" type="STRING" size="256"/>
+          <Column id="approval_status" type="STRING" size="256"/>
+          <Column id="cause" type="STRING" size="256"/>
+          <Column id="cost" type="STRING" size="256"/>
+          <Column id="days" type="STRING" size="256"/>
+          <Column id="start_date" type="STRING" size="256"/>
+          <Column id="end_date" type="STRING" size="256"/>
+          <Column id="request_date" type="STRING" size="256"/>
+          <Column id="attd_rest_code" type="STRING" size="256"/>
+          <Column id="attd_rest_seq" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

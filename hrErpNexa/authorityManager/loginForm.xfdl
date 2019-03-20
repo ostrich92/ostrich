@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="loginForm" classname="loginForm" left="0" top="0" width="250" height="349" titletext="HR ERP 로그인" onload="loginForm_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="HR ERP (6차)" left="10" top="15" width="230" height="50" style="color:black;align:center middle;font:bold antialias 18 Verdana;"/>
+        <Edit id="deptCodeEdit" taborder="1" displaynulltext="부서 코드" left="20" top="72" width="170" height="30" style="padding:0 0 0 7;font:bold antialias 10 함초롬돋움;"/>
+        <Edit id="deptNameEdit" taborder="2" displaynulltext="부서명" left="20" top="112" width="210" height="30" style="padding:0 0 0 7;font:bold antialias 10 함초롬돋움;"/>
+        <Button id="deptCodeSearchButton" taborder="4" text="+" left="80%" top="72" width="30" height="30" style="color:#f24a00ff;padding:0 0 0 0;align:center;font:antialias 14 함초롬돋움;" onclick="deptCodeSearchButton_onclick"/>
+        <Edit id="empCodeEdit" taborder="5" displaynulltext="사원 코드" left="20" top="152" width="170" height="30" style="padding:0 0 0 7;font:bold antialias 10 함초롬돋움;"/>
+        <Edit id="empNameEdit" taborder="6" displaynulltext="사원명" left="20" top="192" width="210" height="30" style="padding:0 0 0 7;font:bold antialias 10 함초롬돋움;"/>
+        <Button id="loginButton" taborder="7" text="로그인" left="20" top="288" right="60%" height="32" style="color:#f24a00ff;font:bold antialias 12 함초롬돋움;" onclick="loginButton_onclick"/>
+        <Button id="cancleButton" taborder="8" text="취  소" left="56.8%" top="288" right="8%" height="32" style="color:#f24a00ff;font:bold antialias 12 함초롬돋움;" onclick="cancleButton_onclick"/>
+        <Edit id="empPasswordEdit" taborder="9" displaynulltext="사원 Password" left="20" top="232" width="210" height="30" style="padding:0 0 0 7;font:bold antialias 10 함초롬돋움;" password="true"/>
+        <Button id="empCodeSearchButton" taborder="10" text="+" onclick="empCodeSearchButton_onclick" left="80%" top="152" width="30" height="30" style="color:#f24a00ff;padding:0 0 0 0;align:center;font:antialias 14 함초롬돋움;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsDept"/>
+      <Dataset id="dsEmp"/>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+include "lib::core.xjs"
+
+this.loginForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.deptCodeSearchButton.setFocus();
+	this.initialize(this);
+
+	this.transaction(
+		"searchCodeListRequiredByLogin",
+		"dataURL::am/login/searchCodeListRequiredByLogin.do",
+		"",
+		"dsDept=dsDept dsEmp=dsEmp",
+		"",
+		"",
+		false
+	);
+	
+	this.loginButton_onclick();
+	
+	
+}
+
+this.deptCodeSearchButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var strURL = "base::deptCodeSearchForm.xfdl";
+	this.showModalPopup(this, strURL, "");
+}
+
+this.empCodeSearchButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var strURL = "base::empCodeSearchForm.xfdl";
+	this.showModalPopup(this, strURL, "");
+}
+
+this.getValueFromPopup = function(popupName, returnObj) {
+
+	switch(popupName) {
+	
+		case "deptCodeSearchForm" : 
+									
+			this.deptCodeEdit.set_value(returnObj[0]);
+			this.deptNameEdit.set_value(returnObj[1]);
+
+			break;
+			
+		case "empCodeSearchForm" :
+			
+			this.empCodeEdit.set_value(returnObj[0]);
+			this.empNameEdit.set_value(returnObj[1]);
+			
+			break;
+
+	}
+
+}
+
+this.loginButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var deptCode = ( this.deptCodeEdit.value == undefined ) ? "" : this.deptCodeEdit.value;
+	var empCode = ( this.empCodeEdit.value == undefined ) ? "" : this.empCodeEdit.value;
+	var password = ( this.empPasswordEdit.value == undefined ) ? "" : this.empPasswordEdit.value;
+
+	this.transaction(
+		"logInCheck",
+		"dataURL::am/login/logInCheck.do",
+		"",
+		"dsMenu=dsMenu dsCode=dsCode dsDetailCode=dsDetailCode dsAuthority=dsAuthority",
+		"deptCode='" + "DEP000" + "' " 
+		+ "empCode='" + "201801" + "' "
+		+ "password='" + "1111" + "'",
+		"login_callBack",
+		false
+	);
+
+}
+
+
+this.login_callBack = function(trId, ErrorCode, ErrorMsg) 
+{
+	if( ErrorCode < 0 ) {
+		
+		var msg = "에러 코드 " + ErrorCode + " : " + ErrorMsg;
+		alert(msg);
+	
+	} else {
+
+		var leftForm = application.mainframe.all["VFrameSet0"].all["HFrameSet0"].all["MenuFrame"].form;
+
+		leftForm.empCodeStatic.set_text(application.gv_EMP_CODE);
+		leftForm.empNameStatic.set_text(application.gv_EMP_NAME);
+		leftForm.deptNameStatic.set_text(application.gv_DEPT_NAME);
+		leftForm.positionNameStatic.set_text(application.gv_POSITION_NAME);
+		
+		application.mainframe.set_visible(true);
+		this.close();
+
+	}
+}
+
+this.cancleButton_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+}
+
+]]></Script>
+  </Form>
+</FDL>

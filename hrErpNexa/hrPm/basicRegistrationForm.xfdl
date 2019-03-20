@@ -1,0 +1,636 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="basicRegistrationForm" classname="basicRegistrationForm" left="0" top="0" width="700" height="520" titletext="New Form" onload="basicRegistrationForm_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="인사 정보등록" left="2.29%" top="16" right="1.43%" height="36" style="background:papayawhip;align:center middle;"/>
+        <Button id="Button00" taborder="1" text="부서별 인사정보현황조회" left="2.29%" top="63" right="63%" height="29" onclick="Button00_onclick"/>
+        <Static id="Static01" taborder="2" text="부서조회" left="2.29%" top="101" right="84.14%" height="28" style="background:papayawhip;align:center middle;"/>
+        <Combo id="deptSerchCombo" taborder="3" left="16.14%" top="101" right="63.43%" height="28" innerdataset="@dsDepartment" codecolumn="DEPT_CODE" datacolumn="DEPT_NAME" onitemchanged="deptSerchCombo_onitemchanged"/>
+        <Grid id="Grid00" taborder="4" useinputpanel="false" left="2.29%" top="136" right="64%" height="369" autofittype="col" binddataset="dsTempEmp" oncellclick="Grid00_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사원번호"/>
+                <Cell col="1" text="사원명"/>
+                <Cell col="2" text="직급명"/>
+                <Cell col="3" text="부서명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:EMP_CODE"/>
+                <Cell col="1" text="bind:EMP_NAME"/>
+                <Cell col="2" text="bind:POSITION_CODE"/>
+                <Cell col="3" text="bind:DEPT_CODE"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="3" text="총인원"/>
+                <Cell col="3" expr="expr:dataset.getRowCount('사원번호')+'명'"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Tab id="Tab00" taborder="5" left="38.86%" top="65" right="1.71%" height="446" tabindex="0" scrollbars="autoboth">
+          <Tabpages>
+            <Tabpage id="tabpage1" text="사원정보">
+              <Layouts>
+                <Layout>
+                  <ImageViewer id="empImg" taborder="0" left="2.9%" top="13" right="55.8%" height="214"/>
+                  <Static id="Static02" taborder="1" text="사원코드" left="46.14%" top="13" right="33.82%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Edit id="Edit00" taborder="2" left="67.39%" top="13" right="0.97%" height="19"/>
+                  <Edit id="Edit01" taborder="3" left="67.39%" top="41" right="1.21%" height="19"/>
+                  <Static id="Static03" taborder="4" text="사원명" left="46.14%" top="41" right="33.82%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Static id="Static04" taborder="5" text="주민등록번호" left="46.14%" top="69" right="33.82%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <MaskEdit id="MaskEdit00" taborder="6" mask="@@@@@@-@@@@@@@" left="67.39%" top="72" right="1.21%" height="19" type="string"/>
+                  <Combo id="Combo00" taborder="7" innerdataset="@dsEmpInfo" codecolumn="GENDER" datacolumn="GENDER" left="67.39%" top="99" right="1.45%" height="19"/>
+                  <Static id="Static05" taborder="8" text="성별" left="46.14%" top="97" right="33.82%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Static id="Static06" taborder="9" text="최종학력" left="46.14%" top="125" right="33.82%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Edit id="Edit02" taborder="10" left="67.39%" top="125" right="13.53%" height="19"/>
+                  <Button id="Button03" taborder="11" text="검색" left="87.68%" top="125" right="1.45%" height="19"/>
+                  <Combo id="Combo01" taborder="12" innerdataset="@dsEmpInfo" codecolumn="NATIVE_TYPE_CODE" datacolumn="NATIVE_TYPE_CODE" left="67.39%" top="149" right="1.93%" height="19"/>
+                  <Static id="Static07" taborder="13" text="내국인여부" left="46.14%" top="153" right="33.82%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Static id="Static08" taborder="14" text="휴대폰번호" left="46.14%" top="181" right="33.82%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <MaskEdit id="MaskEdit01" taborder="15" mask="@@@-@@@@-@@@@" left="67.39%" top="181" right="1.69%" height="19" type="string"/>
+                  <Combo id="Combo02" taborder="16" innerdataset="@dsEmpInfo" codecolumn="DISABILITY_CODE" datacolumn="DISABILITY_CODE" left="67.39%" top="209" right="1.93%" height="19"/>
+                  <Static id="Static09" taborder="17" text="병력사항" left="46.14%" top="209" right="33.82%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Edit id="Edit03" taborder="18" left="67.39%" top="237" right="1.69%" height="19"/>
+                  <Static id="Static10" taborder="19" text="E-mail" left="46.14%" top="237" right="33.82%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Button id="savePicture" taborder="20" text="사진저장" left="24.88%" top="237" right="57.25%" height="20"/>
+                  <Button id="findPicture" taborder="21" text="사진찾기" left="3.86%" top="237" right="78.26%" height="20" onclick="Tab00_tabpage1_findPicture_onclick"/>
+                  <Static id="Static11" taborder="22" text="우편번호" left="2.9%" top="288" right="83.33%" height="28" style="background:papayawhip;align:center middle;"/>
+                  <Edit id="Edit04" taborder="23" left="18.12%" top="288" right="55.31%" height="28"/>
+                  <Button id="adressSearchBtn" taborder="24" text="주소검색" left="47.1%" top="288" right="30.19%" height="28"/>
+                  <Button id="apiBtn" taborder="25" text="OPNE-API 주소검색" left="71.01%" top="288" right="0.97%" height="28"/>
+                  <Edit id="Edit05" taborder="26" left="18.12%" top="331" right="1.45%" height="28"/>
+                  <Static id="Static12" taborder="27" text="주  소" left="2.9%" top="331" right="83.33%" height="28" style="background:papayawhip;align:center middle;"/>
+                  <Static id="Static13" taborder="28" text="상세주소" left="2.9%" top="374" right="83.33%" height="28" style="background:papayawhip;align:center middle;"/>
+                  <Edit id="Edit06" taborder="29" left="18.12%" top="374" right="1.45%" height="28"/>
+                  <Button id="Button00" taborder="30" text="맵으로 주소확인" left="71.98%" top="265" right="1.21%" height="19" onclick="Tab00_tabpage1_Button00_onclick"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tabpage2" text="재직정보">
+              <Layouts>
+                <Layout>
+                  <Static id="Static03" taborder="0" text="입사일자" left="1.93%" top="33" right="81.88%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Static id="Static00" taborder="2" text="퇴사일자" left="51.93%" top="35" right="31.88%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Static id="Static01" taborder="4" text="고용형태" left="1.93%" top="75" right="82.13%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Combo id="Combo00" taborder="5" innerdataset="@dsWorkInfo" codecolumn="EMPLOYEEMENT_TYPE_CODE" datacolumn="EMPLOYEEMENT_TYPE_CODE" left="19.57%" top="77" right="51.21%" height="19"/>
+                  <Static id="Static02" taborder="6" text="수습여부" left="51.93%" top="77" right="31.88%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Combo id="cmbProbYeobu" taborder="7" innerdataset="@dsWorkInfo" codecolumn="PROBATION_STATUS" datacolumn="PROBATION_STATUS" left="69.57%" top="77" right="1.69%" height="19"/>
+                  <Static id="Static04" taborder="8" text="수습만료일" left="1.93%" top="119" right="81.88%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Static id="Static05" taborder="10" text="직종" left="51.93%" top="121" right="31.88%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Combo id="Combo01" taborder="11" innerdataset="@dsWorkInfo" codecolumn="JIKJONG_CODE" datacolumn="JIKJONG_CODE" left="69.57%" top="121" right="1.69%" height="19"/>
+                  <Static id="Static06" taborder="12" text="퇴사사유" left="1.93%" top="165" right="81.88%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Static id="Static07" taborder="14" text="프로젝트" left="51.93%" top="167" right="31.88%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Combo id="Combo07" taborder="15" innerdataset="@dsWorkInfo" codecolumn="PROJECT_CODE" datacolumn="PROJECT_CODE" left="69.57%" top="167" right="1.69%" height="19"/>
+                  <Calendar id="hireDate" taborder="16" left="19.57%" top="34" right="51.21%" height="19" innerdataset="@dsWorkInfo" value="null" dateformat="yyyy-MM-dd ddd" datecolumn="HIRE_DATE" textcolorcolumn="HIRE_DATE"/>
+                  <Calendar id="retireDate" taborder="17" left="69.57%" top="34" right="1.21%" height="19" value="null" dateformat="yyyy-MM-dd ddd" innerdataset="@dsWorkInfo" datecolumn="RETIRE_DATE" textcolorcolumn="RETIRE_DATE"/>
+                  <Calendar id="probationEndDate" taborder="18" left="19.57%" top="119" right="51.21%" height="19" innerdataset="@dsWorkInfo" value="null" dateformat="yyyy-MM-dd ddd" datecolumn="PROBATION_EXPIRE_DATE" bordercolumn="PROBATION_EXPIRE_DATE" textcolorcolumn="probation_expire_date"/>
+                  <TextArea id="TextArea00" taborder="19" left="1.93%" top="200" right="1.69%" height="208"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tabpage3" text="급여정보">
+              <Layouts>
+                <Layout>
+                  <Static id="Static00" taborder="1" text="직급" left="1.69%" top="12" right="84.06%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Edit id="positionEdit" taborder="10" left="16.43%" top="12" right="55.8%" height="19"/>
+                  <Combo id="Combo00" taborder="13" left="16.91%" top="41" right="55.07%" height="19" innerdataset="@dsSalInfo" codecolumn="PENSION_TYPE" datacolumn="PENSION_TYPE"/>
+                  <Static id="Static02" taborder="16" text="시간당 기본수당" left="47.34%" top="12" right="30.68%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Edit id="sigup" taborder="17" left="70.53%" top="12" right="1.69%" height="19"/>
+                  <Static id="Static01" taborder="18" text="급여형태" left="1.69%" top="41" right="84.06%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Static id="Static04" taborder="20" text="호봉" left="1.69%" top="99" right="84.06%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Static id="Static05" taborder="22" text="기본급" left="1.69%" top="70" right="84.06%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Edit id="baseSal" taborder="23" left="16.43%" top="70" right="55.8%" height="19"/>
+                  <Static id="Static06" taborder="24" text="상여금" left="1.69%" top="128" right="84.06%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Edit id="bonus" taborder="25" left="16.43%" top="128" right="55.8%" height="19"/>
+                  <Combo id="selHobong" taborder="26" innerdataset="@dsSalInfo" codecolumn="HOBONG" datacolumn="HOBONG" left="16.43%" top="99" right="55.56%" height="19"/>
+                  <Static id="Static03" taborder="27" text="급여이체은행" left="47.34%" top="41" right="30.68%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Edit id="bankName" taborder="28" left="70.53%" top="41" right="9.66%" height="19"/>
+                  <Static id="Static07" taborder="29" text="예금주" left="47.34%" top="70" right="30.68%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Edit id="accountHolder" taborder="30" left="70.53%" top="70" right="1.93%" height="19"/>
+                  <Static id="Static08" taborder="31" text="계좌번호" left="47.34%" top="99" right="30.68%" height="19" style="background:papayawhip;align:center middle;"/>
+                  <Edit id="accountNumber" taborder="32" left="70.53%" top="99" right="1.93%" height="19"/>
+                  <Button id="findBankBtn" taborder="33" text="검색" left="90.34%" top="40" right="1.69%" height="19"/>
+                  <GroupBox id="GroupBox00" text="연금 및 보험관리" taborder="34" left="2.17%" top="163" right="44.69%" height="234"/>
+                  <GroupBox id="GroupBox01" text="부양 가족 관리" taborder="35" left="56.76%" top="162" right="0.24%" height="234"/>
+                  <Static id="Static09" taborder="36" text="국민연금" left="3.38%" top="200" right="82.37%" height="27" style="background:papayawhip;align:center middle;"/>
+                  <Edit id="national" taborder="37" left="18.12%" top="200" right="53.86%" height="27"/>
+                  <Button id="findNationPenBtn" taborder="38" text="계산" left="46.86%" top="200" right="45.41%" height="27"/>
+                  <Button id="findEmpInsurBtn" taborder="39" text="계산" left="46.86%" top="256" right="45.41%" height="27"/>
+                  <Edit id="empInsur" taborder="40" left="18.12%" top="256" right="53.86%" height="27"/>
+                  <Static id="Static10" taborder="41" text="고용보험" left="3.38%" top="256" right="82.37%" height="27" style="background:papayawhip;align:center middle;"/>
+                  <Button id="findHealInsurBtn" taborder="42" text="계산" left="46.86%" top="299" right="45.41%" height="27"/>
+                  <Edit id="healthInsur" taborder="43" left="18.12%" top="299" right="53.86%" height="27"/>
+                  <Static id="Static11" taborder="44" text="건강보험" left="3.38%" top="299" right="82.37%" height="27" style="background:papayawhip;align:center middle;"/>
+                  <Button id="autoResultBtn" taborder="45" text="계산" left="46.86%" top="347" right="45.41%" height="27"/>
+                  <Edit id="longTermCare" taborder="46" left="18.6%" top="347" right="53.38%" height="27"/>
+                  <Static id="Static12" taborder="47" text="장기요양보험" left="2.9%" top="347" right="80.92%" height="27" style="background:papayawhip;align:center middle;font:8 Arial Narrow;"/>
+                  <Static id="Static13" taborder="48" text="부양20세이하" left="57.73%" top="205" right="24.15%" height="27" style="background:papayawhip;align:center middle;"/>
+                  <Combo id="Combo02" taborder="49" innerdataset="@dsSalInfo" codecolumn="SUPPORT_TWENTY_BELOW" datacolumn="SUPPORT_TWENTY_BELOW" left="76.57%" top="205" right="1.21%" height="27"/>
+                  <Static id="Static14" taborder="50" text="부양60세이하" left="57.73%" top="264" right="24.15%" height="27" style="background:papayawhip;align:center middle;"/>
+                  <Combo id="Combo03" taborder="51" innerdataset="@dsSalInfo" codecolumn="SUPPORT_SIXTY_ABOVE" datacolumn="SUPPORT_SIXTY_ABOVE" left="76.57%" top="264" right="1.69%" height="27"/>
+                  <Static id="Static15" taborder="52" text="다자녀추가공제" left="57.73%" top="331" right="24.15%" height="27" style="background:papayawhip;align:center middle;font:8 arial;"/>
+                  <Combo id="Combo04" taborder="53" innerdataset="@dsSalInfo" codecolumn="MANY_CHILD_DEDUCTION" datacolumn="MANY_CHILD_DEDUCTION" left="76.57%" top="331" right="1.69%" height="27"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Button id="reportBtn" taborder="6" text="재직증명서" left="79.57%" top="56" right="9.71%" height="28" onclick="reportBtn_onclick"/>
+        <Button id="batchBtn" taborder="7" text="일괄저장" left="90.71%" top="56" right="1.43%" height="29"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsDepartment">
+        <ColumnInfo>
+          <Column id="DEPT_TEL" type="STRING" size="256"/>
+          <Column id="DEPT_NAME" type="STRING" size="256"/>
+          <Column id="DEPT_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsImg">
+        <ColumnInfo>
+          <Column id="emp_file_name" type="STRING" size="256"/>
+          <Column id="img_file_data" type="BLOB" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEmpInfo">
+        <ColumnInfo>
+          <Column id="EMP_CODE" type="STRING" size="256"/>
+          <Column id="EMP_NAME" type="STRING" size="256"/>
+          <Column id="RESIDENT_NUMBER" type="STRING" size="256"/>
+          <Column id="BRITH_DATE" type="STRING" size="256"/>
+          <Column id="GENDER" type="STRING" size="256"/>
+          <Column id="IMG_SRC" type="STRING" size="256"/>
+          <Column id="ZIP_CODE" type="STRING" size="256"/>
+          <Column id="BASE_ADDRESS" type="STRING" size="256"/>
+          <Column id="DETAIL_ADDRESS" type="STRING" size="256"/>
+          <Column id="EMAIL" type="STRING" size="256"/>
+          <Column id="TEL" type="STRING" size="256"/>
+          <Column id="PHONE_NUMBER" type="STRING" size="256"/>
+          <Column id="HIGHEST_EDUCATION_CODE" type="STRING" size="256"/>
+          <Column id="NATIVE_TYPE_CODE" type="STRING" size="256"/>
+          <Column id="DISABILITY_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSalInfo">
+        <ColumnInfo>
+          <Column id="EMP_CODE" type="STRING" size="256"/>
+          <Column id="HOBONG" type="STRING" size="256"/>
+          <Column id="SALARY_TYPE_CODE" type="STRING" size="256"/>
+          <Column id="PENSION_TYPE" type="STRING" size="256"/>
+          <Column id="NATIONAL_PENSION" type="STRING" size="256"/>
+          <Column id="HEALTH_INSURANCE" type="STRING" size="256"/>
+          <Column id="EMPLOYEEMENT_INSURANCE" type="STRING" size="256"/>
+          <Column id="LONG_TERM_CARE_INSURANCE" type="STRING" size="256"/>
+          <Column id="MANY_CHILD_DEDUCTION" type="STRING" size="256"/>
+          <Column id="ACCOUNT_CODE" type="STRING" size="256"/>
+          <Column id="ACCOUNT_HOLDER" type="STRING" size="256"/>
+          <Column id="SAL_TRANS_BANK" type="STRING" size="256"/>
+          <Column id="SUPPORT_TWENTY_BELOW" type="STRING" size="256"/>
+          <Column id="SUPPORT_SIXTY_ABOVE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEducationInfo">
+        <ColumnInfo>
+          <Column id="education_seq" type="STRING" size="256"/>
+          <Column id="emp_code" type="STRING" size="256"/>
+          <Column id="campus" type="STRING" size="256"/>
+          <Column id="major" type="STRING" size="256"/>
+          <Column id="sub_major" type="STRING" size="256"/>
+          <Column id="enter_date" type="STRING" size="256"/>
+          <Column id="graduation_date" type="STRING" size="256"/>
+          <Column id="grade" type="STRING" size="256"/>
+          <Column id="location" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTempEmp">
+        <ColumnInfo>
+          <Column id="EMP_CODE" type="STRING" size="256"/>
+          <Column id="EMP_NAME" type="STRING" size="256"/>
+          <Column id="PASSWORD" type="STRING" size="256"/>
+          <Column id="POSITION_CODE" type="STRING" size="256"/>
+          <Column id="DEPT_CODE" type="STRING" size="256"/>
+          <Column id="AUTHORITY_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEmployeementType">
+        <ColumnInfo>
+          <Column id="detail_code" type="STRING" size="256"/>
+          <Column id="detail_code_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsHobong">
+        <ColumnInfo>
+          <Column id="HOBONG" type="STRING" size="256"/>
+          <Column id="POSITION_CODE" type="STRING" size="256"/>
+          <Column id="BASE_SAL" type="STRING" size="256"/>
+          <Column id="BONUS" type="STRING" size="256"/>
+          <Column id="SIGUB" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsRelationship">
+        <ColumnInfo>
+          <Column id="detail_code" type="STRING" size="256"/>
+          <Column id="detail_code_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsHightEducation">
+        <ColumnInfo>
+          <Column id="detail_code" type="STRING" size="256"/>
+          <Column id="detail_code_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUniversity">
+        <ColumnInfo>
+          <Column id="detail_code" type="STRING" size="256"/>
+          <Column id="detail_code_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsFamilyInfo">
+        <ColumnInfo>
+          <Column id="family_seq" type="STRING" size="256"/>
+          <Column id="emp_code" type="STRING" size="256"/>
+          <Column id="family_name" type="STRING" size="256"/>
+          <Column id="family_birth_date" type="STRING" size="256"/>
+          <Column id="relationship" type="STRING" size="256"/>
+          <Column id="supporting" type="STRING" size="256"/>
+          <Column id="cohabitation_status" type="STRING" size="256"/>
+          <Column id="disability_code" type="STRING" size="256"/>
+          <Column id="highest_education_code" type="STRING" size="256"/>
+          <Column id="job" type="STRING" size="256"/>
+          <Column id="company_name" type="STRING" size="256"/>
+          <Column id="tel" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsLicenseInfo">
+        <ColumnInfo>
+          <Column id="license_seq" type="STRING" size="256"/>
+          <Column id="emp_code" type="STRING" size="256"/>
+          <Column id="license_name" type="STRING" size="256"/>
+          <Column id="start_date" type="STRING" size="256"/>
+          <Column id="end_date" type="STRING" size="256"/>
+          <Column id="license_center" type="STRING" size="256"/>
+          <Column id="license_level" type="STRING" size="256"/>
+          <Column id="license_no" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="FileDialog"/>
+      <Dataset id="dsYN">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="value">Y</Col>
+          </Row>
+          <Row>
+            <Col id="value">N</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsEmployee">
+        <ColumnInfo>
+          <Column id="EMP_CODE" type="STRING" size="256"/>
+          <Column id="EMP_NAME" type="STRING" size="256"/>
+          <Column id="PASSWORD" type="STRING" size="256"/>
+          <Column id="POSITION_CODE" type="STRING" size="256"/>
+          <Column id="DEPT_CODE" type="STRING" size="256"/>
+          <Column id="AUTHORITY_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPosition">
+        <ColumnInfo>
+          <Column id="position_code" type="STRING" size="256"/>
+          <Column id="position_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsHobongCopy">
+        <ColumnInfo>
+          <Column id="HOBONG" type="STRING" size="256"/>
+          <Column id="POSITION_CODE" type="STRING" size="256"/>
+          <Column id="BASE_SAL" type="STRING" size="256"/>
+          <Column id="BONUS" type="STRING" size="256"/>
+          <Column id="SIGUB" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsWorkInfo">
+        <ColumnInfo>
+          <Column id="EMP_NAME" type="STRING" size="256"/>
+          <Column id="EMP_CODE" type="STRING" size="256"/>
+          <Column id="PROBATION_STATUS" type="STRING" size="256"/>
+          <Column id="PROBATION_EXPIRE_DATE" type="STRING" size="256"/>
+          <Column id="EMPLOYEEMENT_TYPE_CODE" type="STRING" size="256"/>
+          <Column id="HIRE_DATE" type="STRING" size="256"/>
+          <Column id="RETIRE_CAUSE" type="STRING" size="256"/>
+          <Column id="RETIRE_DATE" type="STRING" size="256"/>
+          <Column id="PROJECT_CODE" type="STRING" size="256"/>
+          <Column id="JIKJONG_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <FileDialog id="FileDialog00" filter="All(*.*)|*.*|" filterindex="0" defaultextension="false" onclose="FileDialog00_onclose"/>
+      <VirtualFile id="virtualfiles"/>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="Tab00.tabpage1.Edit00" propid="value" datasetid="dsEmpInfo" columnid="EMP_CODE"/>
+      <BindItem id="item1" compid="Tab00.tabpage1.Edit01" propid="value" datasetid="dsEmpInfo" columnid="EMP_NAME"/>
+      <BindItem id="item2" compid="Tab00.tabpage1.MaskEdit00" propid="value" datasetid="dsEmpInfo" columnid="RESIDENT_NUMBER"/>
+      <BindItem id="item3" compid="Tab00.tabpage1.Combo00" propid="value" datasetid="dsEmpInfo" columnid="GENDER"/>
+      <BindItem id="item4" compid="Tab00.tabpage1.MaskEdit01" propid="value" datasetid="dsEmpInfo" columnid="PHONE_NUMBER"/>
+      <BindItem id="item5" compid="Tab00.tabpage1.Combo02" propid="value" datasetid="dsEmpInfo" columnid="DISABILITY_CODE"/>
+      <BindItem id="item6" compid="Tab00.tabpage1.Edit03" propid="value" datasetid="dsEmpInfo" columnid="EMAIL"/>
+      <BindItem id="item7" compid="Tab00.tabpage1.Combo01" propid="value" datasetid="dsEmpInfo" columnid="NATIVE_TYPE_CODE"/>
+      <BindItem id="item8" compid="Tab00.tabpage1.Edit02" propid="value" datasetid="dsEmpInfo" columnid="HIGHEST_EDUCATION_CODE"/>
+      <BindItem id="item9" compid="Tab00.tabpage1.Edit04" propid="value" datasetid="dsEmpInfo" columnid="ZIP_CODE"/>
+      <BindItem id="item10" compid="Tab00.tabpage1.Edit05" propid="value" datasetid="dsEmpInfo" columnid="BASE_ADDRESS"/>
+      <BindItem id="item11" compid="Tab00.tabpage1.Edit06" propid="value" datasetid="dsEmpInfo" columnid="DETAIL_ADDRESS"/>
+      <BindItem id="item12" compid="Tab00.tabpage2.hireDate" propid="value" datasetid="dsWorkInfo" columnid="HIRE_DATE"/>
+      <BindItem id="item13" compid="Tab00.tabpage2.retireDate" propid="value" datasetid="dsWorkInfo" columnid="RETIRE_DATE"/>
+      <BindItem id="item14" compid="Tab00.tabpage2.Combo00" propid="value" datasetid="dsWorkInfo" columnid="EMPLOYEEMENT_TYPE_CODE"/>
+      <BindItem id="item15" compid="Tab00.tabpage2.cmbProbYeobu" propid="value" datasetid="dsWorkInfo" columnid="PROBATION_STATUS"/>
+      <BindItem id="item16" compid="Tab00.tabpage2.probationEndDate" propid="value" datasetid="dsWorkInfo" columnid="PROBATION_EXPIRE_DATE"/>
+      <BindItem id="item17" compid="Tab00.tabpage2.Combo01" propid="value" datasetid="dsWorkInfo" columnid="JIKJONG_CODE"/>
+      <BindItem id="item18" compid="Tab00.tabpage2.Combo07" propid="value" datasetid="dsWorkInfo" columnid="PROJECT_CODE"/>
+      <BindItem id="item19" compid="Tab00.tabpage2.TextArea00" propid="value" datasetid="dsWorkInfo" columnid="RETIRE_CAUSE"/>
+      <BindItem id="item20" compid="Tab00.tabpage3.positionEdit" propid="value" datasetid="dsEmployee" columnid="POSITION_CODE"/>
+      <BindItem id="item21" compid="Tab00.tabpage3.sigup" propid="value" datasetid="dsHobongCopy" columnid="SIGUB"/>
+      <BindItem id="item22" compid="Tab00.tabpage3.Combo00" propid="value" datasetid="dsSalInfo" columnid="PENSION_TYPE"/>
+      <BindItem id="item23" compid="Tab00.tabpage3.bankName" propid="value" datasetid="dsSalInfo" columnid="SAL_TRANS_BANK"/>
+      <BindItem id="item24" compid="Tab00.tabpage3.baseSal" propid="value" datasetid="dsHobongCopy" columnid="BASE_SAL"/>
+      <BindItem id="item25" compid="Tab00.tabpage3.accountHolder" propid="value" datasetid="dsSalInfo" columnid="ACCOUNT_HOLDER"/>
+      <BindItem id="item26" compid="Tab00.tabpage3.selHobong" propid="value" datasetid="dsSalInfo" columnid="HOBONG"/>
+      <BindItem id="item27" compid="Tab00.tabpage3.accountNumber" propid="value" datasetid="dsSalInfo" columnid="ACCOUNT_CODE"/>
+      <BindItem id="item28" compid="Tab00.tabpage3.bonus" propid="value" datasetid="dsHobongCopy" columnid="BONUS"/>
+      <BindItem id="item29" compid="Tab00.tabpage3.national" propid="value" datasetid="dsSalInfo" columnid="NATIONAL_PENSION"/>
+      <BindItem id="item30" compid="Tab00.tabpage3.empInsur" propid="value" datasetid="dsSalInfo" columnid="EMPLOYEEMENT_INSURANCE"/>
+      <BindItem id="item31" compid="Tab00.tabpage3.healthInsur" propid="value" datasetid="dsSalInfo" columnid="HEALTH_INSURANCE"/>
+      <BindItem id="item32" compid="Tab00.tabpage3.longTermCare" propid="value" datasetid="dsSalInfo" columnid="LONG_TERM_CARE_INSURANCE"/>
+      <BindItem id="item33" compid="Tab00.tabpage3.Combo02" propid="value" datasetid="dsSalInfo" columnid="SUPPORT_TWENTY_BELOW"/>
+      <BindItem id="item34" compid="Tab00.tabpage3.Combo03" propid="value" datasetid="dsSalInfo" columnid="SUPPORT_SIXTY_ABOVE"/>
+      <BindItem id="item35" compid="Tab00.tabpage3.Combo04" propid="value" datasetid="dsSalInfo" columnid="MANY_CHILD_DEDUCTION"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[// application.selEmpCode;
+// application.selPositionCode;
+// application.imgDialog;
+// application.empFileName;
+// application.sEmpCode;
+// 
+ include "lib::core.xjs"
+
+this.basicRegistrationForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+ 	this.dsEmployee.filter("");
+ 	this.dsDepartment.filter("");
+ 	this.dsPosition.filter("");
+ 	this.dsHobong.filter("");
+	this.dsSalInfo.filter("");
+	
+
+	//사원정보 구해오기	
+	this.transaction("findEmployeeList",
+				"dataURL::base/findEmployeeList.do",
+				"",
+				"dsEmployee=dsEmployee",
+				"",
+				""
+				);
+	
+	//부서 정보 구해오기
+		this.transaction("findDeptList",
+				"dataURL::base/findDeptList.do",
+				"",
+				"dsDepartment=dsDepartment",
+				"",
+				""
+				);	
+	
+	
+	//직급목록 구해오기 
+	this.transaction("findPositionList",
+				"dataURL::base/findPositionList.do",
+				"",
+				"dsPosition=dsPosition",
+				"",
+				""
+				);
+				
+	//코드정보 구해 오기 
+// 	this.transaction("findCodeList",
+// 				"dataURL::base/findCodeList.do",
+// 				"",
+// 				"dsCode=dsCode dsDetailCode=dsDetailCode",
+// 				"",
+// 				"callback"
+// 				);
+	
+	//호봉 얻어 오기 
+	this.transaction("findHobongList",
+				"dataURL::hr/circumstance/findHobongList.do",
+				"",
+				"dsHobong=dsHobong",
+				"",
+				""
+				);
+				
+	//4대 보험 & 소득세 얻어옴 !!
+// 	this.dsDeductionTax.filter("");
+// 	this.dsIncomeTax.filter("");
+	this.transaction("findDeductionsInsuranceList",
+				"dataURL::hr/circumstance/findDeductionInsuranceList.do",
+				"",
+				"dsDeductionTax=dsDeductionTax dsIncomeTax=dsIncomeTax",
+				"",
+				""
+				);
+	
+	//6개 상세 정보 구하기
+	this.transaction("findEmployeeInfoAll",
+		"dataURL::hr/pm/findEmployeeInfoAll.do",
+		"",
+		"dsEmpInfo=dsEmpInfo dsFamilyInfo=dsFamilyInfo dsLicenseInfo=dsLicenseInfo dsWorkInfo=dsWorkInfo dsSalInfo=dsSalInfo dsEducationInfo=dsEducationInfo",
+		"",
+		""
+		
+	);
+	
+
+	
+/* 	this.detailCodeFilter();//코드 설정하기 */
+	
+	this.dsEmpInfo.filter("EMP_CODE==0"); //처음에 선택된 내용 없음!
+	this.dsWorkInfo.filter("EMP_CODE==0");
+	this.dsSalInfo.filter("EMP_CODE==0");
+	this.dsFamilyInfo.filter("EMP_CODE==0");
+	this.dsLicenseInfo.filter("EMP_CODE==0");
+	this.dsEducationInfo.filter("EMP_CODE==0");
+	
+	this.dsPosition.filter("POSITION_CODE==0");
+	this.dsHobong.filter("POSITION_CODE==0");
+				
+}
+
+	 this.initialize(this);
+
+
+
+
+//부서 선택시 
+this.deptSerchCombo_onitemchanged = function(obj:Combo, e:nexacro.ItemChangeEventInfo)
+{
+	
+ 	this.dsEmployee.filter("DEPT_CODE=='"+this.deptSerchCombo.value+"'");
+
+ 	this.dsTempEmp.copyData(this.dsEmployee,true); // filter가 된 사원 리스트를 띄운다.
+}
+
+
+
+
+//사원목록에서 사원 선택 시!!(처음 시작되는 점)
+this.Grid00_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	selEmpCode = this.dsEmployee.getColumn(e.row,"EMP_CODE");
+	selPositionCode = this.dsEmployee.getColumn(e.row,"POSITION_CODE"); // 선택한 사원의 직급을 담음 
+	
+	
+	this.dsEmpInfo.filter("EMP_CODE=='"+selEmpCode+"'");
+	this.dsEmpInfo.rowposition=0;
+	
+ 	this.dsWorkInfo.filter("EMP_CODE=='"+selEmpCode+"'");
+ 	this.dsWorkInfo.rowposition=0;
+ 	
+ 	this.dsSalInfo.filter("EMP_CODE=='"+selEmpCode+"'");
+ 	this.dsSalInfo.rowposition=0;
+  	
+// 	this.dsPosition.filter("position_code=='"+selPositionCode+"'");
+// 	this.dsPosition.rowposition=0;
+	
+//  	this.dsFamilyInfo.filter("emp_code=='"+selEmpCode+"'");
+//  	this.dsFamilyInfo.rowposition=0;
+// 	
+// 	this.dsLicenseInfo.filter("emp_code=='"+selEmpCode+"'");
+// 	this.dsLicenseInfo.rowposition=0;
+// 	
+// 	this.dsEducationInfo.filter("emp_code=='"+selEmpCode+"'");
+// 	this.dsEducationInfo.rowposition=0;
+// 	
+// 	
+	
+ 	this.dsHobong.filter("POSITION_CODE=='"+selPositionCode+"'");
+ 	this.dsHobong.rowposition=0;
+ 	this.dsHobongCopy.copyData(this.dsHobong,true); //직급이 가진 호봉만 담기 위해!
+ 	this.dsHobongCopy.rowposition=0;
+ 		
+ 	this.dsHobong.filter("POSITION_CODE=='"+selPositionCode+"' && HOBONG=='"+this.dsSalInfo.getColumn(0,"HOBONG")+"'");
+ 	this.dsHobong.rowposition=0;
+	
+// 	if(Tab00.tabpage3.selHobong.value!=null){
+// 		dsHobong.filter("POSITION_CODE=='"+dsPosition.getColumn(0,"POSITION_CODE")+"' && HOBONG=='"+Tab00.tabpage3.selHobong.value+"'");
+// 		Tab00.tabpage3.baseSal.value=dsHobong.getColumn(0,"base_sal");
+// 		Tab00.tabpage3.bonus.value=dsHobong.getColumn(0,"bonus");
+// 		Tab00.tabpage3.sigup.value=dsHobong.getColumn(0,"sigub");
+// 	}else{
+// 		Tab00.tabpage3.baseSal.value="";
+// 		Tab00.tabpage3.bonus.value="";
+// 		Tab00.tabpage3.sigup.value="";
+// 	}
+	
+
+//그리드 클릭하면 이미지 출력
+	var empImgName= this.dsEmpInfo.getColumn(0,'IMG_SRC');
+	if(empImgName!=undefined){
+	    this.Tab00.tabpage1.empImg.set_image('url("ImageUrl::/EMP_IMG/'+empImgName+'")');
+		this.Tab00.tabpage1.empImg.stretch="fit"; 
+		
+		
+		
+	}else{
+ 		this.Tab00.tabpage1.empImg.set_image('url("ImageUrl::180403201247.gif")');
+ 		this.Tab00.tabpage1.empImg.stretch="fit"; 
+	}	
+		
+	
+}
+
+
+//재직 증명서 (아이리포터 )
+this.reportBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	sEmpCode= this.dsEmpInfo.getColumn(0,"EMP_CODE");
+	
+	alert(sEmpCode+"님 재직증명서!");
+	
+	 var strURL = "hrPm::workReportDialog.xfdl";
+   this.showModalPopup(this, strURL, "");
+	
+			
+// 		application.open(
+// 				"deptSearch",
+// 				"hrPm::workReportDialog.xfdl",
+// 				this.parent,
+// 				{},
+// 				"showtitlebar=true showstatusbar=false",
+// 				600, 600, 600, 650,
+// 				this
+// 		);		
+			
+/*	this.showModalPopup(this, "HrPm::workReportDialog.xfdl","");*/	
+/* 	application.open("deptSearch", "hrPm::workReportDialog.xfdl",this.getOwnerFrame(),"", "showtitlebar=true showstatusbar=false", 0, 0, 700, 520, this);*/
+//    {"empCode":this.dsTempEmp.getColumn(this.dsTempEmp.rowposition,"EMP_CODE")},
+//    "showtitlebar=true showstatusbar=true",
+     
+ 
+}
+
+//구글차트 실행
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+		var strURL = "hrPm::empInfoGoogleChartDialog.xfdl";
+		this.showModalPopup(this, strURL, "");
+}
+
+//사진 찾기
+this.Tab00_tabpage1_findPicture_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+   this.FileDialog00.open("FileOpen",FileDialog.LOAD);
+ 
+}
+
+this.FileDialog00_onclose = function(obj:FileDialog, e:nexacro.FileDialogEventInfo)
+{
+   
+   imagDialog = e.virtualfiles[0];
+   imgName = imagDialog.filename;
+   imgPath = imagDialog.path;
+   img = imgPath+imgName;
+   alert(img);
+   this.Tab00.tabpage1.empImg.set_image('url("file://'+img+'")');
+   this.Tab00.tabpage1.empImg.stretch="fit"; 
+   alert(img);
+   
+}
+
+//사진 찾기끝
+
+//맵 화면 호출
+this.Tab00_tabpage1_Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+		var strURL = "hrPm::GoogleMapForm.xfdl";
+		this.showModalPopup(this, strURL, "");
+}
+]]></Script>
+  </Form>
+</FDL>

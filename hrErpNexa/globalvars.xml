@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GlobalVariables>
+  <Dataset id="dsMenu"/>
+  <Dataset id="dsCode"/>
+  <Dataset id="dsDetailCode"/>
+  <Variable id="gv_EMP_CODE"/>
+  <Variable id="gv_EMP_NAME"/>
+  <Dataset id="dsAnnual"/>
+  <Variable id="gv_DEPT_CODE"/>
+  <Variable id="gv_DEPT_NAME"/>
+  <Variable id="gv_POSITION_CODE"/>
+  <Variable id="gv_POSITION_NAME"/>
+  <Dataset id="dsAuthority"/>
+  <Variable id="gv_IS_JSP" usecookie="true"/>
+  <Dataset id="dsEtcSal">
+    <ColumnInfo>
+      <Column id="ETC_SAL_CODE" type="STRING" size="256"/>
+      <Column id="ETC_SAL_NAME" type="STRING" size="256"/>
+      <Column id="ETC_SAL_PRICE" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsDailyAttdRest">
+    <ColumnInfo>
+      <Column id="EMP_CODE" type="STRING" size="256"/>
+      <Column id="EMP_NAME" type="STRING" size="256"/>
+      <Column id="APPROVAL_STATUS" type="STRING" size="256"/>
+      <Column id="CAUSE" type="STRING" size="256"/>
+      <Column id="COST" type="STRING" size="256"/>
+      <Column id="DAYS" type="STRING" size="256"/>
+      <Column id="START_DATE" type="STRING" size="256"/>
+      <Column id="END_DATE" type="STRING" size="256"/>
+      <Column id="REQUEST_DATE" type="STRING" size="256"/>
+      <Column id="ATTD_REST_CODE" type="STRING" size="256"/>
+      <Column id="ATTD_REST_SEQ" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsOverNight">
+    <ColumnInfo>
+      <Column id="OVER_NIGHT_SEQ" type="STRING" size="256"/>
+      <Column id="BASIC_DAY" type="STRING" size="256"/>
+      <Column id="EMP_CODE" type="STRING" size="256"/>
+      <Column id="APPROVAL_STATUS" type="STRING" size="256"/>
+      <Column id="REQUEST_STATUS" type="STRING" size="256"/>
+      <Column id="TYPE" type="STRING" size="256"/>
+      <Column id="EMP_NAME" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+</GlobalVariables>

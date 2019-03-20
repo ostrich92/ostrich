@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="dailyAttendanceApplicationForm" classname="dailyAttendanceApplicationForm" left="0" top="0" width="700" height="520" titletext="New Form" onload="dailyAttendanceApplicationForm_onload" style="padding:0 0 0 0;">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="일&#13;&#10;&#13;&#10;근&#13;&#10;태&#13;&#10; &#13;&#10;신&#13;&#10;청" left="0.87%" top="8" height="504" style="background:#800000ff;border:0 none snow ;color:#ff0000ff;padding:20 5 5 5;align:center top;font:bold 12 궁서;" width="40"/>
+        <GroupBox id="GroupBox00" text="신청" taborder="1" left="8.29%" top="4" height="237" style="background:black;color:#ff0000ff;bordertype:normal 10 10 ;font:bold 12 궁서;" width="635"/>
+        <GroupBox id="GroupBox01" text="근태 현황 조회" taborder="2" left="8.14%" top="243" height="269" width="635" style="background:black;color:#ff0000ff;bordertype:normal 10 10 ;font:bold 12 궁서;"/>
+        <Static id="Static01" taborder="3" text="사원번호" left="13.86%" top="38" height="25" style="background:#800000ff;color:#ff0000ff;align:center middle;font:10 궁서;" width="60"/>
+        <Static id="Static02" taborder="4" text="사원명" left="13.86%" top="75" width="60" height="25" style="background:#800000ff;color:#ff0000ff;align:center middle;font:10 궁서;"/>
+        <Static id="Static03" taborder="5" text="부서" left="13.86%" top="112" width="60" height="25" style="background:#800000ff;color:#ff0000ff;align:center middle;font:10 궁서;"/>
+        <Static id="Static04" taborder="6" text="기준일" left="13.86%" top="149" width="60" height="25" style="background:#800000ff;color:#ff0000ff;align:center middle;font:10 궁서;"/>
+        <Static id="Static05" taborder="7" text="시간" left="13.86%" top="186" width="60" height="25" style="background:#800000ff;color:#ff0000ff;align:center middle;font:10 궁서;"/>
+        <Static id="Static06" taborder="8" text="근태구분" left="52.71%" top="79" width="60" height="25" style="background:#800000ff;color:#ff0000ff;align:center middle;font:10 궁서;" onclick="Static06_onclick"/>
+        <Static id="Static07" taborder="9" text="기타수당" left="52.71%" top="114" width="60" height="25" style="background:#800000ff;color:#ff0000ff;align:center middle;font:10 궁서;"/>
+        <Static id="Static08" taborder="10" text="신청사유" left="52.71%" top="148" width="60" height="25" style="background:#800000ff;color:#ff0000ff;align:center middle;font:10 궁서;"/>
+        <Edit id="empCode" taborder="11" left="24.71%" top="38" height="25" width="150" style="align:center middle;"/>
+        <Edit id="empName" taborder="12" left="24.71%" top="75" width="150" height="25" style="align:center middle;"/>
+        <Edit id="deptName" taborder="13" left="24.71%" top="112" width="150" height="25" style="align:center middle;"/>
+        <Edit id="etcSal" taborder="17" left="63.57%" top="114" width="150" height="25"/>
+        <TextArea id="cause" taborder="18" left="63.57%" top="147" right="11.14%" height="85"/>
+        <Static id="Static09" taborder="19" text="1)연장근무 적용시간은 19:00~22:00입니다." left="53.86%" top="24" right="12.43%" height="20" style="background:#ffffffff;color:#ff0000ff;font:9 궁서;"/>
+        <Static id="Static10" taborder="20" text="2)심야근무 적용시간은 22:00~06:00입니다." left="53.86%" top="48" right="12.43%" height="20" style="background:#ffffffff;color:#ff0000ff;font:9 궁서;"/>
+        <MaskEdit id="currentTime" taborder="21" left="24.71%" top="186" height="25" width="150" mask="##:##" style="align:center middle;" type="string"/>
+        <Combo id="attendanceType" taborder="22" left="63.57%" top="79" height="25" width="150" innerdataset="@dsDailyAttdType" index="-1" datacolumn="DETAIL_CODE_NAME" codecolumn="DETAIL_CODE"/>
+        <Grid id="Grid00" taborder="23" useinputpanel="false" left="8.86%" top="315" height="190" width="625" binddataset="dsDailyAttd">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="70"/>
+                <Column size="70"/>
+                <Column size="70"/>
+                <Column size="70"/>
+                <Column size="70"/>
+                <Column size="70"/>
+                <Column size="90"/>
+                <Column size="115"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사원번호"/>
+                <Cell col="1" text="사원이름"/>
+                <Cell col="2" text="근태구분"/>
+                <Cell col="3" text="시간"/>
+                <Cell col="4" text="승인상태"/>
+                <Cell col="5" text="금액"/>
+                <Cell col="6" text="기준일"/>
+                <Cell col="7" text="사유"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:EMP_CODE"/>
+                <Cell col="1" text="bind:EMP_NAME"/>
+                <Cell col="2" text="bind:ATTD_TYPE_CODE"/>
+                <Cell col="3" text="bind:TIME"/>
+                <Cell col="4" text="bind:APPROVAL_STATUS"/>
+                <Cell col="5" text="bind:COST"/>
+                <Cell col="6" text="bind:BASIC_DAY"/>
+                <Cell col="7" text="bind:CAUSE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static11" taborder="24" text="조회기간" left="44%" top="275" width="60" height="30" style="background:#800000ff;color:#ff0000ff;align:center middle;font:10 궁서;"/>
+        <Static id="Static12" taborder="25" text="부터" left="69.86%" top="275" width="30" height="30" style="background:#800000ff;color:#ff0000ff;align:center middle;font:10 궁서;"/>
+        <Calendar id="Calendar00" taborder="26" left="52.71%" top="275" height="30" width="100" dateformat="yyyy-MM-dd ddd" value="null" editformat="yyyy-MM-dd"/>
+        <Calendar id="Calendar01" taborder="27" left="73.57%" top="275" width="100" height="30" dateformat="yyyy-MM-dd ddd" value="null" editformat="yyyy-MM-dd"/>
+        <Button id="Button00" taborder="28" text="조회" left="155.86%" top="53" right="-56%" height="34"/>
+        <Button id="searchBt" taborder="29" text="조회" left="90.57%" top="274" right="1.86%" height="29" onclick="searchBt_onclick"/>
+        <MaskEdit id="basicDate" taborder="30" left="24.71%" top="149" width="150" height="25" style="align:center middle;" mask="####-##-##" type="string"/>
+        <Button id="applicationBtn" taborder="31" text="신청" left="91.14%" top="203" right="1.29%" height="29" onclick="applicationBtn_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsDailyAttdType"/>
+      <Dataset id="dsDailyAttd">
+        <ColumnInfo>
+          <Column id="EMP_CODE" type="STRING" size="256"/>
+          <Column id="DAY_ATTD_SEQ" type="STRING" size="256"/>
+          <Column id="BASIC_DAY" type="STRING" size="256"/>
+          <Column id="ATTD_TYPE_CODE" type="STRING" size="256"/>
+          <Column id="TIME" type="STRING" size="256"/>
+          <Column id="APPROVAL_STATUS" type="STRING" size="256"/>
+          <Column id="COST" type="STRING" size="256"/>
+          <Column id="CAUSE" type="STRING" size="256"/>
+          <Column id="EMP_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[include "lib::core.xjs"
+
+this.dailyAttendanceApplicationForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{	
+	var currDate = new Date();
+	var year = currDate.getFullYear().toString().padLeft(4, "0");
+    var month = (currDate.getMonth()+1).toString().padLeft(2, "0");
+    var day = currDate.getDate().toString().padLeft(2, "0");
+    var hour = currDate.getHours().toString().padLeft(2, "0");
+    var min = currDate.getMinutes().toString().padLeft(2, "0");
+    
+	this.empCode.set_value(application.gv_EMP_CODE);
+	this.empName.set_value(application.gv_EMP_NAME);
+	this.deptName.set_value(application.gv_DEPT_CODE);
+	this.basicDate.set_value(year+month+day);
+	this.currentTime.set_value(hour+min);
+
+	
+	application.dsDetailCode.filter("");
+	application.dsDetailCode.filter("DETAIL_CODE=='ADC001' ||DETAIL_CODE=='ADC002'||DETAIL_CODE=='ADC003'||DETAIL_CODE=='ADC004'");
+	
+	this.dsDailyAttdType.copyData(application.dsDetailCode,true);
+
+		
+	this.initialize(this);
+}
+
+
+
+
+
+this.applicationBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{	
+		
+		this.dsDailyAttd.addRow();
+		this.dsDailyAttd.setColumn(this.dsDailyAttd.rowposition,"EMP_CODE",this.empCode.value);
+		this.dsDailyAttd.setColumn(this.dsDailyAttd.rowposition,"EMP_NAME",this.empName.value);
+		this.dsDailyAttd.setColumn(this.dsDailyAttd.rowposition,"ATTD_TYPE_CODE",this.attendanceType.value);
+		this.dsDailyAttd.setColumn(this.dsDailyAttd.rowposition,"TIME",this.currentTime.value);
+		this.dsDailyAttd.setColumn(this.dsDailyAttd.rowposition,"APPROVAL_STATUS","N");
+		this.dsDailyAttd.setColumn(this.dsDailyAttd.rowposition,"COST","0");
+		this.dsDailyAttd.setColumn(this.dsDailyAttd.rowposition,"BASIC_DAY",this.basicDate.value);
+		this.dsDailyAttd.setColumn(this.dsDailyAttd.rowposition,"CAUSE","???????????");
+		
+		
+		var id = "addDailyAttd";
+		var url ="dataURL::hr/attendance/addDailyAttd.do";
+		var reqDs ="dsDailyAttd=dsDailyAttd:u";
+		var respDs ="dsDailyAttd=dsDailyAttd";
+		var args ="";
+		var callback = "callback";
+		
+		this.transaction(id, url, reqDs, respDs, args, callback);
+	
+		this.dsDailyAttd.filter("BASIC_DAY='"+0+"'"); 
+			
+}
+
+//search버튼
+this.searchBt_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{		
+		alert(this.Calendar00.valueOf());
+		var n2=Date.parse();
+		
+		var f_Date=this.Calendar00.value;
+		var t_Date=this.Calendar01.value;
+	
+		this.dsDailyAttd.filter("");  
+	
+		this.dsDailyAttd.filter("BASIC_DAY>='"+f_Date+ "' && BASIC_DAY<='"+t_Date+"'");
+	
+	
+}]]></Script>
+  </Form>
+</FDL>

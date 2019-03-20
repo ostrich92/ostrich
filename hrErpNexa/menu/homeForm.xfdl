@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="homeForm" classname="homeForm" left="0" top="0" width="700" height="540" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="홈화면입니다" left="50" top="45" width="224" height="77" style="font:antialias 12 Dotum;"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

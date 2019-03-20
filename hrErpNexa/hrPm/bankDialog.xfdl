@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="bankDialog" classname="bankDialog" left="0" top="0" width="350" height="400" titletext="New Form" onload="bankDialog_onload">
+    <Layouts>
+      <Layout>
+        <Grid id="Grid00" taborder="0" useinputpanel="false" left="2.57%" top="79" right="2.29%" height="311" autofittype="col" binddataset="dsDetailCode">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="align:EXPR(center);" text="NO"/>
+                <Cell col="1" text="은행코드"/>
+                <Cell col="2" text="은행명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow+1"/>
+                <Cell col="1" text="bind:detail_code"/>
+                <Cell col="2" text="bind:detail_code_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="은행 조회" left="1.14%" top="6" right="1.43%" height="71" style="background:papayawhip;align:center middle;font:bold 14 Bauhaus 93;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsDetailCode">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="detail_code" type="STRING" size="256"/>
+          <Column id="detail_code_name" type="STRING" size="256"/>
+          <Column id="using_status" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[this.bankDialog_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.transaction("findCodeList",
+				"dataURL::base/findCodeList.do",
+				"",
+				"dsCode=dsCode dsDetailCode=dsDetailCode",
+				"",
+				"callback",
+				false);
+				
+
+}
+]]></Script>
+  </Form>
+</FDL>

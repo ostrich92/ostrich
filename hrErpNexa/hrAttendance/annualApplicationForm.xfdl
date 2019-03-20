@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="annualApplicationForm" classname="annualApplicationForm" left="0" top="0" width="680" height="530" titletext="New Form" onload="annualApplicationForm_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static01" taborder="1" text="휴가 / 연차 신청" left="0.88%" top="2" right="1.03%" height="30" style="background:beige;align:center middle;font:bold 14 휴먼모음T;"/>
+        <GroupBox id="GroupBox00" text="연차정보" taborder="2" left="0.86%" top="32" right="58.14%" height="271" style="background:transparent;border:3 solid bisque ;color:black;font:12 휴먼엑스포;" titlealign="topcenter"/>
+        <GroupBox id="GroupBox01" text="연차신청" titlealign="topcenter" taborder="3" left="43%" top="32" right="1%" height="271" style="background:transparent;border:3 solid bisque ;color:black;font:12 휴먼엑스포;"/>
+        <Static id="Static02" taborder="4" text="연차 현황 조회" left="0.88%" top="307" right="1.03%" height="30" style="background:beige;align:center middle;font:bold 14 휴먼모음T;"/>
+        <Static id="Static03" taborder="5" text="기준년도" left="2%" top="57" right="86.43%" height="20" style="background:antiquewhite;color:black;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Edit id="standardYear" taborder="6" left="14.14%" top="57" right="68.29%" height="20"/>
+        <Button id="nextBtn" taborder="7" text="다음년도" left="32.57%" top="57" right="60.71%" height="20" style="background:antiquewhite;font:bold 7 휴먼엑스포;" onclick="nextBtn_onclick"/>
+        <Static id="Static04" taborder="8" text="사원명" left="2%" top="89" right="86.43%" height="20" style="background:antiquewhite;color:black;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static05" taborder="9" text="부서" left="2%" top="121" right="86.43%" height="20" style="background:antiquewhite;color:black;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static06" taborder="10" text="근속년수" left="2%" top="153" right="86.43%" height="20" style="background:antiquewhite;color:black;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static07" taborder="11" text="사용가능일수" left="2%" top="185" right="86.43%" height="20" style="background:antiquewhite;color:black;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static08" taborder="12" text="잔여일수" left="2%" top="217" right="86.43%" height="20" style="background:antiquewhite;color:black;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static09" taborder="13" text="사용한일수" left="2%" top="249" right="86.43%" height="20" style="background:antiquewhite;color:black;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Edit id="empName" taborder="14" left="14.14%" top="89" right="60.71%" height="20"/>
+        <Edit id="deptName" taborder="15" left="14.14%" top="121" right="60.71%" height="20"/>
+        <Edit id="lengthOfService" taborder="16" left="14.14%" top="154" right="64.57%" height="20"/>
+        <Edit id="usableDays" taborder="17" left="14.14%" top="185" right="64.57%" height="20"/>
+        <Edit id="restDays" taborder="18" left="14.14%" top="217" right="64.57%" height="20"/>
+        <Edit id="usedDays" taborder="19" left="14.14%" top="249" right="64.57%" height="20"/>
+        <Static id="Static10" taborder="20" text="년" left="36.29%" top="154" right="61.14%" height="20" style="background:antiquewhite;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static11" taborder="21" text="일" left="36.29%" top="185" right="61.14%" height="20" style="background:antiquewhite;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static12" taborder="22" text="일" left="36.29%" top="217" right="61.14%" height="20" style="background:antiquewhite;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static13" taborder="23" text="일" left="36.29%" top="249" right="61.14%" height="20" style="background:antiquewhite;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static14" taborder="24" text="신청기간" left="45.29%" top="57" right="43.29%" height="20" style="background:antiquewhite;color:black;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static15" taborder="25" text="일수" left="45.29%" top="89" right="43.29%" height="20" style="background:antiquewhite;color:black;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static16" taborder="26" text="구분" left="45.29%" top="121" right="43.29%" height="20" style="background:antiquewhite;color:black;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static17" taborder="27" text="사유" left="45.29%" top="153" right="43.29%" height="20" style="background:antiquewhite;color:black;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static18" taborder="28" text="상세사유" left="45.29%" top="185" right="43.29%" height="20" style="background:antiquewhite;color:black;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static19" taborder="29" text="~" left="71.03%" top="57" right="25.88%" height="20" style="background:antiquewhite;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static20" taborder="30" text="일" left="69.86%" top="89" right="27.57%" height="20" style="background:antiquewhite;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Calendar id="startDate" taborder="31" left="57.71%" top="57" height="20" style="font:8 arial;" width="90" onchanged="startDate_onchanged"/>
+        <Calendar id="endDate" taborder="32" left="74.56%" top="57" height="20" style="font:8 arial;" width="90" onchanged="endDate_onchanged"/>
+        <Button id="applyBtn" taborder="33" text="신 청" left="88.24%" top="55" right="2.35%" height="22" style="background:antiquewhite;font:bold 7 휴먼엑스포;" onclick="applyBtn_onclick"/>
+        <Edit id="days" taborder="34" left="57.71%" top="89" right="31%" height="20" enable="false"/>
+        <Combo id="setAnnualType" taborder="35" left="57.71%" top="121" right="27.57%" height="20" style="font:9 휴먼엑스포;" innerdataset="dsAnnualType" datacolumn="value" codecolumn="code"/>
+        <Edit id="detailCause" taborder="37" left="57.71%" top="185" right="15.14%" height="20"/>
+        <Static id="Static21" taborder="38" text="신청 기간 설정시 연차정보의 기준년도를 참고하여 잔여일수 확인 후 신청하세요" left="45.59%" top="220" right="3.53%" height="64" style="border:5 dashed antiquewhite ;font:bold 12 휴먼엑스포;" onclick="Static21_onclick" wordwrap="char"/>
+        <Grid id="Grid00" taborder="39" useinputpanel="false" left="0.88%" top="366" right="1.03%" height="161" autofittype="col" binddataset="dsDayAnnual">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="70"/>
+                <Column size="71"/>
+                <Column size="80"/>
+                <Column size="64"/>
+                <Column size="98"/>
+                <Column size="93"/>
+                <Column size="56"/>
+                <Column size="103"/>
+                <Column size="350"/>
+                <Column size="83"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:antiquewhite;font:8 휴먼엑스포;" text="사원코드" expandsize="13"/>
+                <Cell col="1" style="background:antiquewhite;font:8 휴먼엑스포;" text="사원이름"/>
+                <Cell col="2" style="background:antiquewhite;font:8 휴먼엑스포;" text="기준년도"/>
+                <Cell col="3" style="background:antiquewhite;font:8 휴먼엑스포;" text="구분"/>
+                <Cell col="4" style="background:antiquewhite;font:8 휴먼엑스포;" text="시작일"/>
+                <Cell col="5" style="background:antiquewhite;font:8 휴먼엑스포;" text="종료일"/>
+                <Cell col="6" style="background:antiquewhite;font:8 휴먼엑스포;" text="일수"/>
+                <Cell col="7" style="background:antiquewhite;font:8 휴먼엑스포;" text="사유"/>
+                <Cell col="8" style="background:antiquewhite;font:8 휴먼엑스포;" text="상세사유"/>
+                <Cell col="9" style="background:antiquewhite;font:8 휴먼엑스포;" text="승인상태"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:EMP_CODE"/>
+                <Cell col="1" text="bind:EMP_NAME"/>
+                <Cell col="2" text="bind:STANDARD_YEAR"/>
+                <Cell col="3" text="bind:ANNUAL_CODE"/>
+                <Cell col="4" text="bind:START_DATE"/>
+                <Cell col="5" text="bind:END_DATE"/>
+                <Cell col="6" text="bind:DAYS"/>
+                <Cell col="7" text="bind:CAUSE_CODE"/>
+                <Cell col="8" text="bind:DETAIL_CAUSE"/>
+                <Cell col="9" text="bind:APPROVAL_STATUS"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static22" taborder="40" text="조회기간" left="25%" top="340" right="66.71%" height="20" style="background:antiquewhite;color:black;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Static id="Static23" taborder="42" text="~" left="49.86%" top="340" right="47.57%" height="20" style="background:antiquewhite;align:center middle;font:bold 7 휴먼엑스포;"/>
+        <Button id="searchBtn" taborder="44" text="조 회" left="69.86%" top="340" right="20.29%" height="20" style="background:antiquewhite;font:bold 7 휴먼엑스포;" onclick="searchBtn_onclick"/>
+        <Calendar id="fromDate" taborder="45" left="34.41%" top="340" height="20" style="font:8 arial;" width="90"/>
+        <Calendar id="toDate" taborder="46" left="54.12%" top="340" height="20" style="font:8 arial;" width="90"/>
+        <Edit id="cause" taborder="47" left="57.65%" top="154" right="15.15%" height="20"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsDayAnnual">
+        <ColumnInfo>
+          <Column id="DAY_ANNUAL_SEQ" type="STRING" size="256"/>
+          <Column id="EMP_CODE" type="STRING" size="256"/>
+          <Column id="START_DATE" type="STRING" size="256"/>
+          <Column id="END_DATE" type="STRING" size="256"/>
+          <Column id="CAUSE_CODE" type="STRING" size="256"/>
+          <Column id="DETAIL_CAUSE" type="STRING" size="256"/>
+          <Column id="STANDARD_YEAR" type="STRING" size="256"/>
+          <Column id="ANNUAL_CODE" type="STRING" size="256"/>
+          <Column id="DAYS" type="STRING" size="256"/>
+          <Column id="EMP_NAME" type="STRING" size="256"/>
+          <Column id="APPROVAL_STATUS" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[include "lib::core.xjs"
+
+this.annualApplicationForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	var FullDate				=		new Date();
+	var Year					=		FullDate.getFullYear().toString().padLeft(4, "0");		// 현재년도 들고옴
+	var Month					=		(FullDate.getMonth()+1).toString().padLeft(2, "0");
+	var Day						=		FullDate.getDate().toString().padLeft(2, "0");
+    var Hour 					= 		FullDate.getHours().toString().padLeft(2, "0");
+    var Min 					= 		FullDate.getMinutes().toString().padLeft(2, "0");
+	
+	this.empName.set_value(application.gv_EMP_NAME);
+	this.deptName.set_value(application.gv_DEPT_NAME);
+	
+	application.dsAnnual.filter("");
+	this.dsDayAnnual.filter("");
+	
+	this.transaction(
+		"findAnnualList",
+		"dataURL::hr/circumstance/findAnnualList.do",
+		"",
+		"dsAnnual=dsAnnual",
+		"",
+		"callback",
+		false
+	);
+	
+	application.dsAnnual.filter("STANDARD_YEAR=="+Year+" && EMP_CODE=='"+application.gv_EMP_CODE+"'");
+	
+	this.transaction(
+		"findAnnualMgt",
+		"dataURL::hr/attendance/findAnnualMgt.do",
+		"",
+		"dsDayAnnual=dsDayAnnual",
+		"empCode='"+application.gv_EMP_CODE+"' standardYear='"+Year+"'",
+		"callback",
+		false
+	);
+	
+	this.dsDayAnnual.filter("EMP_CODE==0");
+	
+	this.initialize(this);
+}
+
+
+this.nextBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var FullDate				=		new Date();
+	var Year					=		FullDate.getFullYear().toString().padLeft(4, "0");		// 현재년도 들고옴
+	var Month					=		(FullDate.getMonth()+1).toString().padLeft(2, "0");		// 현재월 들고옴
+	var Day						=		FullDate.getDate().toString().padLeft(2, "0");			// 현재날짜 들고옴
+    var Hour 					= 		FullDate.getHours().toString().padLeft(2, "0");			// 현재시간 들고옴
+    var Min 					= 		FullDate.getMinutes().toString().padLeft(2, "0");		// 현재분 들고옴
+	var nextYear				=		Year+1;
+	
+	application.dsAnnual.filter("STANDARD_YEAR=='"+nextYear+"'");
+	
+	if(application.dsAnnual.getRowCount()!=0){
+		this.standardYear.set_value(nextYear);
+		application.dsAnnual.filter("");
+		application.dsAnnual.filter("STANDARD_YEAR=='"+Year+"' && EMP_CODE=='"+application.gv_EMP_CODE+"'");
+	}else{
+		alert("다음 기준년도가 없습니다.");
+		application.dsAnnual.filter("");
+		application.dsAnnual.filter("STANDARD_YEAR=='"+Year+"' && EMP_CODE=='"+application.gv_EMP_CODE+"'");
+	}
+}
+
+this.startDate_onchanged = function(obj:Calendar, e:nexacro.ChangeEventInfo)
+{
+	var FullDate				=		new Date();
+	var Year					=		FullDate.getFullYear().toString().padLeft(4, "0");		// 현재년도 들고옴
+	var Month					=		(FullDate.getMonth()+1).toString().padLeft(2, "0");		// 현재월 들고옴
+	var Day						=		FullDate.getDate().toString().padLeft(2, "0");			// 현재날짜 들고옴
+    var Hour 					= 		FullDate.getHours().toString().padLeft(2, "0");			// 현재시간 들고옴
+    var Min 					= 		FullDate.getMinutes().toString().padLeft(2, "0");		// 현재분 들고옴
+	var startDate				=		this.startDate.value;
+	var endDate					=		this.endDate.value;
+	var today					=		Year+Month+Day;
+
+	if(startDate<today){
+		alert("오늘 이전날짜는 선택할 수 없습니다.");
+		startDate="";
+	}else if(startDate==today){
+		alert("외출 신청으로 등록해 주세요.");
+		startDate="";
+	}
+	
+	if(endDate!=undefined){
+		if(startDate>endDate){
+			alert("시작일을 더 크게 지정할 수 없습니다.");
+		}
+	}
+}
+
+this.endDate_onchanged = function(obj:Calendar, e:nexacro.ChangeEventInfo)
+{
+	var startDate			=		this.startDate.value;
+	var endDate				=		this.endDate.value;
+	
+	if(startDate==""){
+		alert("신청 시작일을 선택해주세요");
+	}else if(endDate<startDate){
+		alert("신청 마지막일을 시작일보다 작게 지정할 수 없습니다.");
+	}else{
+		this.days.value=parseInt(endDate)-parseInt(startDate)+1;
+	}
+}
+
+
+
+this.applyBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var startDate			=		this.startDate.value;
+	var endDate				=		this.endDate.value;
+	var cause				=		this.cause.value;
+	var detailCause			=		this.detailCause.value;
+	var standardYear		=		this.standardYear.value;
+	var	annualCode			=		this.setAnnualType.value;
+	var days				=		parseInt(this.days.value);
+	var approvalStatus		=		'N';
+	var plusDays			=		parseInt(this.usedDays.value)+parseInt(this.days.value);
+	var usedDays			=		parseInt(this.usedDays.value);
+	var restDays			=		String(parseInt(this.restDays.value)-days);
+	var annualDays			=		String(usedDays+days);
+	
+	alert(restDays);
+	alert(annualDays);
+	
+	this.dsDayAnnual.filter("EMP_CODE=='"+application.gv_EMP_CODE+"' && STANDARD_YEAR='"+standardYear+"' && START_DATE=='"+startDate+"'");
+	
+	if(parseInt(this.days.value)>parseInt(this.restDays.value)){
+		alert("신청불가, 잔여일수보다 크게 지정할 수 없습니다.");
+	}else if(this.dsDayAnnual.getRowCount()!=0){
+		alert("이미 연차신청이 되어있습니다.");
+	}else{
+		if(confirm("신청 하시겠습니까?")){
+			this.dsDayAnnual.addRow();
+			this.dsDayAnnual.setColumn(this.dsDayAnnual.rowposition,"EMP_CODE", application.gv_EMP_CODE);
+			this.dsDayAnnual.setColumn(this.dsDayAnnual.rowposition,"EMP_NAME", application.gv_EMP_NAME);
+			this.dsDayAnnual.setColumn(this.dsDayAnnual.rowposition,"START_DATE", startDate);
+			this.dsDayAnnual.setColumn(this.dsDayAnnual.rowposition,"END_DATE", endDate);
+			this.dsDayAnnual.setColumn(this.dsDayAnnual.rowposition,"CAUSE_CODE", cause);
+			this.dsDayAnnual.setColumn(this.dsDayAnnual.rowposition,"DETAIL_CAUSE", detailCause);
+			this.dsDayAnnual.setColumn(this.dsDayAnnual.rowposition,"STANDARD_YEAR", standardYear);
+			this.dsDayAnnual.setColumn(this.dsDayAnnual.rowposition,"ANNUAL_CODE", annualCode);
+			this.dsDayAnnual.setColumn(this.dsDayAnnual.rowposition,"DAYS", days);
+			this.dsDayAnnual.setColumn(this.dsDayAnnual.rowposition,"APPROVAL_STATUS", approvalStatus);
+		
+			this.transaction(
+				"addDayAnnual",
+				"dataURL::hr/circumstance/batchAnnual.do",
+				"dsDayAnnual=dsDayAnnual:u",
+				"dsDayAnnual=dsDayAnnual",
+				"",
+				"callback",
+				false);
+			
+			this.transaction(
+				"editAnnualMgt",
+				"dataURL::hr/circumstance/editAnnualMgt.do",
+				"",
+				"dsAnnual=dsAnnual",
+				"standardYear='" + standardYear + "' empCode='" + application.gv_EMP_CODE + "' days='" +annualDays + "' restDays='" +restDays + "'",
+				"callback",
+				false);
+			
+			reload();
+		}
+	}
+}
+
+this.searchBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var fromDate			=		this.fromDate.value;
+	var toDate				=		this.toDate.value;
+	this.dsDayAnnual.filter("");
+	this.dsDayAnnual.filter("START_DATE >='"+fromDate+"' && START_DATE <= '"+toDate+"'");
+}
+
+this.callback = function(trid, ErrorCode, ErrorMsg){
+	if(trid=="editAnnualMgt"){
+		if(ErrorCode!=0){
+			alert(ErrorMsg);
+	    }else{
+			alert("연차 신청 완료");
+		}
+	}
+}]]></Script>
+  </Form>
+</FDL>

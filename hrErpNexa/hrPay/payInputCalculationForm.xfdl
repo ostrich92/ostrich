@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="payInputCalculationForm" classname="payInputCalculationForm" left="0" top="0" width="700" height="500" titletext="New Form" onload="payInputCalculationForm_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="급여 입력 / 계산" left="0%" top="0" right="0%" height="49" style="background:#e1f3c7ff;border:0px solid #b1b5b9b3 ;color:yellowgreen;align:center middle;font:bold 14 휴먼엑스포;"/>
+        <Static id="Static01" taborder="2" text="귀속년월" left="1.57%" top="75" right="86.29%" height="20" enable="false" enableevent="false" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;"/>
+        <Static id="Static02" taborder="3" text="년" enable="false" enableevent="false" left="27.71%" top="75" right="67.71%" height="20" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;"/>
+        <Static id="Static03" taborder="4" text="월" enable="false" enableevent="false" left="44.57%" top="75" right="50.86%" height="20" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;"/>
+        <Static id="Static04" taborder="5" text="귀속년월" enable="false" enableevent="false" left="0.43%" top="430" right="87.43%" height="20" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;"/>
+        <Static id="Static05" taborder="6" text="사원번호" enable="false" enableevent="false" top="278" right="42.71%" height="20" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;" width="125"/>
+        <Static id="Static06" taborder="7" text="부서" enable="false" enableevent="false" top="278" right="22.71%" height="20" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;" width="125"/>
+        <Static id="Static07" taborder="8" text="직급" enable="false" enableevent="false" top="278" right="2.86%" height="20" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;" width="125"/>
+        <Static id="Static08" taborder="9" text="입사일자" enable="false" enableevent="false" left="39.71%" top="339" right="48.14%" height="20" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;"/>
+        <Static id="Static09" taborder="10" text="퇴사일자" enable="false" enableevent="false" left="55.29%" top="339" right="32.57%" height="20" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;"/>
+        <Static id="Static10" taborder="11" text="공제총액" enable="false" enableevent="false" left="63.71%" top="440" right="20.71%" height="20" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;"/>
+        <Static id="Static11" taborder="12" text="급여형태" enable="false" enableevent="false" left="84.57%" top="339" right="3.29%" height="20" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;"/>
+        <Static id="Static12" taborder="13" text="지급총액" enable="false" enableevent="false" left="63.71%" top="406" right="20.71%" height="20" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;"/>
+        <Static id="Static13" taborder="14" text="지급일자" enable="false" enableevent="false" left="70.14%" top="339" right="17.71%" height="20" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;"/>
+        <Static id="Static14" taborder="15" text="차인지급금액" enable="false" enableevent="false" left="63.71%" top="472" right="20.71%" height="20" style="background:#e1f3c7ff;border:0px solid #dedcdcff ;color:yellowgreen;padding:1px 1px 1px 1px;align:center middle;font:bold 12 휴먼엑스포;opacity:100;"/>
+        <Combo id="selYear" taborder="16" displaynulltext="선택하세요." innerdataset="dsBaseYear" codecolumn="year" datacolumn="year" left="14.57%" top="75" right="72.57%" height="23" style="align:center middle;"/>
+        <Combo id="selMonth" taborder="17" displaynulltext="선택하세요." innerdataset="dsBaseMonth" codecolumn="month" datacolumn="month" left="33.14%" top="75" right="56.86%" height="24" style="align:center middle;"/>
+        <MaskEdit id="paymentDate" taborder="18" type="string" mask="####-##-##" enable="false" left="13.14%" top="424" right="70.29%" height="25" style="align:center middle;"/>
+        <Edit id="Edit00" taborder="19" enable="false" left="39.57%" top="306" height="25" width="125"/>
+        <Combo id="Combo00" taborder="20" innerdataset="dsDepartment" codecolumn="DEPT_CODE" datacolumn="DEPT_NAME" enable="false" left="59.14%" top="306" height="25" width="125" onitemchanged="Combo00_onitemchanged"/>
+        <Combo id="Combo01" taborder="21" innerdataset="dsPosition" codecolumn="POSITION_CODE" datacolumn="POSITION_NAME" enable="false" left="79.57%" top="306" height="25" width="125"/>
+        <MaskEdit id="MaskEdit06" taborder="1" type="string" mask="####-##-##" enable="false" left="39.57%" top="368" height="30" width="95"/>
+        <MaskEdit id="MaskEdit04" taborder="22" type="string" mask="####-##-##" enable="false" left="54.43%" top="368" height="30" width="95"/>
+        <MaskEdit id="MaskEdit05" taborder="23" type="string" mask="####-##-##" enable="false" left="69%" top="368" height="30" width="95"/>
+        <Combo id="Combo02" taborder="24" innerdataset="dsSalaryType" codecolumn="DETAIL_CODE" datacolumn="DETAIL_CODE_NAME" enable="false" left="83.43%" top="368" height="30" index="-1" width="95"/>
+        <MaskEdit id="MaskEdit00" taborder="25" mask="," enable="false" left="80%" top="405" height="25" width="125"/>
+        <MaskEdit id="MaskEdit01" taborder="26" mask="," enable="false" left="80%" top="438" height="25" width="125"/>
+        <MaskEdit id="MaskEdit02" taborder="27" mask="," enable="false" usebitmapcache="true" left="80%" top="469" height="25" width="125"/>
+        <Button id="payCalculationBtn" taborder="28" text="급 여 계 산" onclick="payCalculationBtn_onclick" left="41.71%" top="416" right="38.29%" height="75" style="background:#e1f3c7ff;color:yellowgreen;"/>
+        <Button id="searchBtn" taborder="29" text="조 회" onclick="searchBtn_onclick" left="30.86%" top="422" right="60.43%" height="33" style="background:#e1f3c7ff;color:yellowgreen;"/>
+        <Grid id="Grid00" taborder="30" binddataset="dsEmployee" useinputpanel="false" autofittype="col" oncellclick="Grid00_oncellclick" left="1.71%" top="112" right="62.29%" height="293" style="border:1 solid #cbcbcbff ;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="35"/>
+                <Column size="110"/>
+                <Column size="90"/>
+                <Column size="75"/>
+                <Column size="75"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#dcfad3ff;" text="NO"/>
+                <Cell col="1" style="background:#dcfad3ff;" text="사원번호"/>
+                <Cell col="2" style="background:#dcfad3ff;" text="사원명"/>
+                <Cell col="3" style="background:#dcfad3ff;" text="직급명"/>
+                <Cell col="4" style="background:#dcfad3ff;" text="부서명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow+1"/>
+                <Cell col="1" text="bind:EMP_CODE"/>
+                <Cell col="2" text="bind:EMP_NAME"/>
+                <Cell col="3" displaytype="combo" text="bind:POSITION_CODE" combodataset="dsPosition" combocodecol="POSITION_CODE" combodatacol="POSITION_NAME"/>
+                <Cell col="4" displaytype="combo" text="bind:DEPT_CODE" combodataset="dsDepartment" combocodecol="DEPT_CODE" combodatacol="DEPT_NAME"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="2" text="총인원"/>
+                <Cell col="2" colspan="3" expr="expr:dataset.getRowCount(&quot;NO&quot;)+'명'"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid01" taborder="31" binddataset="dsPay" useinputpanel="false" autofittype="col" left="39.86%" top="112" right="31.14%" height="154" style="border:1 solid #cbcbcbff ;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="120"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#dcfad3ff;" text="지급항목"/>
+                <Cell col="1" style="background:#dcfad3ff;" text="금액"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:PAY_DEDUCTION_ITEM_NAME"/>
+                <Cell col="1" displaytype="currency" text="bind:PRICE"/>
+              </Band>
+              <Band id="summary">
+                <Cell style="background:#dcfad3ff;" text="지급총액"/>
+                <Cell col="1" displaytype="currency" style="background:#dcfad3ff;" expr="expr:dataset.getSum(&quot;parseInt(PRICE)&quot;)+'원'"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid02" taborder="32" binddataset="dsDeduction" useinputpanel="false" left="70%" top="111" right="1.71%" height="155" style="border:1 solid #cbcbcbff ;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="101"/>
+                <Column size="94"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#dcfad3ff;" text="공제항목"/>
+                <Cell col="1" style="background:#dcfad3ff;" text="금액"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:PAY_DEDUCTION_ITEM_NAME"/>
+                <Cell col="1" displaytype="currency" text="bind:PRICE"/>
+              </Band>
+              <Band id="summary">
+                <Cell style="background:#dcfad3ff;" text="공제총액"/>
+                <Cell col="1" displaytype="currency" style="background:#dcfad3ff;" expr="expr:dataset.getSum(&quot;parseInt(PRICE)&quot;)+'원'"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item3" compid="Edit00" propid="value" datasetid="dsSalaryInput" columnid="emp_code"/>
+      <BindItem id="item4" compid="Combo00" propid="value" datasetid="dsSalaryInput" columnid="dept_code"/>
+      <BindItem id="item5" compid="Combo01" propid="value" datasetid="dsSalaryInput" columnid="position_code"/>
+      <BindItem id="item6" compid="MaskEdit06" propid="value" datasetid="dsSalaryInput" columnid="hire_date"/>
+      <BindItem id="item7" compid="MaskEdit04" propid="value" datasetid="dsSalaryInput" columnid="retire_date"/>
+      <BindItem id="item8" compid="MaskEdit05" propid="value" datasetid="dsSalaryInput" columnid="payment_date"/>
+      <BindItem id="item9" compid="Combo02" propid="value" datasetid="dsSalaryInput" columnid="salary_type_code"/>
+      <BindItem id="item2" compid="MaskEdit00" propid="value" datasetid="dsSalaryInput" columnid="total_salary"/>
+      <BindItem id="item1" compid="MaskEdit01" propid="value" datasetid="dsSalaryInput" columnid="total_deduction_price"/>
+      <BindItem id="item0" compid="MaskEdit02" propid="value" datasetid="dsSalaryInput" columnid="chine_payment"/>
+    </Bind>
+    <Objects>
+      <Dataset id="dsSalaryType" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="DETAIL_CODE" type="STRING" size="256"/>
+          <Column id="DETAIL_CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDeduction" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="PAY_DEDUCTION_SEQ" type="STRING" size="256"/>
+          <Column id="PRICE" type="STRING" size="256"/>
+          <Column id="PAY_DEDUCTION_ITEM_CODE" type="STRING" size="256"/>
+          <Column id="PAY_DEDUCTION_ITEM_NAME" type="STRING" size="256"/>
+          <Column id="EMP_CODE" type="STRING" size="256"/>
+          <Column id="PAYMENT_DATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPay" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="PAY_DEDUCTION_SEQ" type="STRING" size="256"/>
+          <Column id="PRICE" type="STRING" size="256"/>
+          <Column id="PAY_DEDUCTION_ITEM_CODE" type="STRING" size="256"/>
+          <Column id="PAY_DEDUCTION_ITEM_NAME" type="STRING" size="256"/>
+          <Column id="EMP_CODE" type="STRING" size="256"/>
+          <Column id="PAYMENT_DATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBaseYear">
+        <ColumnInfo>
+          <Column id="year" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="year">2015</Col>
+          </Row>
+          <Row>
+            <Col id="year">2016</Col>
+          </Row>
+          <Row>
+            <Col id="year">2017</Col>
+          </Row>
+          <Row>
+            <Col id="year">2018</Col>
+          </Row>
+          <Row>
+            <Col id="year">2019</Col>
+          </Row>
+          <Row>
+            <Col id="year">2020</Col>
+          </Row>
+          <Row>
+            <Col id="year">2021</Col>
+          </Row>
+          <Row>
+            <Col id="year">2022</Col>
+          </Row>
+          <Row>
+            <Col id="year">2023</Col>
+          </Row>
+          <Row>
+            <Col id="year">2024</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsBaseMonth">
+        <ColumnInfo>
+          <Column id="month" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="month">01</Col>
+          </Row>
+          <Row>
+            <Col id="month">02</Col>
+          </Row>
+          <Row>
+            <Col id="month">03</Col>
+          </Row>
+          <Row>
+            <Col id="month">04</Col>
+          </Row>
+          <Row>
+            <Col id="month">05</Col>
+          </Row>
+          <Row>
+            <Col id="month">06</Col>
+          </Row>
+          <Row>
+            <Col id="month">07</Col>
+          </Row>
+          <Row>
+            <Col id="month">08</Col>
+          </Row>
+          <Row>
+            <Col id="month">09</Col>
+          </Row>
+          <Row>
+            <Col id="month">10</Col>
+          </Row>
+          <Row>
+            <Col id="month">11</Col>
+          </Row>
+          <Row>
+            <Col id="month">12</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSalaryInput">
+        <ColumnInfo>
+          <Column id="PATMENT_DATE" type="STRING" size="256"/>
+          <Column id="EMP_CODE" type="STRING" size="256"/>
+          <Column id="SALARY_TYPE_CODE" type="STRING" size="256"/>
+          <Column id="TOTAL_SALARY" type="STRING" size="256"/>
+          <Column id="TOTAL_DEDUCTION_PRICE" type="STRING" size="256"/>
+          <Column id="DEPT_CODE" type="STRING" size="256"/>
+          <Column id="POSITION_CODE" type="STRING" size="256"/>
+          <Column id="HIRE_DATE" type="STRING" size="256"/>
+          <Column id="RETIRE_DATE" type="STRING" size="256"/>
+          <Column id="CHINE_PAYMENTS" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPosition">
+        <ColumnInfo>
+          <Column id="POSITION_CODE" type="STRING" size="256"/>
+          <Column id="POSITION_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDepartment">
+        <ColumnInfo>
+          <Column id="DEPT_TEL" type="STRING" size="256"/>
+          <Column id="DEPT_NAME" type="STRING" size="256"/>
+          <Column id="DEPT_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEmployee">
+        <ColumnInfo>
+          <Column id="EMP_CODE" type="STRING" size="256"/>
+          <Column id="EMP_NAME" type="STRING" size="256"/>
+          <Column id="PASSWORD" type="STRING" size="256"/>
+          <Column id="POSITION_CODE" type="STRING" size="256"/>
+          <Column id="DEPT_CODE" type="STRING" size="256"/>
+          <Column id="AUTHORITY_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPayDeduction">
+        <ColumnInfo>
+          <Column id="PAY_DEDUCTION_ITEM_SEQ" type="STRING" size="256"/>
+          <Column id="PAY_TYPE_CODE" type="STRING" size="256"/>
+          <Column id="PAY_DEDUCT_TYPE_CODE" type="STRING" size="256"/>
+          <Column id="INPUTED_YEAR" type="STRING" size="256"/>
+          <Column id="PAY_DEDUCTION_ITEM_CODE" type="STRING" size="256"/>
+          <Column id="PAY_DEDUCTION_ITEM_NAME" type="STRING" size="256"/>
+          <Column id="TAX_TYPE_CODE" type="STRING" size="256"/>
+          <Column id="SUSUB_APPLY" type="STRING" size="256"/>
+          <Column id="MONTH_SAL" type="STRING" size="256"/>
+          <Column id="PRICE" type="STRING" size="256"/>
+          <Column id="IN_OUT_APPLY" type="STRING" size="256"/>
+          <Column id="CONDITION" type="STRING" size="256"/>
+          <Column id="CONDITION_STATUS" type="STRING" size="256"/>
+          <Column id="CONDITION_TRUE" type="STRING" size="256"/>
+          <Column id="CONDITION_FALSE" type="STRING" size="256"/>
+          <Column id="FORMULA" type="STRING" size="256"/>
+          <Column id="CONDITION_KOR" type="STRING" size="256"/>
+          <Column id="CONDITION_TRUE_KOR" type="STRING" size="256"/>
+          <Column id="CONDITION_FALSE_KOR" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="MaskEdit02" propid="value" datasetid="dsSalaryInput" columnid="CHINE_PAYMENTS"/>
+      <BindItem id="item1" compid="MaskEdit01" propid="value" datasetid="dsSalaryInput" columnid="TOTAL_DEDUCTION_PRICE"/>
+      <BindItem id="item2" compid="MaskEdit00" propid="value" datasetid="dsSalaryInput" columnid="TOTAL_SALARY"/>
+      <BindItem id="item3" compid="Edit00" propid="value" datasetid="dsSalaryInput" columnid="EMP_CODE"/>
+      <BindItem id="item4" compid="Combo00" propid="value" datasetid="dsSalaryInput" columnid="DEPT_CODE"/>
+      <BindItem id="item5" compid="Combo01" propid="value" datasetid="dsSalaryInput" columnid="POSITION_CODE"/>
+      <BindItem id="item6" compid="MaskEdit06" propid="value" datasetid="dsSalaryInput" columnid="HIRE_DATE"/>
+      <BindItem id="item7" compid="MaskEdit04" propid="value" datasetid="dsSalaryInput" columnid="RETIRE_DATE"/>
+      <BindItem id="item8" compid="MaskEdit05" propid="value" datasetid="dsSalaryInput" columnid="PAYMENT_DATE"/>
+      <BindItem id="item9" compid="Combo02" propid="value" datasetid="dsSalaryInput" columnid="SALARY_TYPE_CODE"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[
+include "lib::core.xjs"
+
+this.baseYear;
+this.baseMonth;
+this.num;
+this.baseYearMonth;
+
+//로딩시
+this.payInputCalculationForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+
+	this.initialize(this);
+	
+	this.dsPay.filter("");
+	this.dsDeduction.filter("");
+	this.dsSalaryInput.filter("");//필터링 조건을 해제하려면 매개변수(필터링할 조건식)에 빈 문자열("")을 설정한다. 여기서 굳이 필요없음 그냥 넣음
+	this.dsSalaryInput.filter("emp_code == '"+0+"'");
+	this.dsSalaryInput.set_rowposition(0);
+	
+	this.dsEmployee.filter("");
+	this.dsDepartment.filter("");
+	this.dsPosition.filter("");
+	
+	//직급목록
+	this.transaction(
+				"findPositionList",
+				"dataURL::base/findPositionList.do",
+				"",
+				"dsPosition=dsPosition",
+				"",
+				"callback"
+				);
+	//사원목록			
+	this.transaction(
+				"findEmployeeList",
+				"dataURL::base/findEmployeeList.do",
+				"",
+				"dsEmployee=dsEmployee",
+				"",
+				"callback"
+				);
+	//부서목록
+	this.transaction(
+				"findDeptList",
+				"dataURL::base/findDeptList.do",
+				"",
+				"dsDepartment=dsDepartment",
+				"",
+				"callback"
+				);
+	//코드 목록 얻어옴 
+	this.transaction("findCodeList",
+				"dataURL::base/code/findCodeList.do",
+				"",
+				"dsCode=dsCode dsDetailCode=dsDetailCode",
+				"",
+				"callback",
+				false);
+
+	application.dsDetailCode.filter("String(DETAIL_CODE).substr(0,3) == 'PAC'");
+	this.dsSalaryType.copyData(application.dsDetailCode,true);
+	
+	
+
+	//dsPayDeduction.clearData();	//????
+}
+
+
+//조회시
+this.searchBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	baseYear=this.selYear.value;
+	baseMonth=this.selMonth.value;
+	
+	if(this.selYear.value ==undefined || this.selMonth.value==undefined){
+		alert(" 귀속년월을 입력해주세요 :( ");
+	}else{
+		baseYearMonth= baseYear+baseMonth;
+				
+		var strURL = "hrPay::payDateDialog.xfdl";
+
+		this.showModalPopup(this, strURL, {baseYearMonth:baseYearMonth});
+		alert(baseYearMonth);
+	}	
+}
+
+//급여계산
+this.payCalculationBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.transaction(
+		"payCalculate",
+		"dataURL::hr/pay/payCalculate.do",
+		"",
+		"dsSalaryInput=dsSalaryInput dsPayDeduction=dsPayDeduction",
+		"paymentDate='"+this.paymentDate.value + "' standardDate='" +baseYear+baseMonth+ "'",
+		"callback"
+	);
+	
+}
+
+//급여계산 버튼을 누르면 실행된다.
+this.callback=function(trid, ErrorCode, ErrorMsg) {
+	if(ErrorCode<0){
+		alert(ErrorMsg);
+	}else if(trid == "payCalculate"){
+		alert("급여계산완료되었습니다");
+		this.dsPayDeduction.filter("");
+		this.dsPayDeduction.filter("PAY_DEDUCTION_ITEM_CODE == 'P-10' || PAY_DEDUCTION_ITEM_CODE == 'P-20' || PAY_DEDUCTION_ITEM_CODE== 'P-30' || PAY_DEDUCTION_ITEM_CODE == 'P-40'|| PAY_DEDUCTION_ITEM_CODE == 'P-50' || PAY_DEDUCTION_ITEM_CODE == 'P-60' || PAY_DEDUCTION_ITEM_CODE == 'P-70' ||PAY_DEDUCTION_ITEM_CODE == 'P-80' ||PAY_DEDUCTION_ITEM_CODE == 'P-90'||PAY_DEDUCTION_ITEM_CODE == 'P-100' ||PAY_DEDUCTION_ITEM_CODE == 'P-110' ");
+		this.dsPay.copyData(this.dsPayDeduction,true);
+		this.dsPayDeduction.filter("PAY_DEDUCTION_ITEM_CODE == 'P-120' || PAY_DEDUCTION_ITEM_CODE == 'P-140' || PAY_DEDUCTION_ITEM_CODE == 'P-130' || PAY_DEDUCTION_ITEM_CODE == 'P-150' || PAY_DEDUCTION_ITEM_CODE == 'P-160' || PAY_DEDUCTION_ITEM_CODE == 'P-170'");
+		this.dsDeduction.copyData(this.dsPayDeduction,true);
+		this.dsPay.filter("EMP_CODE == '"+this.dsEmployee.getColumn(0,"EMP_CODE")+"'");
+		this.dsDeduction.filter("EMP_CODE == '"+this.dsEmployee.getColumn(0,"EMP_CODE")+"'");
+		this.dsSalaryInput.filter("EMP_CODE == '"+this.dsEmployee.getColumn(0,"EMP_CODE")+"'");
+		
+		//this.MaskEdit02.text =this.MaskEdit00.text-this.MaskEdit01.text;
+		var p1= this.MaskEdit00.text;
+		var p2= this.MaskEdit01.text;
+		var p3= this.MaskEdit02.text;
+		trace("@@"+p1+"@@");
+		trace("##"+p2+"##");
+		trace("##"+p3+"##");
+	}
+}
+
+//dsEmployee에 있는 emp_code값에 해당하는 dsPay,dsDeduction,dsSalary값을 가져온다
+this.Grid00_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+
+		this.dsPay.filter("EMP_CODE == '"+this.dsEmployee.getColumn(e.row,"EMP_CODE")+"'");
+		this.dsDeduction.filter("EMP_CODE == '"+this.dsEmployee.getColumn(e.row,"EMP_CODE")+"'");
+		this.dsSalaryInput.filter("EMP_CODE == '"+this.dsEmployee.getColumn(e.row,"EMP_CODE")+"'");
+		this.dsSalaryInput.set_rowposition(0);
+	
+	
+	/*-----------------------------------------------------
+	ex)this.Dataset00.set_rowposition(0); 
+	
+	Dataset.set_rowposition(nRow) // set  
+	Dataset.rowposition // get  
+	데이터셋에서 현재 행(row)을 설정하는 속성입니다.
+	
+	첫번째 행의 위치값은 0입니다.
+	데이터셋에 행이 없을 경우에는 -1 값을 갖습니다.
+	------------------------------------------------------*/
+
+}
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="1.2">
+  <TypeDefinition url="default_typedef.xml"/>
+  <GlobalVariables url="globalvars.xml"/>
+  <Application id="hrErpNexa" codepage="utf-8" language="Korean" loginformurl="" loginformstyle="" windowopeneffect="" windowcloseeffect="" version="" tracemode="none" themeid="default.xtheme" onload="application_onload">
+    <Layout>
+      <MainFrame id="mainframe" title="maintitle" defaultfont="" resizable="false" showtitlebar="true" showstatusbar="false" left="0" top="0" width="920" height="670" visible="true" openalign="center top" showcascadestatustext="false" showcascadetitletext="false" style="titlebarheight:25;statusbarheight:25;" titletext="HR ERP" showtitleicon="true">
+        <VFrameSet id="VFrameSet0" separatesize="40, *">
+          <Frames>
+            <ChildFrame id="TopFrame" formurl="menu::topForm.xfdl" showcascadetitletext="false" showcascadestatustext="false" showtitlebar="false" showtitleicon="false"/>
+            <HFrameSet id="HFrameSet0" separatesize="200, *" showtitleicon="false" showcascadestatustext="false" showcascadetitletext="false" style="padding:0 0 0 0;align:center middle;" left="0" top="0" width="0" height="0" right="0" bottom="0">
+              <Frames>
+                <ChildFrame id="MenuFrame" formurl="menu::leftForm.xfdl" showtitlebar="false" showtitleicon="false" showcascadestatustext="false" showcascadetitletext="false" left="0" top="0" width="0" height="0" right="0" bottom="0"/>
+                <VFrameSet id="VFrameSet1" separatesize="40, 530 , *">
+                  <Frames>
+                    <ChildFrame id="StatusFrame" showcascadestatustext="false" showcascadetitletext="false" showtitlebar="false" showtitleicon="false" formurl="menu::statusForm.xfdl"/>
+                    <ChildFrame id="MenuTabFrame" formurl="menu::mainForm.xfdl" showtitlebar="false" showtitleicon="false" showcascadestatustext="false" showcascadetitletext="false"/>
+                    <ChildFrame id="BottomFrame" showtitlebar="false" showtitleicon="false" formurl="menu::bottomForm.xfdl"/>
+                  </Frames>
+                </VFrameSet>
+              </Frames>
+            </HFrameSet>
+          </Frames>
+        </VFrameSet>
+      </MainFrame>
+    </Layout>
+    <ScreenInfo/>
+  </Application>
+  <Script type="xscript5.0"><![CDATA[
+this.application_onload = function(obj:Application, e:nexacro.LoadEventInfo)
+{		
+	// 현재 화면 해상도 읽기
+	var nMoniterIndex = system.getMonitorIndex(system.cursorx, system.cursory); // MoniterIndex
+
+	var strScreenRes = system.getScreenResolution(nMoniterIndex); 
+	var arrScreen = strScreenRes.split(" ");
+
+	var nCenterX = new Number(arrScreen[0]); // X Resolution
+	var nCenterY = new Number(arrScreen[1]); // Y Resolution
+	
+	trace("화면 해상도 : 가로 " + nCenterX + ", 세로 " + nCenterY);
+
+	application.setVariable("gvScreenWidth", nCenterX);
+	application.setVariable("gvScreenHeight", nCenterY);
+
+	// 현재 화면 해상도에 맞춰서 화면 중앙에 뜨도록 좌표 설정 
+	
+	var nLoginWidth = 250;  // 로그인 폼의 너비
+	var nLoginHeight = 300;  // 로그인 폼의 높이
+
+	var nLeft = nCenterX/2 - nLoginWidth/2;
+	var nTop = nCenterY/2 - nLoginHeight/2;
+	
+	// 메인프레임 안보이게 숨기기
+	application.mainframe.set_visible(false);
+	
+	var loginFormUrl = "authorityManager::loginForm.xfdl";
+	
+	//application.open(strName,strFormURL,objParentFrame,{objArgumentList},strOpenStyle,nLeft,nTop[,nWidth,nHeight[,objOpener]])
+	application.open("login", loginFormUrl, null, "", 
+		"showtitlebar=true showstatusbar=false style.border='1px solid blue'", 
+		nLeft, nTop, nLoginWidth, nLoginHeight);
+
+}
+]]></Script>
+</ADL>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="mainForm" classname="mainForm" left="0" top="0" width="720" height="530" onload="mainForm_onload">
+    <Layouts>
+      <Layout>
+        <Tab id="mainTab" taborder="1" left="0" top="10" width="710" height="520" tabindex="0" scrollbars="autoboth" style="showextrabutton:true;border:1 solid #9f8f71ff,1 solid #d5d5d5ff,1 solid #d5d5d5ff,1 solid #d5d5d5ff;bordertype:normal 0 0 ;font:antialias 10 함초롬돋움;" onextrabuttonclick="mainTab_onextrabuttonclick">
+          <Tabpages>
+            <Tabpage id="tab_home" text="Home" url="menu::homeForm.xfdl">
+              <Layouts/>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+
+this.mainForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+
+}
+
+this.mainTab_onextrabuttonclick = function(obj:Tab, e:nexacro.TabMouseEventInfo)
+{
+	var openedMenuTabArray = application.mainframe.VFrameSet0.HFrameSet0.MenuFrame.form.openedMenuTabArray;
+	
+	if(e.index != 0 ) {
+		this.mainTab.removeTabpage(e.index);
+	}
+	
+	Eco.array.removeAt(openedMenuTabArray, e.index) ;
+
+}
+]]></Script>
+  </Form>
+</FDL>

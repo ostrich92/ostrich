@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="empInfoGoogleChartDialog" classname="empInfoGoogleChartDialog" left="0" top="0" width="1024" height="768" titletext="New Form" onload="empInfoGoogleChartDialog_onload">
+    <Layouts>
+      <Layout>
+        <WebBrowser id="WebBrowser00" left="0.98%" top="11" right="1.07%" height="742" taborder="0"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+this.empInfoGoogleChartDialog_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	alert("1");
+	this.WebBrowser00.set_url("http://52.79.253.123/hrErp/test/chart.do");
+}
+]]></Script>
+  </Form>
+</FDL>

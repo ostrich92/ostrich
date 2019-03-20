@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="unApprovedDailyAttdDialog" classname="unApprovedDailyAttdDialog" left="0" top="0" width="600" height="400" titletext="New Form" onload="unApprovedDailyAttdDialog_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="일&#13;&#10;근&#13;&#10;태&#13;&#10;/ &#13;&#10;근&#13;&#10;태&#13;&#10;외&#13;&#10;&#13;&#10;미&#13;&#10;승&#13;&#10;인&#13;&#10;&#13;&#10;목&#13;&#10;록&#13;&#10;" left="1%" top="5" width="34" height="390" style="background:#800000ff;border:0 none snow ;color:#ff0000ff;padding:20 5 5 5;align:center top;font:bold 12 궁서;"/>
+        <Static id="Static01" taborder="1" text="기준일" left="60.33%" top="7" width="70" height="25" style="background:#800000ff;color:#ff0000ff;align:center middle;font:11 궁서;"/>
+        <Calendar id="unApprovalDate" taborder="2" dateformat="yyyy-MM-dd" left="73.5%" top="7" width="150" height="25" readonly="true"/>
+        <Button id="approvalBtn" taborder="3" text="일괄승인" left="22.83%" top="7" right="66.67%" height="25" onclick="approvalBtn_onclick"/>
+        <Button id="saveBtn" taborder="4" text="저장" left="34.83%" top="7" right="54.67%" height="25"/>
+        <Button id="cancelBtn" taborder="5" text="취소" left="46.83%" top="7" right="42.67%" height="25" onclick="cancelBtn_onclick"/>
+        <GroupBox id="GroupBox00" text="일근태 미승인 목록" taborder="8" left="7.33%" top="34" height="180" width="550" style="background:#ffffffb3;border:1 solid #ffffffb3 ;bordertype:normal 0 0 ;"/>
+        <GroupBox id="GroupBox01" text="일근태외 미승인 목록" taborder="9" left="7.33%" top="215" width="550" height="180" style="background:#ffffffb3;border:1 solid #ffffffb3 ;bordertype:normal 0 0 ;"/>
+        <Grid id="Grid00" taborder="10" useinputpanel="false" left="9.17%" top="50" right="1.67%" height="160" binddataset="dsDailyAttdManage">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사원번호"/>
+                <Cell col="1" text="사원명"/>
+                <Cell col="2" text="기준일"/>
+                <Cell col="3" text="근태타입"/>
+                <Cell col="4" text="시간"/>
+                <Cell col="5" text="금액"/>
+                <Cell col="6" text="승인상태"/>
+                <Cell col="7" text="사유"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:EMP_CODE"/>
+                <Cell col="1" text="bind:EMP_NAME"/>
+                <Cell col="2" text="bind:BASIC_DAY"/>
+                <Cell col="3" text="bind:ATTD_TYPE_CODE"/>
+                <Cell col="4" text="bind:TIME"/>
+                <Cell col="5" text="bind:COST"/>
+                <Cell col="6" text="bind:APPROVAL_STATUS"/>
+                <Cell col="7" text="bind:CAUSE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid01" taborder="11" useinputpanel="false" left="9.17%" top="233" right="1.67%" height="160" binddataset="dsDailyAttdRestManage">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사원번호"/>
+                <Cell col="1" text="사원명"/>
+                <Cell col="2" text="근태외타입"/>
+                <Cell col="3" text="신청일자"/>
+                <Cell col="4" text="시작일"/>
+                <Cell col="5" text="종료일"/>
+                <Cell col="6" text="일수"/>
+                <Cell col="7" text="금액"/>
+                <Cell col="8" text="승인상태"/>
+                <Cell col="9" text="사유"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:EMP_CODE"/>
+                <Cell col="1" text="bind:EMP_NAME"/>
+                <Cell col="2" text="bind:ATTD_REST_CODE"/>
+                <Cell col="3" text="bind:REQUEST_DATE"/>
+                <Cell col="4" text="bind:START_DATE"/>
+                <Cell col="5" text="bind:END_DATE"/>
+                <Cell col="6" text="bind:DAYS"/>
+                <Cell col="7" text="bind:COST"/>
+                <Cell col="8" text="bind:COST"/>
+                <Cell col="9" text="bind:CAUSE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsDailyAttdRestType">
+        <ColumnInfo>
+          <Column id="DETAIL_CODE" type="STRING" size="256"/>
+          <Column id="DETAIL_CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDailyAttdType">
+        <ColumnInfo>
+          <Column id="DETAIL_CODE" type="STRING" size="256"/>
+          <Column id="DETAIL_CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+this.unApprovedDailyAttdDialog_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{		
+		application.dsDetailCode.filter("String(DETAIL_CODE).substr(0,3)== 'ASC'");
+		this.dsDailyAttdRestType.copyData(application.dsDetailCode,true);
+		application.dsDetailCode.filter("String(DETAIL_CODE).substr(0,3)== 'ADC'");
+		this.dsDailyAttdType.copyData(application.dsDetailCode,true);
+		
+		alert(this.opener.basicDate.value);
+		this.unApprovalDate.value=this.opener.basicDate.value
+		
+}
+
+this.approvalBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	
+	if(confirm(this.unApprovalDate.value+"일자 근태/근태외 데이터를 일괄승인하시겠습니까? ")){
+		for(var index = 0; index < this.dsDailyAttdManage.rowcount; index++) {
+			this.dsDailyAttdManage.setColumn(index, "APPROVAL_STATUS", "Y");
+		}
+		for(var index = 0; index < this.dsDailyAttdRestManage.rowcount; index++) {
+			this,dsDailyAttdRestManage.setColumn(index, "APPROVAL_STATUS", "Y");
+		}
+	}
+}
+
+this.cancelBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+		if(confirm(" 취소하시겠습니까? ")){
+			if(this.dsDailyAttdManage.getRowCount()>0 || this.dsDailyAttdRestManage.getRowCount()>0){
+				this.close();
+			}
+	}	
+}
+]]></Script>
+  </Form>
+</FDL>

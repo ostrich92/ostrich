@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script type="xscript5.0"><![CDATA[
+/*
+	sourceForm 에 팝업창 EventHandler 추가
+*/
+this.initialize = function (sourceForm) {
+
+      // 개발 도우미 팝업 Ctrl + Alt + D
+      sourceForm.addEventHandler("onkeydown", this.debugPopup_onkeydown, sourceForm);
+
+},
+
+/*
+	Ctrl + Alt + D  클릭시 팝업창 띄우는 이벤트
+*/
+this.debugPopup_onkeydown = function(sourceForm, e){
+
+	var debugPopupURL = "base::DEBUG_POPUP.xfdl";
+
+	if(e.altKey && e.ctrlKey && e.keycode == 68){
+
+		this.showModalPopup(sourceForm, debugPopupURL, "");
+		
+	}        
+}
+
+
+/*
+	sourceForm 을 부모폼으로 하여 formURL 에 해당하는 모달 팝업 동적으로 띄우는 함수
+*/
+this.showModalPopup = function(sourceForm, formURL, objArguments) {
+
+	var objChildFrame = new ChildFrame();
+
+	// ChildFrame.init(strID,position[,nLeft,nTop,nWidth,nHeight,
+	//									[nRight,nBottm[,strUrl]])
+    objChildFrame.init(
+		"ChildFrame00"
+		, "absolute"
+        , 0
+        , 0
+        , 0
+        , 0
+        , null
+        , null
+        , formURL 
+	);
+
+	/*
+	objChildFrame.set_openalign("Halign(수직정렬) Halign(수평정렬)");
+	*/
+    objChildFrame.set_openalign("center middle");
+
+    /*
+    objChildFrame.set_dragmovetype("옵션")
+    
+    Frame을 이동시키기 위해 마우스로 드래그할 영역
+		"all": Titlebar 와 Form 영역
+		"normal": Titlebar가 있는 경우 Titlebar, Titlebar가 없는 경우 Form 영역
+		"none": 마우스 드래그를 통한 Frame 이동을 허용하지 않음
+    */
+    
+    objChildFrame.set_dragmovetype("all");
+    	
+    // system.showModalWindow(childframe, strID, objParentFrame[, 
+	//							{objArguments}[, objOpener]]);
+    system.showModalWindow(
+		objChildFrame, 
+		"cf_modal", 
+		sourceForm.getOwnerFrame(), 
+		objArguments,   // {a:'aaa', b:'bbb'}
+		sourceForm);
+
+	objChildFrame.destroy();
+	
+	objChildFrame = null;
+
+}
+
+
+
+/*
+	체크박스 사용시 null, '', '0' => '' 
+	 '1' => 그대로 '1' 전환
+*/
+this.showCheckBoxStatus = function(str)
+{
+	switch(str) {
+	
+		case null :  case '' :  case '0' :
+ 			return '0'; 
+		
+		case '1' :
+			return '1'; 
+		
+	}
+
+}
+
+
+/*
+Dataset 에서 rowType 표시
+
+Dataset.ROWTYPE_EMPTY (0) : 존재하지 않는 행의 상태 => "none"
+Dataset.ROWTYPE_NORMAL (1) : 초기 행의 상태 => "normal"
+Dataset.ROWTYPE_INSERT (2) : 추가된 행의 상태 => "insert"
+Dataset.ROWTYPE_UPDATE (4) : 수정된 행의 상태 => "update"
+Dataset.ROWTYPE_DELETE (8) : 삭제된 행의 상태 => "delete"
+Dataset.ROWTYPE_GROUP (16) : 그룹 정보 행의 상태 => group"
+
+그리드에서 expr  => expr:comp.parent.showRowType(dataset.getRowType(currow))
+*/
+this.showRowType = function(str)
+{
+	switch(str) {
+	
+		case Dataset.ROWTYPE_EMPTY :  
+			return 'NONE'; 
+		case Dataset.ROWTYPE_NORMAL :  
+			return 'NORMAL'; 
+		case Dataset.ROWTYPE_INSERT :  
+			return 'INSERT'; 
+		case Dataset.ROWTYPE_UPDATE :
+ 			return 'UPDATE'; 
+		case Dataset.ROWTYPE_DELETE :  
+			return 'DELETE'; 
+		case Dataset.ROWTYPE_group :
+			return 'GROUP'; 
+		
+	}
+
+}]]></Script>

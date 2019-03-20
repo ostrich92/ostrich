@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="healthlnsurDialog" classname="healthlnsurDialog" left="0" top="0" width="400" height="250" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="건강 보험 계산" left="1%" top="2" right="0.5%" height="44" style="background:papayawhip;align:center middle;font:bold 14 arial;"/>
+        <Static id="Static01" taborder="1" text="자동계산" left="2.25%" top="72" right="81.75%" height="34" style="background:papayawhip;align:center middle;"/>
+        <Static id="Static02" taborder="2" text="직접입력" left="10.5%" top="126" right="73.5%" height="34" style="background:papayawhip;align:center middle;"/>
+        <CheckBox id="CheckBox00" taborder="3" left="2.75%" top="125" right="90.75%" height="32"/>
+        <Edit id="Edit00" taborder="4" left="19.75%" top="72" right="54%" height="32"/>
+        <Static id="Static03" taborder="5" text="X" left="47.5%" top="72" right="41.25%" height="34" style="background:papayawhip;align:center middle;font:bold 14 arial;"/>
+        <Edit id="Edit01" taborder="6" left="60%" top="72" right="13.75%" height="32"/>
+        <Edit id="Edit02" taborder="7" left="30.25%" top="125" right="2.25%" height="32"/>
+        <Static id="Static04" taborder="8" text="%" left="88%" top="72" right="2%" height="34" style="background:papayawhip;align:center middle;font:bold 14 arial;"/>
+        <Button id="Button00" taborder="9" text="계산" left="52%" top="164" right="27%" height="24"/>
+        <Button id="Button01" taborder="10" text="적용" left="76%" top="164" right="3%" height="24"/>
+        <Static id="Static05" taborder="11" text="※장기요양보험은 건강보험 계산서 계산됩니다. &#13;&#10;근로자 부담 건강보험율*장기요양보험윻" left="2.25%" top="194" right="3%" height="49" onclick="Static05_onclick" style="align:center middle;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+this.Static05_onclick = function(obj:Static,  e:nexacro.ClickEventInfo)
+{
+	
+}
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,11 @@
+﻿{
+	"name": "DataUtilClassLibrary",
+	"version": "1.0.0.0",
+	"description": "DataUtil Class Library for nexacro platform",
+	"license": "",
+	"scripts": [
+		"DataUtilClass/DataUtil.js",
+		"DataUtilClass/DatasetMap.js"
+	]
+}
+//@ sourceURL=DataUtilClass.json
